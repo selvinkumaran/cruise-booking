@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col">
+      <h2 class="text-white m-3">Feedback</h2>
+      <table class="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">CRUISE NAME</th>
+            <th scope="col">COMMENTS</th>
+            <th scope="col">RATING</th>
+            <th scope="col">ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let feedback of feedbackDetails">
+            <th scope="row">{{ feedback.id }}</th>
+            <td>{{ feedback.cruiseName }}</td>
+            <td>{{ feedback.comments }}</td>
+            <td>{{ feedback.rating }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn-add mx-3"
+                (click)="onEdit(feedback.id!)"
+              >
+                Edit
+              </button>
+              <button
+                type="button"
+                class="btn-add"
+                (click)="onDelete(feedback.id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

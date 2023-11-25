@@ -1,0 +1,30 @@
+<div class="text-white justify-content-between d-flex py-3">
+  <h2 class="teal">All Payments</h2>
+  <button type="button" class="btn-add w-25">
+    No of Payments : {{ paymentDetails.length }}
+  </button>
+</div>
+<table class="table table-dark table-striped text-center">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">CARD HOLDER NAME</th>
+      <th scope="col">PAYMENT DATE</th>
+      <th scope="col">CARD NUMBER</th>
+      <th scope="col">AMOUNT</th>
+      <th scope="col">EXPIRY DATE</th>
+      <th scope="col">CVC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let payment of paymentDetails">
+      <td>{{ payment.id }}</td>
+      <td>{{ payment.cardHolderName }}</td>
+      <td>{{ payment.paymentDate }}</td>
+      <td>{{ payment.cardNumber }}</td>
+      <td>{{ payment.amount }}</td>
+      <td>{{ payment.expiryDate }}</td>
+      <td>{{ payment.cvc }}</td>
+    </tr>
+  </tbody>
+</table>

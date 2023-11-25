@@ -1,0 +1,11 @@
+.btn-delete{
+    background-color: var(--black-primary);
+    border: solid 1px var(--text);
+    border-radius: 100px;
+    width: 100px;
+    height: 40px;
+    color: white;
+}
+.btn-delete:hover{
+    background-color: var(--secondary);
+}

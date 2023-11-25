@@ -1,0 +1,40 @@
+<div class="text-white justify-content-between d-flex py-3">
+  <h2 class="teal">All Cruise</h2>
+  <button
+    type="button"
+    class="btn-add"
+    routerLink="/admin/cruise/operation"
+    routerLinkActive="active"
+  >
+    <i class="fa fa-plus"></i>
+    Cruise
+  </button>
+</div>
+
+<table class="table table-dark table-striped text-center">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">CRUISE NAME</th>
+      <th scope="col">DESCRIPTION</th>
+      <th scope="col">CAPACITY</th>
+      <th scope="col">ACTION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cruise of cruiseDetails">
+      <th scope="row">{{ cruise.id }}</th>
+      <td>{{ cruise.name }}</td>
+      <td class="col-6">{{ cruise.description }}</td>
+      <td>{{ cruise.capacity }}</td>
+      <td>
+        <button type="button" class="btn-add mx-3" (click)="onEdit(cruise.id!)">
+          Edit
+        </button>
+        <button type="button" class="btn-add" (click)="onDelete(cruise.id)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

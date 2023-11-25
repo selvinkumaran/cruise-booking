@@ -1,1 +1,184 @@
-<h1>Cruise-Booking</h1>
+<div *ngIf="!isLoggedIn">
+  <router-outlet />
+</div>
+
+<div *ngIf="isLoggedIn" class="vh-100 d-flex flex-column">
+  <nav class="navbar navbar-expand-lg py-3 container-fluid">
+    <div class="container-fluid text-white">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        class="navbar-brand text-white"
+        ><img
+          class="card-img-top"
+          src="../../../../assets/images/cruise-logo.png"
+          height="30px"
+          alt="logo"
+      /></a>
+      <h3 class="fs-4 pt-3">Cruise Hub</h3>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mx-5 mb-lg-0">
+          <li class="nav-item px-2">
+            <a
+              routerLink="/"
+              routerLinkActive="active"
+              class="nav-link text-white"
+              [routerLinkActiveOptions]="{ exact: true }"
+              aria-current="page"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item px-2">
+            <a
+              routerLink="/cruise"
+              routerLinkActive="active"
+              class="nav-link text-white"
+              >Tour</a
+            >
+          </li>
+          <li class="nav-item px-2">
+            <a
+              routerLink="/destination"
+              routerLinkActive="active"
+              class="nav-link text-white"
+              >Destination</a
+            >
+          </li>
+          <li class="nav-item dropdown px-2">
+            <a
+              class="nav-link dropdown-toggle text-white"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Blog
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item">Action</a></li>
+              <li><a class="dropdown-item">Another action</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item px-2">
+            <a
+            routerLink="/services"
+              routerLinkActive="active" class="nav-link text-white">Services</a>
+          </li>
+          <li class="nav-item px-2">
+            <a
+              routerLink="/booking"
+              routerLinkActive="active"
+              class="nav-link text-white"
+              >Booking</a
+            >
+          </li>
+        </ul>
+        <div
+          class="navbar-nav px-4 text-white"
+          (click)="logout()"
+          role="button"
+        >
+          <i class="fa-solid fa-solid fa-right-from-bracket text-white"></i>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div *ngIf="isAdmin" class="row flex-grow-1">
+    <div class="sidebar border border-right col-2 p-0">
+      <div class="black-secondary h-100" tabindex="-1">
+        <div class="d-flex flex-column overflow-y-auto">
+          <ul class="navbar-nav nav flex-column">
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+              <i class="fa-solid fa-house"></i>
+              <a
+                routerLink="/admin"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="nav-link d-flex"
+              >
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+              <i class="fa-solid fa-user"></i>
+              <a
+                routerLink="/admin/users"
+                routerLinkActive="active"
+                class="nav-link d-flex"
+                >Users</a
+              >
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+              <i class="fa-solid fa-ship"></i>
+              <a
+                routerLink="/admin/cruise"
+                routerLinkActive="active"
+                class="nav-link d-flex"
+                >Cruise</a
+              >
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+              <i class="fa-solid fa-book"></i>
+              <a
+                routerLink="/admin/tour"
+                routerLinkActive="active"
+                class="nav-link d-flex"
+                >Tour
+              </a>
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+              <i class="fa-solid fa-credit-card"></i>
+              <a
+                routerLink="/admin/payment"
+                routerLinkActive="active"
+                class="nav-link d-flex align-items-center"
+                >Payment
+              </a>
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+              <i class="fa-solid fa-calendar-days"></i>
+              <a
+                routerLink="/admin/booking"
+                routerLinkActive="active"
+                class="nav-link d-flex align-items-center"
+                >Booking
+              </a>
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
+              <i class="fa-solid fa-comment"></i>
+              <a
+                routerLink="/admin/feedback"
+                routerLinkActive="active"
+                class="nav-link d-flex align-items-center"
+                >Feedback
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <main class="col-10 px-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  <div *ngIf="!isAdmin">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<div *ngIf="loaderService.isLoading | async" class="loader">
+  <ng-lottie [options]="options"></ng-lottie>
+</div>

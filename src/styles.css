@@ -1,1 +1,195 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+:root {
+  --primary: #ffffff;
+  --secondary: #29d9d5;
+  --text: #b4b4b4;
+  --accent: #dfd8cb;
+  --black-primary: #29292c;
+  --black-secondary: #121214;
+  --red-300: #fca5a5;
+  --red-500: #ef4444;
+  --red-700: #b91c1c;
+  --green-300: #bef264;
+  --green-500: #84cc16;
+  --green-700: #4d7c0f;
+  --font-family: "Poppins";
+  --font-size: 55px;
+  --font-weight: 600;
+  --line-height: 1.3em;
+}
+
+body {
+  background-color: var(--black-secondary) !important;
+  /* font-family: var(--font-family); */
+}
+
+.primary {
+  color: var(--secondary);
+}
+
+.black-primary {
+  background-color: var(--black-primary);
+}
+
+.text {
+  color: var(--text);
+}
+.teal {
+  color: var(--secondary);
+}
+.bg-teal{
+  background-color: var(--secondary);
+}
+
+.btn-all {
+  background-color: var(--black-primary);
+  border: solid 1px var(--secondary);
+  border-radius: 100px;
+  padding: 10px;
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3em;
+  letter-spacing: 2px;
+  color: white;
+}
+.btn-all:hover {
+  background-color: var(--secondary);
+}
+
+.loader {
+  position: absolute;
+  min-height: 100vh;
+  min-width: 100vw;
+  opacity: 0.5;
+  background-color: #000;
+  z-index: 99;
+  left: 0;
+  top: 0;
+}
+
+.lottie-loader {
+  width: 150px !important;
+  height: 150px !important;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+}
+
+.nav-item {
+  color: white;
+  text-decoration: none;
+  justify-content: space-around;
+}
+
+.card-a {
+  color: var(--secondary);
+  font-weight: 100;
+  text-decoration: none;
+}
+.font-weight {
+  font-weight: var(--font-weight);
+}
+.btn-danger {
+  color: var(--accent);
+  background: var(--red-500);
+  border: none;
+}
+
+.btn-danger:hover {
+  color: var(--accent);
+  background: var(--red-700);
+  border: none;
+}
+
+.btn-success {
+  color: var(--accent);
+  background: var(--green-500);
+  border: none;
+}
+
+.btn-success:hover {
+  color: var(--accent);
+  background: var(--green-700);
+  border: none;
+}
+
+.btn-all:disabled,
+.btn-all[disabled] {
+  cursor: not-allowed;
+}
+
+.btn-all:disabled,
+.btn-all[disabled],
+.btn-all:disabled:hover,
+.btn-all[disabled]:hover {
+  opacity: 0.7;
+}
+
+/*image top*/
+.img-top {
+  width: 100%;
+  height: 400px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  background-color: black;
+}
+
+.img-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  opacity: 0.4;
+}
+
+.img-top .img-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 60px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.text-size {
+  position: absolute;
+  top: 70%;
+
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 20px !important;
+  text-align: center;
+}
+
+.btn-add {
+  background-color: var(--black-primary);
+  border: solid 1px var(--text);
+  border-radius: 100px;
+  width: 100px;
+  height: 40px;
+  color: white;
+}
+.btn-add:hover {
+  background-color: var(--secondary);
+}
+/* html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+} */
+.custom-snackbar {
+  color: white;
+  border: solid 1px var(--secondary);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

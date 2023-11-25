@@ -1,0 +1,8 @@
+.hover{
+    border: none;
+}
+.hover:hover{
+    border: 1px solid var(--secondary);
+    cursor: pointer;
+    color: black;
+}

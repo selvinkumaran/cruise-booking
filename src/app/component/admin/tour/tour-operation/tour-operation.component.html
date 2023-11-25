@@ -1,0 +1,72 @@
+<h1 class="teal text-center">{{ btn === "Add" ? "ADD" : "EDIT" }} TOUR</h1>
+<div class="container col-8 fs-5 fw-5 text-white">
+  <form #addForm="ngForm" (ngSubmit)="onSubmit(addForm)">
+    <div class="form-group p-2">
+      <label class="p-2" for="cruiseName">Destination</label>
+      <input
+        [(ngModel)]="tourDetail.destination"
+        ngModel
+        name="destination"
+        type="text"
+        class="form-control"
+        id="cruiseName"
+        placeholder="Enter Destination Name"
+        required
+      />
+    </div>
+    <div class="form-group p-2">
+      <label class="p-2" for="cruiseName">Cruise Id</label>
+      <input
+        [(ngModel)]="tourDetail.cruiseId"
+        ngModel
+        name="cruise"
+        type="number"
+        class="form-control"
+        id="cruiseName"
+        placeholder="Enter Cruise Name"
+        required
+      />
+    </div>
+    <div class="form-group p-2">
+      <label class="p-2" for="checkinDate">Check-in Date</label>
+      <input
+        [(ngModel)]="tourDetail.checkInDate"
+        ngModel
+        name="checkIn"
+        type="date"
+        class="form-control"
+        id="checkinDate"
+        required
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </div>
+    <div class="form-group p-2">
+      <label class="p-2" for="checkoutDate">Checkout Date</label>
+      <input
+        [(ngModel)]="tourDetail.checkOutDate"
+        ngModel
+        name="checkOut"
+        type="date"
+        class="form-control"
+        id="checkoutDate"
+        required
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </div>
+
+    <div class="form-group p-2">
+      <label class="p-2" for="price">Price</label>
+      <input
+        [(ngModel)]="tourDetail.price"
+        ngModel
+        name="price"
+        type="number"
+        class="form-control"
+        id="price"
+        placeholder="Enter Price"
+        required
+      />
+    </div>
+    <button type="submit" class="btn-add text-center mt-3">{{ btn }}</button>
+  </form>
+</div>

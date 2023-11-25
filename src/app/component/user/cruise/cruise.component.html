@@ -1,0 +1,39 @@
+<div class="img-top">
+  <img
+    src="assets/images/aurora-borealis-over-snowy-mountains-and-frozen-se-J6LTWV2.jpg"
+    alt="Your Image Alt Text"
+  />
+  <div class="img-text">Tour</div>
+  <p class="text-size">
+    <a
+      class="text-white text-decoration-none"
+      routerLink="/"
+      routerLinkActive="action"
+      >Home</a
+    >
+    > Tour
+  </p>
+</div>
+
+<div class="cruise-top mt-5"></div>
+<div class="container">
+  <div class="row" >
+    <div  *ngFor="let cruise of cruiseDetails" class="card col-2 m-2 p-0 border-0" style="width: 16rem">
+      <img
+        src="../../../../assets/images/jonatan-pie-3l3RwQdHRHg-unsplash-1536x1152.jpg"
+        class="card-img-top"
+        alt="..."
+      />
+      <div class="card-body text-center black-primary">
+        <h5 class="card-title text-white">{{cruise.name}}</h5>
+        <p class="card-text text">
+          {{cruise.description}}
+        </p>
+        <a (click)="getCruiseId(cruise.id)" class="card-a"
+          >Learn more <i class="fa fa-arrow-right"></i
+        ></a>
+      </div>
+    </div>
+    
+    </div>
+  </div>

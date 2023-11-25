@@ -1,0 +1,296 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit(paymentForm)" #paymentForm="ngForm">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="text-info text-center p-3 display-5">Billing Address</h1>
+        <div class="container text-white">
+          <label
+            >Name
+            <span class="text-secondary text-wrap"
+              >(First letter must be Capital)</span
+            ></label
+          >
+          <div class="input-group py-3">
+            <br />
+
+            <span class="input-group-text" id="addon-wrapping"
+              ><i class="fa fa-user"></i
+            ></span>
+            <input
+              type="text"
+              name="name"
+              ngModel
+              required
+              #modelName="ngModel"
+              minlength="4"
+              pattern="[A-Z][a-zA-Z '.-]*[A-Za-z][^-]$"
+              [ngClass]="
+                modelName.invalid && modelName.dirty ? 'is-invalid' : ''
+              "
+              [(ngModel)]="paymentDetail.nameRef"
+              class="form-control"
+              placeholder="Name"
+              aria-label="name"
+              aria-describedby="addon-wrapping"
+            />
+            <div *ngIf="modelName.invalid" class="invalid-feedback">
+              Please enter a valid name
+            </div>
+          </div>
+          <label
+            >Phone Number
+            <span class="text-secondary text-wrap"
+              >(Phone number must be 10 digits)</span
+            ></label
+          >
+          <div class="input-group py-3">
+            <span class="input-group-text" id="addon-wrapping"
+              ><i class="fa fa-phone"></i
+            ></span>
+            <input
+              type="text"
+              [(ngModel)]="paymentDetail.numberRef"
+              ngModel
+              required
+              pattern="[0-9]{10}$"
+              #modelPhone="ngModel"
+              [ngClass]="
+                modelPhone.invalid && modelPhone.dirty ? 'is-invalid' : ''
+              "
+              name="Phone"
+              class="form-control"
+              placeholder="Phone Number"
+              aria-label="text"
+              aria-describedby="addon-wrapping"
+            />
+            <div *ngIf="modelPhone.invalid" class="invalid-feedback">
+              Please enter a valid phone number.
+            </div>
+          </div>
+
+          <label
+            >Address
+            <span class="text-secondary text-wrap">(Original Address)</span>
+          </label>
+          <div class="input-group py-3">
+            <span class="input-group-text" id="addon-wrapping"
+              ><i class="fa fa-address-card-o"></i
+            ></span>
+            <input
+              type="text"
+              [(ngModel)]="paymentDetail.addressRef"
+              ngModel
+              required
+              name="address"
+              class="form-control"
+              placeholder="Start typing an address..."
+              aria-label="text"
+              aria-describedby="addon-wrapping"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <h1 class="text-info text-center p-3 display-5">Payment Details</h1>
+
+        <div class="container text-white">
+          <label>Card Holder Name</label>
+          <div class="input-group py-3">
+            <span class="input-group-text" id="addon-wrapping"
+              ><i class="fa fa-user"></i
+            ></span>
+            <input
+              type="text"
+              name="cardHolderName"
+              ngModel
+              [(ngModel)]="paymentDetail.cardHolderName"
+              required
+              #modelCardHolderName="ngModel"
+              pattern="[A-Z][a-zA-Z '.-]*[A-Za-z][^-]$"
+              [ngClass]="
+                modelCardHolderName.invalid && modelCardHolderName.dirty
+                  ? 'is-invalid'
+                  : ''
+              "
+              class="form-control"
+              placeholder="Card Holder Name"
+              aria-label="cardHolderName"
+              aria-describedby="addon-wrapping"
+            />
+            <div *ngIf="modelCardHolderName.invalid" class="invalid-feedback">
+              Please enter a valid card holder name.
+            </div>
+          </div>
+
+          <label>Card Number</label>
+          <div class="input-group py-3">
+            <span class="input-group-text" id="addon-wrapping"
+              ><i class="fa fa-credit-card"></i
+            ></span>
+            <input
+              type="text"
+              name="cardNumber"
+              ngModel
+              [(ngModel)]="paymentDetail.cardNumber"
+              required
+              pattern="[0-9]{16}$"
+              #modelCardNumber="ngModel"
+              [ngClass]="
+                modelCardNumber.invalid && modelCardNumber.dirty
+                  ? 'is-invalid'
+                  : ''
+              "
+              class="form-control"
+              placeholder="Card Number"
+              aria-label="cardNumber"
+              aria-describedby="addon-wrapping"
+            />
+            <div *ngIf="modelCardNumber.invalid" class="invalid-feedback">
+              Please enter a valid 16-digit card number.
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <label>Expiry Date</label>
+              <div class="input-group py-3">
+                <span class="input-group-text" id="addon-wrapping"
+                  ><i class="fa fa-calendar"></i
+                ></span>
+                <input
+                  type="text"
+                  name="expiryDate"
+                  ngModel
+                  [(ngModel)]="paymentDetail.expiryDate"
+                  required
+                  pattern="(0[1-9]|1[0-2])\/[0-9]{2}$"
+                  #modelExpiryDate="ngModel"
+                  [ngClass]="
+                    modelExpiryDate.invalid && modelExpiryDate.dirty
+                      ? 'is-invalid'
+                      : ''
+                  "
+                  class="form-control"
+                  placeholder="MM/YY"
+                  aria-label="expiryDate"
+                  aria-describedby="addon-wrapping"
+                />
+                <div *ngIf="modelExpiryDate.invalid" class="invalid-feedback">
+                  Please enter a valid expiry date in MM/YY format.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label>CVC</label>
+              <div class="input-group py-3">
+                <span class="input-group-text" id="addon-wrapping"
+                  ><i class="fa fa-lock"></i
+                ></span>
+                <input
+                  type="text"
+                  name="cvc"
+                  ngModel
+                  [(ngModel)]="paymentDetail.cvc"
+                  required
+                  pattern="[0-9]{3}$"
+                  #modelCVC="ngModel"
+                  [ngClass]="
+                    modelCVC.invalid && modelCVC.dirty ? 'is-invalid' : ''
+                  "
+                  class="form-control"
+                  placeholder="CVC"
+                  aria-label="cvc"
+                  aria-describedby="addon-wrapping"
+                />
+                <div *ngIf="modelCVC.invalid" class="invalid-feedback">
+                  Please enter a valid 3-digit CVC code.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="d-grid gap-2">
+      <button
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        class="btn-all"
+        [disabled]="paymentForm.invalid"
+        (click)="book(paymentForm)"
+        type="button"
+      >
+        {{ btnText | uppercase }}
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Payment Details</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <table>
+          <tr>
+            <td>Name:</td>
+            <td>{{ paymentDetail.nameRef }}</td>
+          </tr>
+          <tr>
+            <td>Phone Number:</td>
+            <td>{{ paymentDetail.numberRef }}</td>
+          </tr>
+          <tr>
+            <td>Address:</td>
+            <td>{{ paymentDetail.addressRef }}</td>
+          </tr>
+          <tr>
+            <td>Card Holder Name:</td>
+            <td>{{ paymentDetail.cardHolderName }}</td>
+          </tr>
+          <tr>
+            <td>Card Number:</td>
+            <td>{{ paymentDetail.cardNumber }}</td>
+          </tr>
+          <tr>
+            <td>Expiry Date:</td>
+            <td>{{ paymentDetail.expiryDate }}</td>
+          </tr>
+          <tr>
+            <td>CVC:</td>
+            <td>{{ paymentDetail.cvc }}</td>
+          </tr>
+          <tr>
+            <td>Total Amount:</td>
+            <td>{{ param }}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button class="btn btn-primary" (click)="navigateToBooking()">
+          Continue to Pay
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

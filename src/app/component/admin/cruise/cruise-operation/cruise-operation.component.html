@@ -1,0 +1,44 @@
+<h1 class="teal text-center">{{ btn === "Add" ? "ADD" : "EDIT" }} CRUISE</h1>
+<div class="container col-8 fs-5 fw-5 text-white">
+  <form #addForm="ngForm" (ngSubmit)="onSubmit(addForm)">
+    <div class="form-group p-2">
+      <label class="p-2" for="cruiseName">Cruise Name</label>
+      <input
+        [(ngModel)]="cruiseDetail.name"
+        type="text"
+        class="form-control"
+        id="cruiseName"
+        name="cruiseName"
+        placeholder="Enter Cruise Name"
+        required
+      />
+    </div>
+    <div class="form-group p-2">
+      <label class="p-2" for="description">Description</label>
+      <textarea
+        [(ngModel)]="cruiseDetail.description"
+        ngModel
+        class="form-control"
+        id="description"
+        name="description"
+        rows="3"
+        placeholder="Enter Cruise Description"
+        required
+      ></textarea>
+    </div>
+    <div class="form-group p-2">
+      <label class="p-2" for="capacity">Capacity</label>
+      <input
+        [(ngModel)]="cruiseDetail.capacity"
+        ngModel
+        type="number"
+        class="form-control"
+        id="capacity"
+        name="capacity"
+        placeholder="Enter Capacity"
+        required
+      />
+    </div>
+    <button type="submit" class="btn-add text-center mt-3">{{ btn }}</button>
+  </form>
+</div>

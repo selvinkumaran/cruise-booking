@@ -1,0 +1,13 @@
+.book-order {
+  border: none;
+}
+.book-order:hover {
+  border: solid 1px var(--secondary);
+  background-color: var(--black-primary) !important;
+
+}
+
+.table-item{
+background-color: var(--black-primary) !important;
+border: none;
+}

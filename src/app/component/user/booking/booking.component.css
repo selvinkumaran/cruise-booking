@@ -1,0 +1,19 @@
+.book-order {
+  border: none;
+}
+.book-order:hover {
+  border: solid 1px var(--secondary);
+}
+.btn-feedback {
+  background-color: var(--black-primary);
+  border: solid 1px var(--secondary);
+  border-radius: 100px;
+  color: white;
+  display: flex;
+  padding: 10px 20px;
+  text-align: center;
+  margin: 20px;
+}
+.btn-feedback:hover {
+  background-color: var(--secondary);
+}

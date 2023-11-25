@@ -1,0 +1,172 @@
+<section class="vh-100 text-white">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-6">
+        <ng-lottie [options]="options"></ng-lottie>
+      </div>
+      <div class="col-md-6">
+        <h2 class="display-4 teal">Register</h2>
+
+        <div class="container">
+          <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
+            <div class="input-group py-4">
+              <span class="input-group-text" id="addon-wrapping"
+                ><i class="fa fa-user"></i
+              ></span>
+              <input
+                type="text"
+                name="name"
+                ngModel
+                required
+                minlength="4"
+                #modelName="ngModel"
+                [(ngModel)]="user.name"
+                [ngClass]="
+                  modelName.invalid && modelName.dirty ? 'is-invalid' : ''
+                "
+                class="form-control"
+                placeholder="Name"
+                aria-label="name"
+                aria-describedby="addon-wrapping"
+              />
+              <div *ngIf="modelName.invalid" class="invalid-feedback">
+                Please enter a valid name
+              </div>
+            </div>
+            <div class="input-group py-4">
+              <span class="input-group-text" id="addon-wrapping"
+                ><i class="fa fa-envelope"></i
+              ></span>
+              <input
+                type="email"
+                name="email"
+                email
+                ngModel
+                required
+                #modelEmail="ngModel"
+                [(ngModel)]="user.username"
+                [ngClass]="
+                  modelEmail.invalid && modelEmail.dirty ? 'is-invalid' : ''
+                "
+                class="form-control"
+                placeholder="Email Address"
+                aria-label="Username"
+                aria-describedby="addon-wrapping"
+              />
+              <div *ngIf="modelEmail.invalid" class="invalid-feedback">
+                Please enter a valid email
+              </div>
+            </div>
+            <div class="input-group py-4">
+              <span class="input-group-text" id="addon-wrapping"
+                ><i class="fa fa-lock"></i
+              ></span>
+              <input
+                type="password"
+                name="password"
+                ngModel
+                required
+                minlength="8"
+                #modelPassword="ngModel"
+                [(ngModel)]="user.password"
+                [ngClass]="
+                  modelPassword.invalid && modelPassword.dirty
+                    ? 'is-invalid'
+                    : ''
+                "
+                class="form-control"
+                placeholder="Password"
+                aria-label="password"
+                aria-describedby="addon-wrapping"
+              />
+              <div
+                *ngIf="modelPassword.errors?.['required']&& modelPassword.dirty"
+                class="invalid-feedback"
+              >
+                please enter a valid password.
+              </div>
+              <div
+                *ngIf="modelPassword.errors?.['minlength']"
+                class="invalid-feedback"
+              >
+                password should atleast
+                {{modelPassword?.errors?.['minlength']?.['requiredLength']}}
+                characters.
+              </div>
+            </div>
+            <div class="input-group py-4">
+              <span class="input-group-text" id="addon-wrapping"
+                ><i class="fa fa-lock"></i
+              ></span>
+              <input
+                type="password"
+                name="Repassword"
+                ngModel
+                required
+                minlength="8"
+                #modelRePassword="ngModel"
+                [(ngModel)]="confirmPassword"
+
+                [ngClass]="
+                  modelRePassword.invalid && modelRePassword.dirty
+                    ? 'is-invalid'
+                    : ''
+                "
+                class="form-control"
+                placeholder="Confirm Password"
+                aria-label="password"
+                aria-describedby="addon-wrapping"
+              />
+              <div
+                *ngIf="modelRePassword.errors?.['required']&& modelRePassword.dirty"
+                class="invalid-feedback"
+              >
+                please enter a valid password.
+              </div>
+              <div
+                *ngIf="modelRePassword.errors?.['minlength']"
+                class="invalid-feedback"
+              >
+                password should atleast
+                {{modelRePassword?.errors?.['minlength']?.['requiredLength']}}
+                characters.
+              </div>
+              <div
+                *ngIf="
+                  modelRePassword.invalid &&
+                  !modelPassword.invalid &&
+                  modelRePassword.dirty
+                "
+                class="invalid-feedback"
+              >
+                Passwords do not match.
+              </div>
+            </div>
+            <div class="d-flex align-items-center mb-4">
+              <span>Already registered?</span>
+              <a routerLink="/login" class="teal text-decoration-none px-2"
+                >Login here</a
+              >
+            </div>
+            <div class="d-grid gap-2 py-4">
+              <button
+                class="btn-all"
+                type="submit"
+                (click)="register(registerForm)"
+
+                [disabled]="
+                  registerForm.invalid ||
+                  modelPassword.invalid ||
+                  modelRePassword.invalid ||
+                  modelPassword.value !== modelRePassword.value
+                "
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
