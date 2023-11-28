@@ -29,6 +29,9 @@ export class AdminHomeComponent implements OnInit {
   options: AnimationOptions = {
     path: '/assets/all-user.json',
   };
+  optionsCruise: AnimationOptions = {
+    path: '/assets/cruise.json',
+  };
   optionsTour: AnimationOptions = {
     path: '/assets/tour.json',
   };
