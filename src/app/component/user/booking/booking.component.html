@@ -24,7 +24,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr *ngFor="let book of bookingDetails">
               <td class="align-middle">
                 <img
                   src="../../../../assets/images/ishan-seefromthesky-KgCbvOWYuU0-unsplash-1536x1152.jpg"
@@ -35,28 +35,28 @@
                 />
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0">Cruise name</p>
+                <p class="mb-0">{{book.name}}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0">Maldives</p>
+                <p class="mb-0">{{book.destination}}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">29/11/2023</p>
+                <p class="mb-0 small">{{book.checkInDate}}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">05/12/2023</p>
+                <p class="mb-0 small">{{book.checkOutDate}}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">5</p>
+                <p class="mb-0 small">{{book.cruiseName}}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">19/11/2023</p>
+                <p class="mb-0 small">{{book.paymentDate}}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">10000</p>
+                <p class="mb-0 small">{{book.amount}}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">Confirmed</p>
+                <p class="mb-0 small">{{book.bookingStatus}}</p>
               </td>
 
               <td class="text-center align-middle">

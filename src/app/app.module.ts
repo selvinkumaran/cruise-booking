@@ -35,6 +35,7 @@ import { FeedbackOperationComponent } from './component/user/feedback/feedback-o
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule, DatePipe } from '@angular/common';
 import { NgbModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { FooterComponent } from './component/footer/footer.component';
 
 export function playerFactory() {
   return player;
@@ -62,6 +63,7 @@ export function playerFactory() {
     CruiseOperationComponent,
     TourOperationComponent,
     FeedbackOperationComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,

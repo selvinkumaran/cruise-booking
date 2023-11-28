@@ -2,7 +2,7 @@
   color: var(--black-secondary);
   font-weight: bolder;
   position: absolute;
-  top: 140px;
+  top: 150px;
   text-align: center;
   font-size: 30px;
   left: 45%;
@@ -35,4 +35,12 @@
   font-weight: bold;
   text-align: center;
   z-index: 1; /* Adjust the z-index accordingly */
+}
+
+.card-outline {
+  border: none;
+  cursor: pointer;
+}
+.card-outline:hover {
+  border: 2px solid teal;
 }

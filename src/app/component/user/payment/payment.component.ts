@@ -1,14 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AppResponse } from 'src/app/model/appResponse';
 import { Payment } from 'src/app/model/payment';
 import { PaymentService } from 'src/app/service/payment.service';
 import { StorageService } from 'src/app/service/storage.service';
-import lottie from 'lottie-web';
 import { AnimationOptions, LottieComponent } from 'ngx-lottie';
 import { ActivatedRoute } from '@angular/router';
-import { LoaderService } from 'src/app/service/loader.service';
 
 @Component({
   selector: 'app-payment',
@@ -18,14 +15,11 @@ import { LoaderService } from 'src/app/service/loader.service';
 export class PaymentComponent {
   showLottie: boolean = false;
 
-  @ViewChild(LottieComponent) lottieComponent!: LottieComponent;
-
   constructor(
     private paymentService: PaymentService,
     private storageService: StorageService,
     private route: ActivatedRoute,
-    private router: Router,
-    loaderService: LoaderService
+    private router: Router
   ) {}
 
   options: AnimationOptions = {
@@ -38,8 +32,9 @@ export class PaymentComponent {
   paymentDetails: Payment[] = [];
   error: string = '';
   param: number | null = null;
-
+  paymentLatestId: number = 0;
   paymentDetail: Payment = {
+    id: 0,
     nameRef: '',
     numberRef: '',
     addressRef: '',
@@ -53,13 +48,15 @@ export class PaymentComponent {
 
   btnText: string = 'Book Now';
 
-  onSubmit(paymentForm: NgForm) {}
+  onSubmit(_paymentForm: NgForm) {}
 
   loggedInUser = this.storageService.getLoggedInUser();
+
   book(_paymentForm: NgForm) {
     this.route.queryParams.subscribe((params) => {
       this.param = params['totalPayment'];
       let payment: Payment = {
+        id: 0,
         nameRef: this.paymentDetail.nameRef,
         numberRef: this.paymentDetail.numberRef,
         addressRef: this.paymentDetail.addressRef,
@@ -71,8 +68,8 @@ export class PaymentComponent {
         amount: this.param!,
       };
 
-      this.paymentService.postpayment(payment).subscribe({
-        next: (_response: AppResponse) => {},
+      this.paymentService.postPayment(payment).subscribe({
+        next: (_response: any) => {},
         error: (err) => {
           console.log(err);
           let message: string = err.error.error.message;
@@ -80,15 +77,38 @@ export class PaymentComponent {
         },
         complete: () => {
           console.log('There are no more action happen.');
+          this.fetchLatestPaymentDetails();
         },
       });
     });
   }
 
+  fetchLatestPaymentDetails() {
+    this.paymentService.getLatestPayment().subscribe(
+      (response: any) => {
+        this.paymentDetails = response.data;
+        if (this.paymentDetails.length > 0) {
+          this.paymentLatestId = this.paymentDetails[0].id!;
+          console.log(this.paymentLatestId, 'new find');
+          // Now that paymentLatestId is set, navigate to the booking page
+          this.navigateToBooking();
+        }
+      },
+      (error) => {
+        console.error('Error fetching feedback details', error);
+      }
+    );
+  }
+  
   navigateToBooking() {
     this.showLottie = true;
     setTimeout(() => {
-      this.router.navigate(['/booking']);
+      this.router.navigate(['/booking'], {
+        queryParams: {
+          tourId: this.route.snapshot.queryParams['tourId'],
+          paymentLatestId: this.paymentLatestId,
+        },
+      });
     }, 3000);
   }
 }

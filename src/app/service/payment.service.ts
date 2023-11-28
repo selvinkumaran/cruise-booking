@@ -17,10 +17,13 @@ export class PaymentService {
     );
   }
 
-  postpayment(payment: Payment): Observable<AppResponse> {
+  postPayment(payment: Payment): Observable<AppResponse> {
     return this.http.post<AppResponse>(
       `${urlEndpoint.baseUrl}/payments`,
       payment
     );
+  }
+  getLatestPayment(): Observable<AppResponse> {
+    return this.http.get<AppResponse>(`${urlEndpoint.baseUrl}/payments/latest`);
   }
 }

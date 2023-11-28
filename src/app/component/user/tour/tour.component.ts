@@ -61,7 +61,7 @@ export class TourComponent implements OnInit {
   onSubmit(form: NgForm): void {
     if (form.valid) {
       const totalPayment = this.calculateTotalPayment();
-      this.router.navigate(['/payment'], { queryParams: { totalPayment: totalPayment } });
+      this.router.navigate(['/payment'], { queryParams: { totalPayment: totalPayment,tourId:this.param   } });
     }
   }
 }

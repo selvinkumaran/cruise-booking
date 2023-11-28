@@ -21,7 +21,7 @@
   </div>
   <div class="col-4">
     <div
-      routerLink="/admin/users"
+      routerLink="/admin/cruise"
       routerLinkActive="active"
       class="card hover col-2 m-2 p-0"
       style="width: 250px"
@@ -30,7 +30,7 @@
 
       <div class="card-body text-center bg-teal">
         <h5 class="card-title text-white fs-5">
-          Total Cruise {{ totalCruise }}
+          Total Cruise {{ cruiseDetails.length }}
         </h5>
 
         <a class="card-a text-white"
@@ -41,7 +41,7 @@
   </div>
   <div class="col-4">
     <div
-      routerLink="/admin/users"
+      routerLink="/admin/tour"
       routerLinkActive="active"
       class="card hover col-2 m-2 p-0"
       style="width: 250px"
@@ -49,7 +49,9 @@
       <ng-lottie [options]="options"></ng-lottie>
 
       <div class="card-body text-center bg-teal">
-        <h5 class="card-title text-white fs-5">All Tour</h5>
+        <h5 class="card-title text-white fs-5">
+          Total Tour {{ tourDetails.length }}
+        </h5>
 
         <a class="card-a text-white"
           >See all Tour <i class="fa fa-arrow-right"></i
@@ -62,7 +64,7 @@
 <div class="row d-flex">
   <div class="col-4">
     <div
-      routerLink="/admin/users"
+      routerLink="/admin/payment"
       routerLinkActive="active"
       class="card hover col-2 m-2 p-0"
       style="width: 250px"
@@ -71,7 +73,7 @@
 
       <div class="card-body text-center bg-teal">
         <h5 class="card-title text-white fs-5">
-          Total Payment {{ totalUserCount }}
+          Total Payment  {{ paymentDetails.length }}
         </h5>
 
         <a class="card-a text-white"
@@ -82,7 +84,7 @@
   </div>
   <div class="col-4">
     <div
-      routerLink="/admin/users"
+      routerLink="/admin/booking"
       routerLinkActive="active"
       class="card hover col-2 m-2 p-0"
       style="width: 250px"
@@ -91,7 +93,7 @@
 
       <div class="card-body text-center bg-teal">
         <h5 class="card-title text-white fs-5">
-          Total Booking {{ totalUserCount }}
+          Total Booking {{ bookingDetails.length }}
         </h5>
 
         <a class="card-a text-white"
@@ -102,7 +104,7 @@
   </div>
   <div class="col-4">
     <div
-      routerLink="/admin/users"
+      routerLink="/admin/feedback"
       routerLinkActive="active"
       class="card hover col-2 m-2 p-0"
       style="width: 250px"
@@ -111,7 +113,7 @@
 
       <div class="card-body text-center bg-teal">
         <h5 class="card-title text-white fs-5">
-          Total Feedback {{ totalUserCount }}
+          Total Feedback {{ feedbackDetails.length }}
         </h5>
 
         <a class="card-a text-white"

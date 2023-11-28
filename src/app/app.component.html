@@ -44,7 +44,15 @@
               routerLink="/cruise"
               routerLinkActive="active"
               class="nav-link text-white"
-              >Tour</a
+              >Cruise</a
+            >
+          </li>
+          <li class="nav-item px-2">
+            <a
+              routerLink="/cruise"
+              routerLinkActive="active"
+              class="nav-link text-white"
+              >All Tours</a
             >
           </li>
           <li class="nav-item px-2">
@@ -177,6 +185,7 @@
   <div *ngIf="!isAdmin">
     <router-outlet></router-outlet>
   </div>
+  <app-footer></app-footer>
 </div>
 
 <div *ngIf="loaderService.isLoading | async" class="loader">

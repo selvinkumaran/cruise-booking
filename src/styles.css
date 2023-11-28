@@ -31,6 +31,9 @@ body {
 .black-primary {
   background-color: var(--black-primary);
 }
+.black-secondary {
+  background-color: var(--black-secondary);
+}
 
 .text {
   color: var(--text);

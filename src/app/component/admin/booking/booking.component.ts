@@ -16,9 +16,14 @@ export class AdminBookingComponent implements OnInit {
     name: '',
     username: '',
     bookingStatus: '',
-    date: '',
+    bookingDate:'',
+    cruiseName: '',
+    destination: '',
+    paymentDate: '',
+    amount: 0,
+    checkInDate: '',
+    checkOutDate: '',
   };
-
   constructor(private bookingService: BookingService) {}
 
   ngOnInit(): void {

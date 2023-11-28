@@ -21,10 +21,12 @@ import { TourOperationComponent } from './component/admin/tour/tour-operation/to
 import { FeedbackOperationComponent } from './component/user/feedback/feedback-operation/feedback-operation.component';
 import { AdminPaymentComponent } from './component/admin/payment/payment.component';
 import { ServicesComponent } from './component/services/services.component';
+import { FooterComponent } from './component/footer/footer.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'footer', component: FooterComponent },
   { path: '', component: HomeComponent, canActivate: [authGuard] },
   { path: 'admin', component: AdminHomeComponent, canActivate: [authGuard] },
   { path: 'feedback', component: FeedbackComponent },
