@@ -20,8 +20,8 @@ import { CruiseOperationComponent } from './component/admin/cruise/cruise-operat
 import { TourOperationComponent } from './component/admin/tour/tour-operation/tour-operation.component';
 import { FeedbackOperationComponent } from './component/user/feedback/feedback-operation/feedback-operation.component';
 import { AdminPaymentComponent } from './component/admin/payment/payment.component';
-import { ServicesComponent } from './component/services/services.component';
 import { FooterComponent } from './component/footer/footer.component';
+import { ServiceComponent } from './component/user/service/service.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: 'cruise', component: CruiseComponent },
   { path: 'booking', component: BookingComponent },
   { path: 'payment', component: PaymentComponent },
-  { path: 'services', component: ServicesComponent},
+  { path: 'service', component: ServiceComponent },
 
   { path: 'admin/users', component:AdminUsersComponent },
   { path: 'admin/tour', component:AdminTourComponent },

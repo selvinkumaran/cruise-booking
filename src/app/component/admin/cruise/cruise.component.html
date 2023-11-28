@@ -16,6 +16,7 @@
   <thead>
     <tr>
       <th scope="col">ID</th>
+      <th scope="col">IMAGE</th>
       <th scope="col">CRUISE NAME</th>
       <th scope="col">DESCRIPTION</th>
       <th scope="col">CAPACITY</th>
@@ -25,8 +26,9 @@
   <tbody>
     <tr *ngFor="let cruise of cruiseDetails">
       <th scope="row">{{ cruise.id }}</th>
+      <th scope="row">{{ cruise.photo}}</th>
       <td>{{ cruise.name }}</td>
-      <td class="col-6">{{ cruise.description }}</td>
+      <td class="col-4">{{ cruise.description }}</td>
       <td>{{ cruise.capacity }}</td>
       <td>
         <button type="button" class="btn-add mx-3" (click)="onEdit(cruise.id!)">

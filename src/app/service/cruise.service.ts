@@ -20,17 +20,17 @@ export class CruiseService {
     );
   }
 
-  postcruise(cruise: Cruise): Observable<AppResponse> {
+  postcruise(formData: FormData): Observable<AppResponse> {
     return this.http.post<AppResponse>(
       `${urlEndpoint.baseUrl}/admin/cruises`,
-      cruise
+      formData
     );
   }
 
-  putcruise(cruise: Cruise): Observable<AppResponse> {
+  putcruise(formValue: FormData): Observable<AppResponse> {
     return this.http.put<AppResponse>(
       `${urlEndpoint.baseUrl}/admin/cruises`,
-      cruise
+      formValue
     );
   }
 

@@ -52,19 +52,14 @@ export class BookingComponent implements OnInit {
     this.paymentService.getLatestPayment().subscribe(
       (response: any) => {
         this.paymentDetails = response.data;
-        console.log(this.paymentDetails, 'booking Latest');
-
-        if (this.paymentDetails.length > 0) {
-          // Set paymentId based on the latest payment details
-          this.bookingDetail.paymentId = this.paymentDetails[0].id!;
-        }
+        this.bookingDetail.paymentId = response.data.id;
+        this.saveDetailsToBooking();
       },
       (error) => {
         console.error('Error fetching feedback details', error);
       }
     );
 
-    this.saveDetailsToBooking();
     this.fetchFeedbackDetails();
   }
 

@@ -18,7 +18,7 @@
           (click)="setSelectedUser(user)"
           [ngClass]="user.id === userDetail.id ? 'table-primary' : ''"
         >
-          <th scope="row">{{ user.id }}</th>
+          <th  style="padding: 20px;" scope="row">{{ user.id }}</th>
           <td>{{ user.name }}</td>
           <td>{{ user.username }}</td>
         </tr>

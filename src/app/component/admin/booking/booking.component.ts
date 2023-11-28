@@ -11,6 +11,7 @@ import { BookingService } from 'src/app/service/booking.service';
 export class AdminBookingComponent implements OnInit {
   error: string = '';
   bookingDetails: Booking[] = [];
+  status:string='1';
   bookingDetail: Booking = {
     id: 0,
     name: '',

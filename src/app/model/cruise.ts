@@ -3,4 +3,5 @@ export interface Cruise {
   name: string;
   description: string;
   capacity: number;
+  photo:string;
 }

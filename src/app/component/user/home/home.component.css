@@ -37,10 +37,3 @@
   z-index: 1; /* Adjust the z-index accordingly */
 }
 
-.card-outline {
-  border: none;
-  cursor: pointer;
-}
-.card-outline:hover {
-  border: 2px solid teal;
-}

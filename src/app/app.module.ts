@@ -36,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule, DatePipe } from '@angular/common';
 import { NgbModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './component/footer/footer.component';
+import { ServiceComponent } from './component/user/service/service.component';
 
 export function playerFactory() {
   return player;
@@ -64,11 +65,12 @@ export function playerFactory() {
     TourOperationComponent,
     FeedbackOperationComponent,
     FooterComponent,
+    ServiceComponent,
   ],
   imports: [
     CommonModule,
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

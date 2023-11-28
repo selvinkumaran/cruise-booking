@@ -29,6 +29,21 @@ export class AdminHomeComponent implements OnInit {
   options: AnimationOptions = {
     path: '/assets/all-user.json',
   };
+  optionsTour: AnimationOptions = {
+    path: '/assets/tour.json',
+  };
+  optionsPayment: AnimationOptions = {
+    path: '/assets/payment.json',
+  };
+  optionsFeedback: AnimationOptions = {
+    path: '/assets/feedback.json',
+    rendererSettings: {
+      className: 'feedback-lottie',
+    },
+  };
+  optionsBooking: AnimationOptions = {
+    path: '/assets/booking.json',
+  };
 
   constructor(
     private userService: UserService,

@@ -4,7 +4,10 @@
       <div class="col-6">
         <ng-lottie [options]="options"></ng-lottie>
       </div>
-      <div class="col-md-6">
+      <div
+        class="col-md-6 black-primary p-5 rounded"
+        style="border: 1px solid teal"
+      >
         <h2 class="display-4 teal">Login</h2>
         <div class="container">
           <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
@@ -24,7 +27,6 @@
                 email
                 #modelEmail="ngModel"
                 [(ngModel)]="username"
-
                 [ngClass]="
                   modelEmail.invalid && modelEmail.dirty ? 'is-invalid' : ''
                 "
@@ -50,7 +52,6 @@
                 pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                 #modelPassword="ngModel"
                 [(ngModel)]="password"
-
                 [ngClass]="
                   modelPassword.invalid && modelPassword.dirty
                     ? 'is-invalid'
@@ -72,7 +73,7 @@
                 characters.
               </div>
             </div>
-          
+
             <div class="d-flex align-items-center mb-4">
               <span>Not registered?</span>
               <a routerLink="/register" class="teal text-decoration-none px-2"
@@ -89,7 +90,7 @@
                 type="submit"
                 [disabled]="loginForm.invalid"
               >
-              Login
+                Login
               </button>
             </div>
           </form>

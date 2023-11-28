@@ -77,29 +77,11 @@ export class PaymentComponent {
         },
         complete: () => {
           console.log('There are no more action happen.');
-          this.fetchLatestPaymentDetails();
         },
       });
     });
   }
 
-  fetchLatestPaymentDetails() {
-    this.paymentService.getLatestPayment().subscribe(
-      (response: any) => {
-        this.paymentDetails = response.data;
-        if (this.paymentDetails.length > 0) {
-          this.paymentLatestId = this.paymentDetails[0].id!;
-          console.log(this.paymentLatestId, 'new find');
-          // Now that paymentLatestId is set, navigate to the booking page
-          this.navigateToBooking();
-        }
-      },
-      (error) => {
-        console.error('Error fetching feedback details', error);
-      }
-    );
-  }
-  
   navigateToBooking() {
     this.showLottie = true;
     setTimeout(() => {

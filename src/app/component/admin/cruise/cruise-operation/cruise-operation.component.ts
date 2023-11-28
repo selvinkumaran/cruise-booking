@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Form } from '@angular/forms';
+import { Form, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cruise } from 'src/app/model/cruise';
 import { CruiseService } from 'src/app/service/cruise.service';
@@ -15,11 +15,13 @@ export class CruiseOperationComponent {
   param: number | null = null;
   btn: string = 'Add';
   error = '';
+  file = '';
   cruiseDetail: Cruise = {
     id: 0,
     name: '',
     description: '',
     capacity: 0,
+    photo: '',
   };
   constructor(
     private cruiseService: CruiseService,
@@ -64,15 +66,17 @@ export class CruiseOperationComponent {
     });
   }
 
-  onSubmit(_addForm: Form): void {
+  onSubmit(addForm: NgForm): void {
     if (this.param) {
-      let cruiseDetail: Cruise = {
-        id: this.param,
-        name: this.cruiseDetail.name,
-        description: this.cruiseDetail.description,
-        capacity: this.cruiseDetail.capacity,
-      };
-      this.cruiseService.putcruise(cruiseDetail).subscribe({
+      let formValue: Cruise = addForm.value;
+      const formData = new FormData();
+      formData.append('id', this.param!.toString());
+      formData.append('photo', this.file);
+      formData.append('capacity', formValue.capacity.toString());
+      formData.append('name', formValue.name);
+      formData.append('description', formValue.description);
+
+      this.cruiseService.putcruise(formData).subscribe({
         next: () => {
           this.showSnackBar('Cruise updated successfully!');
           setTimeout(() => {
@@ -87,13 +91,17 @@ export class CruiseOperationComponent {
         complete: () => console.log('There are no more actions happening.'),
       });
     } else {
-      let cruiseDetail: Cruise = {
-        id: null || undefined,
-        name: this.cruiseDetail.name,
-        description: this.cruiseDetail.description,
-        capacity: this.cruiseDetail.capacity,
-      };
-      this.cruiseService.postcruise(cruiseDetail).subscribe({
+      let formValue: Cruise = addForm.value;
+      console.log(addForm.value,"new check");
+      
+      const formData = new FormData();
+      formData.append('photo', this.file);
+      formData.append('capacity', formValue.capacity.toString());
+      formData.append('name', formValue.name);
+      formData.append('description', formValue.description);
+      console.log(formData,"check");
+      
+      this.cruiseService.postcruise(formData).subscribe({
         next: () => {
           this.showSnackBar('Cruise added successfully!');
           setTimeout(() => {
@@ -117,5 +125,12 @@ export class CruiseOperationComponent {
       verticalPosition: 'top',
       panelClass: ['custom-snackbar'],
     });
+  }
+
+  onFileChange(event: any) {
+    const fileInput = event.target;
+    if (fileInput && fileInput.files.length > 0) {
+      this.file = fileInput.files[0];
+    }
   }
 }

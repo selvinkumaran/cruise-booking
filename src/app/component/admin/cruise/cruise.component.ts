@@ -18,6 +18,7 @@ export class AdminCruiseComponent implements OnInit {
     name: '',
     description: '',
     capacity: 0,
+    photo:'',
   };
   constructor(
     private cruiseService: CruiseService,

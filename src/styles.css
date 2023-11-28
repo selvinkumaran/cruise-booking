@@ -196,3 +196,11 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.card-outline {
+  border: none;
+  cursor: pointer;
+}
+.card-outline:hover {
+  border: 2px solid teal;
+}

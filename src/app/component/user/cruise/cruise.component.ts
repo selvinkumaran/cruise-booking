@@ -16,6 +16,7 @@ export class CruiseComponent {
     name: '',
     description: '',
     capacity: 0,
+    photo:'',
   };
   constructor(private cruiseService: CruiseService, private router: Router) {}
 

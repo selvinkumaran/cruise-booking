@@ -6,3 +6,7 @@
     cursor: pointer;
     color: black;
 }
+.feedback-lottie{
+    width: 200px !important;
+    height: 500px !important;
+}
