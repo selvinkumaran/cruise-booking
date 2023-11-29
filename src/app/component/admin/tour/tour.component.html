@@ -1,6 +1,6 @@
 <div class="text-white justify-content-between d-flex py-3">
   <h2 class="teal">All Tour</h2>
-  <h2>TOTAL : {{tourDetails.length}}</h2>
+  <h2>TOTAL : {{ tourDetails.length }}</h2>
   <button
     type="button"
     class="btn-add"
@@ -11,7 +11,7 @@
     Tour
   </button>
 </div>
-<table class="table text-center table-dark table-striped">
+<table class="table table-dark table-striped">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -26,16 +26,19 @@
     <tr *ngFor="let tour of tourDetails">
       <th scope="row">{{ tour.id }}</th>
       <td>{{ tour.destination }}</td>
-      <td>{{ tour.price }}</td>
-      <td>{{ tour.checkInDate }}</td>
-      <td>{{ tour.checkOutDate }}</td>
+      <td>₹ {{ tour.price }}</td>
+      <td>{{ tour.checkInDate|date }}</td>
+      <td>{{ tour.checkOutDate|date }}</td>
       <td>
-        <button type="button" class="btn-add mx-3" (click)="onEdit(tour.id!)">
-          Edit
-        </button>
-        <button type="button" class="btn-add" (click)="onDelete(tour.id)">
-          Delete
-        </button>
+        <i
+          (click)="onEdit(tour.id!)"
+          class="fa-solid fa-pen-to-square fa-xl teal"
+        ></i>
+        <i
+          (click)="onDelete(tour.id)"
+          class="fa-solid fa-trash fa-xl mx-5 teal"
+          style="color: #ef4444"
+        ></i>
       </td>
     </tr>
   </tbody>

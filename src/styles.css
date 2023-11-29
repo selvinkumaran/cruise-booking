@@ -5,8 +5,8 @@
   --secondary: #29d9d5;
   --text: #b4b4b4;
   --accent: #dfd8cb;
-  --black-primary: #29292c;
   --black-secondary: #121214;
+  --black-primary: #2f2f31;
   --red-300: #fca5a5;
   --red-500: #ef4444;
   --red-700: #b91c1c;
@@ -20,7 +20,7 @@
 }
 
 body {
-  background-color: var(--black-secondary) !important;
+  background-color: var(--black-primary) !important;
   /* font-family: var(--font-family); */
 }
 
@@ -41,24 +41,24 @@ body {
 .teal {
   color: var(--secondary);
 }
-.bg-teal{
+.bg-teal {
   background-color: var(--secondary);
 }
 
 .btn-all {
   background-color: var(--black-primary);
   border: solid 1px var(--secondary);
-  border-radius: 100px;
+  border-radius: 10px;
   padding: 10px;
   font-family: "Poppins";
   font-size: 20px;
   font-weight: 400;
-  line-height: 1.3em;
   letter-spacing: 2px;
   color: white;
 }
 .btn-all:hover {
   background-color: var(--secondary);
+  transition: ease-in-out 1s;
 }
 
 .loader {
@@ -173,7 +173,7 @@ body {
 .btn-add {
   background-color: var(--black-primary);
   border: solid 1px var(--text);
-  border-radius: 100px;
+  border-radius: 12px;
   width: 100px;
   height: 40px;
   color: white;
@@ -194,8 +194,14 @@ body {
   border: solid 1px var(--secondary);
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .card-outline {
   border: none;

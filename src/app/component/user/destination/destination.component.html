@@ -4,148 +4,35 @@
     alt="Your Image Alt Text"
   />
   <div class="img-text">Destination</div>
-  <p class="text-size">
-    <a class="text-white text-decoration-none" routerLink="/" routerLinkActive="action">Home</a> > Destination
-  </p>
 </div>
 
 <h3 class="text-center fw-bold fs-5 teal mt-5 pt-5">OUR DESTINATION</h3>
-<h1 class="text-center text-white p-3 font-weight">Our Best Destination</h1>
+<h1 class="text-center text-white fw-bold fs-1 p-3 font-weight">
+  Our Best Destination
+</h1>
 <div class="cruise-top"></div>
 <div class="container">
   <div class="row">
-    <div class="card col-2 m-2 p-0 border-0" style="width: 16rem">
+    <div
+      *ngFor="let cruise of cruiseDetails"
+      class="card col-2 m-2 p-0 card-outline"
+      style="width: 16rem"
+    >
       <img
-        src="../../../../assets/images/jonatan-pie-3l3RwQdHRHg-unsplash-1536x1152.jpg"
-        class="card-img-top"
-        alt="..."
+        class="img-fluid rounded"
+        src="{{
+          'http://localhost:8080/api/admin/cruises/downloadFile/' + cruise.id
+        }}"
+        alt=""
+        width="256px"
+        height="200px"
       />
-      <div class="card-body text-center black-primary">
-        <h5 class="card-title text-white">Card</h5>
+      <div class="card-body text-center black-secondary">
+        <h5 class="card-title fs-4 text-white">{{ cruise.name }}</h5>
         <p class="card-text text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {{ cruise.description }}
         </p>
-        <a routerLink="/tour" routerLinkActive="active" class="card-a"
-          >Learn more <i class="fa fa-arrow-right"></i
-        ></a>
-      </div>
-    </div>
-    <div class="card col-2 m-2 p-0 border-0" style="width: 16rem">
-      <img
-        src="../../../../assets/images/jonatan-pie-3l3RwQdHRHg-unsplash-1536x1152.jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body text-center black-primary">
-        <h5 class="card-title text-white">Card</h5>
-        <p class="card-text text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a routerLink="/tour" routerLinkActive="active" class="card-a"
-          >Learn more <i class="fa fa-arrow-right"></i
-        ></a>
-      </div>
-    </div>
-    <div class="card col-2 m-2 p-0 border-0" style="width: 16rem">
-      <img
-        src="../../../../assets/images/jonatan-pie-3l3RwQdHRHg-unsplash-1536x1152.jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body text-center black-primary">
-        <h5 class="card-title text-white">Card</h5>
-        <p class="card-text text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a routerLink="/tour" routerLinkActive="active" class="card-a"
-          >Learn more <i class="fa fa-arrow-right"></i
-        ></a>
-      </div>
-    </div>
-    <div class="card col-2 m-2 p-0 border-0" style="width: 16rem">
-      <img
-        src="../../../../assets/images/jonatan-pie-3l3RwQdHRHg-unsplash-1536x1152.jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body text-center black-primary">
-        <h5 class="card-title text-white">Card</h5>
-        <p class="card-text text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a routerLink="/tour" routerLinkActive="active" class="card-a"
-          >Learn more <i class="fa fa-arrow-right"></i
-        ></a>
-      </div>
-    </div>
-    <div class="card col-2 m-2 p-0 border-0" style="width: 16rem">
-      <img
-        src="../../../../assets/images/jonatan-pie-3l3RwQdHRHg-unsplash-1536x1152.jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body text-center black-primary">
-        <h5 class="card-title text-white">Card</h5>
-        <p class="card-text text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a routerLink="/tour" routerLinkActive="active" class="card-a"
-          >Learn more <i class="fa fa-arrow-right"></i
-        ></a>
-      </div>
-    </div>
-    <div class="card col-2 m-2 p-0 border-0" style="width: 16rem">
-      <img
-        src="../../../../assets/images/jonatan-pie-3l3RwQdHRHg-unsplash-1536x1152.jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body text-center black-primary">
-        <h5 class="card-title text-white">Card</h5>
-        <p class="card-text text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a routerLink="/tour" routerLinkActive="active" class="card-a"
-          >Learn more <i class="fa fa-arrow-right"></i
-        ></a>
-      </div>
-    </div>
-    <div class="card col-2 m-2 p-0 border-0" style="width: 16rem">
-      <img
-        src="../../../../assets/images/jonatan-pie-3l3RwQdHRHg-unsplash-1536x1152.jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body text-center black-primary">
-        <h5 class="card-title text-white">Card</h5>
-        <p class="card-text text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a routerLink="/tour" routerLinkActive="active" class="card-a"
-          >Learn more <i class="fa fa-arrow-right"></i
-        ></a>
-      </div>
-    </div>
-    <div class="card col-2 m-2 p-0 border-0" style="width: 16rem">
-      <img
-        src="../../../../assets/images/jonatan-pie-3l3RwQdHRHg-unsplash-1536x1152.jpg"
-        class="card-img-top"
-        alt="..."
-      />
-      <div class="card-body text-center black-primary">
-        <h5 class="card-title text-white">Card</h5>
-        <p class="card-text text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a routerLink="/tour" routerLinkActive="active" class="card-a"
+        <a (click)="getCruiseId(cruise.id)" class="card-a"
           >Learn more <i class="fa fa-arrow-right"></i
         ></a>
       </div>

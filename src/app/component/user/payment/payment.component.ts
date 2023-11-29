@@ -46,7 +46,7 @@ export class PaymentComponent {
     amount: 0,
   };
 
-  btnText: string = 'Book Now';
+  btnText: string = 'BOOK NOW';
 
   onSubmit(_paymentForm: NgForm) {}
 

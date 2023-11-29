@@ -1,21 +1,17 @@
 <div class="text-white justify-content-between d-flex py-3">
-  <h2 class="teal">All Bookings</h2>
-  <button type="button" class="btn-add w-25">
-    No of Payments : {{ bookingDetails.length }}
-  </button>
+  <h2 class="teal  fs-3">All Bookings</h2>
+  <h2 class="teal  fs-3">No of Booking : {{ bookingDetails.length }}</h2>
 </div>
 <table class="table table-dark table-striped">
   <thead>
     <tr>
       <th scope="col">ID</th>
       <th scope="col">BOOKING DATE</th>
-      <th scope="col">USERNAME</th>
-      <th scope="col">SHIP</th>
+      <th scope="col">NAME</th>
       <th scope="col">DESTINATION</th>
       <th scope="col">CHECK-IN DATE</th>
       <th scope="col">CHECK-OUT DATE</th>
       <th scope="col">CRUISE NAME</th>
-      <th scope="col">PAYMENT DATE</th>
       <th scope="col">AMOUNT</th>
       <th scope="col">STATUS</th>
     </tr>
@@ -23,24 +19,14 @@
   <tbody>
     <tr *ngFor="let booking of bookingDetails">
       <th scope="row">{{ booking.id }}</th>
-      <td>{{ booking.bookingDate }}</td>
+      <td>{{ booking.bookingDate | date }}</td>
       <td>{{ booking.name }}</td>
+      <td class="align-middle">{{ booking.destination }}</td>
+      <td class="align-middle">{{ booking.checkInDate | date }}</td>
+      <td class="align-middle">{{ booking.checkOutDate | date }}</td>
+      <td class="align-middle">{{ booking.cruiseName }}</td>
+      <td class="align-middle">₹ {{ booking.amount }}</td>
       <td class="align-middle">
-        <img
-          src="../../../../assets/images/ishan-seefromthesky-KgCbvOWYuU0-unsplash-1536x1152.jpg"
-          class="img-fluid"
-          alt="ship"
-          width="100px"
-          height="100px"
-        />
-      </td>
-      <td class="text-center align-middle">{{ booking.destination }}</td>
-      <td class="text-center align-middle">{{ booking.checkInDate }}</td>
-      <td class="text-center align-middle">{{ booking.checkOutDate }}</td>
-      <td class="text-center align-middle">{{ booking.cruiseName }}</td>
-      <td class="text-center align-middle">{{ booking.paymentDate }}</td>
-      <td class="text-center align-middle">{{ booking.amount }}</td>
-      <td class="text-center align-middle">
         <div class="form-group">
           <select
             class="btn-add"

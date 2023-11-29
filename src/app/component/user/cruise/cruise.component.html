@@ -3,37 +3,35 @@
     src="assets/images/aurora-borealis-over-snowy-mountains-and-frozen-se-J6LTWV2.jpg"
     alt="Your Image Alt Text"
   />
-  <div class="img-text">Cruise</div>
-  <p class="text-size">
-    <a
-      class="text-white text-decoration-none"
-      routerLink="/"
-      routerLinkActive="action"
-      >Home</a
-    >
-    > Cruise
-  </p>
+  <div class="img-text">C R U I S E</div>
 </div>
 
 <div class="cruise-top mt-5"></div>
 <div class="container">
-  <div class="row" >
-    <div  *ngFor="let cruise of cruiseDetails" class="card col-2 m-2 p-0 border-0" style="width: 16rem">
+  <div class="row">
+    <div
+      *ngFor="let cruise of cruiseDetails"
+      class="card col-2 m-2 p-0 card-outline"
+      style="width: 16rem"
+    >
       <img
-        src="../../../../assets/images/jonatan-pie-3l3RwQdHRHg-unsplash-1536x1152.jpg"
-        class="card-img-top"
-        alt="..."
+        class="img-fluid rounded"
+        src="{{
+          'http://localhost:8080/api/admin/cruises/downloadFile/' + cruise.id
+        }}"
+        alt=""
+        width="256px"
+        height="200px"
       />
-      <div class="card-body text-center black-primary">
-        <h5 class="card-title text-white">{{cruise.name}}</h5>
+      <div class="card-body text-center black-secondary">
+        <h5 class="card-title fs-4 text-white">{{ cruise.name }}</h5>
         <p class="card-text text">
-          {{cruise.description}}
+          {{ cruise.description }}
         </p>
         <a (click)="getCruiseId(cruise.id)" class="card-a"
           >Learn more <i class="fa fa-arrow-right"></i
         ></a>
       </div>
     </div>
-    
-    </div>
   </div>
+</div>

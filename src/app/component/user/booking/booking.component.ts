@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AnimationOptions } from 'ngx-lottie';
+import { AppUser } from 'src/app/model/appUser';
 import { Booking } from 'src/app/model/booking';
 import { Payment } from 'src/app/model/payment';
 import { BookingService } from 'src/app/service/booking.service';
@@ -19,9 +21,14 @@ export class BookingComponent implements OnInit {
     private paymentService: PaymentService
   ) {}
 
+  optionsBooking: AnimationOptions = {
+    path: '/assets/booking.json',
+  };
+  
   bookingDetails: Booking[] = [];
   paymentDetails: Payment[] = [];
   error: string = '';
+  username:String='';
 
   bookingDetail: Booking = {
     id: 0,
@@ -36,13 +43,14 @@ export class BookingComponent implements OnInit {
     checkInDate: '',
     checkOutDate: '',
     tourId: 0,
-    paymentId: 0, // Assuming you want to set this to 0 initially
+    paymentId: 0, 
     userId: 0,
   };
 
   param: number | null = null;
 
   loggedInUser = this.storageService.getLoggedInUser();
+  
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -54,13 +62,12 @@ export class BookingComponent implements OnInit {
         this.paymentDetails = response.data;
         this.bookingDetail.paymentId = response.data.id;
         this.saveDetailsToBooking();
+        this.fetchFeedbackDetails();
       },
       (error) => {
         console.error('Error fetching feedback details', error);
       }
     );
-
-    this.fetchFeedbackDetails();
   }
 
   saveDetailsToBooking() {

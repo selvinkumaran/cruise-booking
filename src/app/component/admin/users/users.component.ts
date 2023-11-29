@@ -48,7 +48,4 @@ export class AdminUsersComponent implements OnInit {
     });
   }
 
-  setSelectedUser(userDetail: User): void {
-    this.userDetail = userDetail;
-  }
 }

@@ -15,10 +15,12 @@
 
     <div class="card col-2 m-2 p-0 border-0" style="width: 100%">
       <img
-        src="../../../../assets/images/jonatan-pie-3l3RwQdHRHg-unsplash-1536x1152.jpg"
-        class="card-img-top"
-        alt="..."
-      />
+          src="{{
+            'http://localhost:8080/api/admin/cruises/downloadFile/' + tour.cruiseId
+          }}"
+          alt=""
+          width="605px" height="400px"
+        />
       <div class="card-body text-center black-primary">
         <h5 class="card-title text-white text-start">Tour Description</h5>
         <p class="card-text text">

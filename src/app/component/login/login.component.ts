@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Form } from '@angular/forms';
 import { AnimationOptions } from 'ngx-lottie';
 import { AppResponse } from 'src/app/model/appResponse';
 import { Login } from 'src/app/model/login';
@@ -19,11 +18,10 @@ export class LoginComponent {
   username: String = '';
   password: String = '';
   error: String = '';
-  onSubmit(loginForm: NgForm) {}
 
   constructor(private authService: AuthService) {}
 
-  login(_loginForm: Form): void {
+  login(): void {
     let login: Login = {
       username: this.username,
       password: this.password,

@@ -24,11 +24,7 @@ export class RegisterComponent {
     password: '',
   };
 
-  onSubmit(registerForm: NgForm) {
-    registerForm.resetForm();
-  }
-
-  register(_registerForm: Form): void {
+  register(): void {
     let user: User = {
       name: this.user.name,
       password: this.user.password,

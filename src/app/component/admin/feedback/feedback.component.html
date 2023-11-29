@@ -4,7 +4,7 @@
     No of Payments : {{ feedbackDetails.length }}
   </button>
 </div>
-<table class="table table-striped table-dark text-center">
+<table class="table table-striped table-dark">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -21,9 +21,8 @@
       <td>{{ feedback.rating }}</td>
       <td>{{ feedback.comments }}</td>
       <td>
-        <button type="button" class="btn-add" (click)="onDelete(feedback.id)">
-          Delete
-        </button>
+        <button type="button" (click)="onDelete(feedback.id)">
+          <i class="fa-solid fa-trash" style="color: #f50000;"></i>        </button>
       </td>
     </tr>
   </tbody>

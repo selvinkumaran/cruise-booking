@@ -1,10 +1,21 @@
+<!-- <div
+  *ngIf="bookingDetails.length == 0"
+  class="min-vh-80 row"
+  style="width: 500px; height: 500px"
+>
+  <div class="col-1"></div>
+  <div class="col-10">
+    <ng-lottie [options]="optionsBooking"></ng-lottie>
+  </div>
+  <div class="col-1"></div>
+<p>{{bookingDetails.length}}</p> -->
 <div class="row mx-5 text-center">
   <div class="col-2"></div>
   <div class="col-lg-8 w-100 col-xl-8">
     <div class="card border-0">
-      <div class="card-header p-3">
-        <h5 class="text-muted text-start mb-0">
-          Thanks for your Order, <span class="teal">User</span>!
+      <div class="card-header black-secondary p-3">
+        <h5 class="text-white text-start fs-4 mb-0">
+          Thank You, <span class="teal">{{loggedInUser.name}}</span> ! Have a nice journey...
         </h5>
       </div>
       <div class="card-body p-2 book-order black-primary">
@@ -12,15 +23,15 @@
           <thead>
             <tr>
               <th scope="col">Image</th>
-              <th scope="col" class="text-center">Cruise Name</th>
-              <th scope="col" class="text-center">Destination</th>
-              <th scope="col" class="text-center">Check In Date</th>
-              <th scope="col" class="text-center">Check Out Date</th>
-              <th scope="col" class="text-center">Guest</th>
-              <th scope="col" class="text-center">Payment Date</th>
-              <th scope="col" class="text-center">Amount</th>
-              <th scope="col" class="text-center">Status</th>
-              <th scope="col" class="text-center">Feedback</th>
+              <th scope="col">Cruise Name</th>
+              <th scope="col">Destination</th>
+              <th scope="col">Check In Date</th>
+              <th scope="col">Check Out Date</th>
+              <th scope="col">Guest</th>
+              <th scope="col">Payment Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Status</th>
+              <th scope="col">Feedback</th>
             </tr>
           </thead>
           <tbody>
@@ -35,28 +46,28 @@
                 />
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0">{{book.name}}</p>
+                <p class="mb-0">{{ book.name }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0">{{book.destination}}</p>
+                <p class="mb-0">{{ book.destination }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{book.checkInDate}}</p>
+                <p class="mb-0 small">{{ book.checkInDate }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{book.checkOutDate}}</p>
+                <p class="mb-0 small">{{ book.checkOutDate }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{book.cruiseName}}</p>
+                <p class="mb-0 small">{{ book.cruiseName }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{book.paymentDate}}</p>
+                <p class="mb-0 small">{{ book.paymentDate }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{book.amount}}</p>
+                <p class="mb-0 small">{{ book.amount }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{book.bookingStatus}}</p>
+                <p class="mb-0 small">{{ book.bookingStatus }}</p>
               </td>
 
               <td class="text-center align-middle">
