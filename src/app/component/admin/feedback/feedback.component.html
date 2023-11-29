@@ -1,8 +1,6 @@
 <div class="text-white justify-content-between d-flex py-3">
-  <h2 class="teal">All Payments</h2>
-  <button type="button" class="btn-add w-25">
-    No of Payments : {{ feedbackDetails.length }}
-  </button>
+  <h2 class="teal fs-3">All Feedback</h2>
+  <h2 class="teal fs-3">No of Feedback : {{ feedbackDetails.length }}</h2>
 </div>
 <table class="table table-striped table-dark">
   <thead>
@@ -17,12 +15,15 @@
   <tbody>
     <tr *ngFor="let feedback of feedbackDetails">
       <th scope="row">{{ feedback.id }}</th>
-      <td>{{ feedback.appUser?.username }}</td>
-      <td>{{ feedback.rating }}</td>
+      <td>{{ feedback.appUser?.name }}</td>
+      <td class="px-4">{{ feedback.rating }}</td>
       <td>{{ feedback.comments }}</td>
       <td>
-        <button type="button" (click)="onDelete(feedback.id)">
-          <i class="fa-solid fa-trash" style="color: #f50000;"></i>        </button>
+        <i
+        (click)="onDelete(feedback.id)"
+        class="fa-solid fa-trash fa-xl teal px-3"
+        style="color: #ef4444"
+      ></i>
       </td>
     </tr>
   </tbody>

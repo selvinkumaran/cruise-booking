@@ -23,11 +23,11 @@
           <thead>
             <tr>
               <th scope="col">Image</th>
-              <th scope="col">Cruise Name</th>
+              <th scope="col">Name</th>
               <th scope="col">Destination</th>
               <th scope="col">Check In Date</th>
               <th scope="col">Check Out Date</th>
-              <th scope="col">Guest</th>
+              <th scope="col">Cruise Name</th>
               <th scope="col">Payment Date</th>
               <th scope="col">Amount</th>
               <th scope="col">Status</th>
@@ -52,16 +52,16 @@
                 <p class="mb-0">{{ book.destination }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{ book.checkInDate }}</p>
+                <p class="mb-0 small">{{ book.checkInDate|date }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{ book.checkOutDate }}</p>
+                <p class="mb-0 small">{{ book.checkOutDate|date }}</p>
               </td>
               <td class="text-center align-middle">
                 <p class="mb-0 small">{{ book.cruiseName }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{ book.paymentDate }}</p>
+                <p class="mb-0 small">{{ book.paymentDate|date }}</p>
               </td>
               <td class="text-center align-middle">
                 <p class="mb-0 small">{{ book.amount }}</p>

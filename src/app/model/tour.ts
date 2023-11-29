@@ -10,5 +10,11 @@ export interface Tour {
   checkOutDate: string;
   destination?: string;
   balance?: number;
+  cruise?:{
+    id:number;
+    name:string;
+    description:string;
+    photo:string;
+  }
 }
 

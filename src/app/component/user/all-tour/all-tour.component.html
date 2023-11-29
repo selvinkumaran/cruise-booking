@@ -1,0 +1,38 @@
+<div class="img-top">
+  <img
+    src="assets/images/aurora-borealis-over-snowy-mountains-and-frozen-se-J6LTWV2.jpg"
+    alt="tour"
+  />
+  <div class="img-text">T O U R</div>
+</div>
+<div class="container mt-4">
+  <div
+    class="col-12 p-4 row mx-4 card mb-3 text-white black-secondary"
+    *ngFor="let tour of tourDetails"
+  >
+    <div class="col">
+      <img
+        class="rounded"
+        src="{{
+          'http://localhost:8080/api/admin/cruises/downloadFile/' +
+            tour.cruise?.id
+        }}"
+        alt=""
+        width="456px"
+        height="400px"
+      />
+    </div>
+    <div>
+      <p class="teal fs-2 my-3">{{ tour.cruise?.name }}</p>
+    </div>
+    <div class="card-body col text-white">
+      <h5 class="card-title">Destination: {{ tour.destination }}</h5>
+      <p class="card-text text-white">
+        {{ tour.cruiseDescription }}
+      </p>
+      <p class="card-text">Price: {{ tour.price }}</p>
+      <p class="card-text">Check-In Date: {{ tour.checkInDate | date }}</p>
+      <p class="card-text">Check-Out Date: {{ tour.checkOutDate | date }}</p>
+    </div>
+  </div>
+</div>

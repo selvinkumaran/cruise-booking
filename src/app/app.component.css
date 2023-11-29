@@ -15,15 +15,6 @@
   color: var(--secondary) !important;
 }
 
-.navbar-nav .dropdown-menu a {
-  color: #212529;
-}
-
-.navbar-nav .dropdown-menu a:hover {
-  background-color: var(--black-primary);
-  color: var(--secondary);
-}
-
 .sideBarItem,
 .sideBarItem > a {
   color: var(--accent);
@@ -39,9 +30,8 @@
   font-weight: bold;
 }
 
-.border{
+.border {
   border: solid 1px var(--secondary) !important;
-
 }
 
 .sideBarActive > .fa-solid {
@@ -53,4 +43,5 @@
   background-color: var(--black-primary);
   padding: 8px;
   border: solid 1px var(--secondary);
+  cursor: pointer;
 }

@@ -49,7 +49,8 @@
           </li>
           <li class="nav-item px-2">
             <a
-              routerLink=""
+              routerLink="/all/tour"
+              routerLinkActive="active"
               class="nav-link text-white"
               >All Tours</a
             >
@@ -71,21 +72,16 @@
               >Services</a
             >
           </li>
-          <li class="nav-item px-2">
-            <a
-              routerLink="/booking"
-              routerLinkActive="active"
-              class="nav-link text-white"
-              >Booking</a
-            >
-          </li>
         </ul>
+        <div routerLink="/booking" routerLinkActive="active" role="button">
+          <i class="fa-solid fa-circle-user fa-xl" style="color: #ffffff"></i>
+        </div>
         <div
           class="navbar-nav px-4 text-white"
           (click)="logout()"
           role="button"
         >
-          <i class="fa-solid fa-solid fa-right-from-bracket text-white"></i>
+          <i class="fa-solid fa-power-off fa-xl" style="color: #ffffff"></i>
         </div>
       </div>
     </div>
@@ -96,70 +92,80 @@
       <div class="black-secondary h-100" tabindex="-1">
         <div class="d-flex flex-column overflow-y-auto">
           <ul class="navbar-nav nav flex-column">
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
-              <i class="fa-solid fa-house"></i>
+            <li
+              routerLink="/admin"
+              class="nav-item d-flex px-4 justify-content-start sideBarItem"
+            >
+              <i
+                routerLinkActive="active"
+                class="fa-solid fa-house py-2 mx-3"
+              ></i>
               <a
-                routerLink="/admin"
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
-                class="nav-link d-flex"
               >
                 Dashboard
               </a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
-              <i class="fa-solid fa-user"></i>
-              <a
-                routerLink="/admin/users"
+            <li
+              routerLink="/admin/users"
+              class="nav-item d-flex px-4 justify-content-start sideBarItem"
+            >
+              <i
                 routerLinkActive="active"
-                class="nav-link d-flex"
-                >Users</a
-              >
+                class="fa-solid fa-user py-2 mx-3"
+              ></i>
+              <a routerLinkActive="active">Users</a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
-              <i class="fa-solid fa-ship"></i>
-              <a
-                routerLink="/admin/cruise"
+            <li
+              routerLink="/admin/cruise"
+              class="nav-item d-flex px-4 justify-content-start sideBarItem"
+            >
+              <i
                 routerLinkActive="active"
-                class="nav-link d-flex"
-                >Cruise</a
-              >
+                class="fa-solid fa-ship py-2 mx-3"
+              ></i>
+              <a routerLinkActive="active">Cruise</a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
-              <i class="fa-solid fa-book"></i>
-              <a
-                routerLink="/admin/tour"
+            <li
+              routerLink="/admin/tour"
+              class="nav-item d-flex px-4 justify-content-start sideBarItem"
+            >
+              <i
                 routerLinkActive="active"
-                class="nav-link d-flex"
-                >Tour
-              </a>
+                class="fa-solid fa-book py-2 mx-3"
+              ></i>
+              <a routerLinkActive="active" class="nav-link d-flex">Tour </a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
-              <i class="fa-solid fa-credit-card"></i>
-              <a
-                routerLink="/admin/payment"
+            <li
+              routerLink="/admin/payment"
+              class="nav-item d-flex px-4 justify-content-start sideBarItem"
+            >
+              <i
                 routerLinkActive="active"
-                class="nav-link d-flex align-items-center"
-                >Payment
-              </a>
+                class="fa-solid fa-credit-card py-2 mx-3"
+              ></i>
+              <a routerLinkActive="active" class="nav-link d-flex">Payment </a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
-              <i class="fa-solid fa-calendar-days"></i>
-              <a
-                routerLink="/admin/booking"
+            <li
+              routerLink="/admin/booking"
+              class="nav-item d-flex px-4 justify-content-start sideBarItem"
+            >
+              <i
                 routerLinkActive="active"
-                class="nav-link d-flex align-items-center"
-                >Booking
-              </a>
+                class="fa-solid fa-calendar-days py-2 mx-3"
+              ></i>
+              <a routerLinkActive="active" class="nav-link d-flex">Booking </a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem">
-              <i class="fa-solid fa-comment"></i>
-              <a
-                routerLink="/admin/feedback"
+            <li
+              routerLink="/admin/feedback"
+              class="nav-item d-flex px-4 justify-content-start sideBarItem"
+            >
+              <i
                 routerLinkActive="active"
-                class="nav-link d-flex align-items-center"
-                >Feedback
-              </a>
+                class="fa-solid fa-comment py-2 mx-3"
+              ></i>
+              <a routerLinkActive="active" class="nav-link d-flex">Feedback </a>
             </li>
           </ul>
         </div>

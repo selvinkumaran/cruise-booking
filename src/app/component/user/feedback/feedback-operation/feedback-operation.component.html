@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row text-center">
+  <div class="row">
     <div class="col">
       <h2 class="text-white m-3">Feedback</h2>
       <table class="table table-dark table-striped">
@@ -15,22 +15,17 @@
           <tr *ngFor="let feedback of feedbackDetails">
             <th scope="row">{{ feedback.id }}</th>
             <td>{{ feedback.comments }}</td>
-            <td>{{ feedback.rating }}</td>
+            <td class="px-4">{{ feedback.rating }}</td>
             <td>
-              <button
-                type="button"
-                class="btn-add mx-3"
-                (click)="onEdit(feedback.id!)"
-              >
-                Edit
-              </button>
-              <button
-                type="button"
-                class="btn-add"
-                (click)="onDelete(feedback.id)"
-              >
-                Delete
-              </button>
+              <i
+          (click)="onEdit(feedback.id!)"
+          class="fa-solid fa-pen-to-square fa-xl teal"
+        ></i>
+        <i
+          (click)="onDelete(feedback.id)"
+          class="fa-solid fa-trash fa-xl mx-5 teal"
+          style="color: #ef4444"
+        ></i>
             </td>
           </tr>
         </tbody>

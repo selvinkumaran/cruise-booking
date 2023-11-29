@@ -31,6 +31,12 @@ export class TourComponent implements OnInit {
     cruiseName: '',
     cruiseCapacity: 0,
     cruiseDescription: '',
+    cruise: {
+      id: 0,
+      name: '',
+      description: '',
+      photo: '',
+    },
   };
 
   ngOnInit(): void {
@@ -61,7 +67,7 @@ export class TourComponent implements OnInit {
   onSubmit(form: NgForm): void {
     if (form.valid) {
       const totalPayment = this.calculateTotalPayment();
-      this.router.navigate(['/payment'], { queryParams: { totalPayment: totalPayment,tourId:this.param   } });
+      this.router.navigate(['/payment'], { queryParams: { totalPayment: totalPayment,tourId:this.tourDetails[0].id   } });
     }
   }
 }

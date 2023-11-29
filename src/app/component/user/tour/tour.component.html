@@ -15,17 +15,24 @@
 
     <div class="card col-2 m-2 p-0 border-0" style="width: 100%">
       <img
-          src="{{
-            'http://localhost:8080/api/admin/cruises/downloadFile/' + tour.cruiseId
-          }}"
-          alt=""
-          width="605px" height="400px"
-        />
+        src="{{
+          'http://localhost:8080/api/admin/cruises/downloadFile/' +
+            tour.cruiseId
+        }}"
+        alt=""
+        width="605px"
+        height="400px"
+      />
       <div class="card-body text-center black-primary">
-        <h5 class="card-title text-white text-start">Tour Description</h5>
-        <p class="card-text text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+        <h5 class="card-title text-white text-start fs-4 fw-bold">
+          Breathtaking Beauty at Every Turn
+        </h5>
+        <p class="card-text text-start text">
+          Witness the awe-inspiring beauty of nature captured in this stunning
+          image. Immerse yourself in a world of vibrant colors, intricate
+          details, and the serenity that only Mother Nature can provide. Each
+          snapshot tells a unique story, inviting you to explore, dream, and
+          appreciate the extraordinary wonders that surround us.
         </p>
       </div>
     </div>
@@ -45,47 +52,52 @@
   <div class="col-5 mx-3 text-white">
     <div class="container mt-5">
       <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-        <div class="form-group p-2">
-          <label class="p-2 teal fs-4" for="destination">Destination</label>
-          <p class="mx-4">{{ tour.destination }}</p>
-        </div>
+        <div class="d-flex row justify-content-between">
+          <div class="form-group col p-2">
+            <label class="p-2 teal fs-4" for="destination">Destination</label>
+            <p class="mx-4">{{ tour.destination }}</p>
+          </div>
 
-        <div class="form-group p-2">
-          <label class="p-2 teal fs-4" for="capacity">Capacity</label>
-          <p class="mx-4">{{ tour.cruiseCapacity }}</p>
+          <div class="form-group col p-2">
+            <label class="p-2 teal fs-4" for="capacity">Capacity</label>
+            <p class="mx-4">{{ tour.cruiseCapacity }}</p>
+          </div>
         </div>
+        <div class="d-flex row justify-content-between">
+          <div class="form-group col p-2">
+            <label class="p-2 teal fs-4" for="checkinDate">Check-in Date</label>
+            <p class="mx-4">{{ tour.checkInDate }}</p>
+          </div>
 
-        <div class="form-group p-2">
-          <label class="p-2 teal fs-4" for="checkinDate">Check-in Date</label>
-          <p class="mx-4">{{ tour.checkInDate }}</p>
+          <div class="form-group col p-2">
+            <label class="p-2 teal fs-4" for="checkoutDate"
+              >Checkout Date</label
+            >
+            <p class="mx-4">{{ tour.checkOutDate }}</p>
+          </div>
         </div>
+        <div class="d-flex row">
+          <div class="form-group col p-2">
+            <label class="p-2 teal fs-4" for="guests">Guests</label>
+            <select
+              class="form-control mx-3"
+              id="guests"
+              required
+              name="selectedGuests"
+              [(ngModel)]="selectedGuests"
+            >
+              <option value="1">1 Guest</option>
+              <option value="2">2 Guests</option>
+              <option value="3">3 Guests</option>
+            </select>
+          </div>
 
-        <div class="form-group p-2">
-          <label class="p-2 teal fs-4" for="checkoutDate">Checkout Date</label>
-          <p class="mx-4">{{ tour.checkOutDate }}</p>
+          <div class="form-group col p-2">
+            <label class="p-2 teal fs-4" for="price">Price</label>
+            <p class="mx-4">{{ tour.price }}</p>
+          </div>
         </div>
-
-        <div class="form-group p-2">
-          <label class="p-2 teal fs-4" for="guests">Guests</label>
-          <select
-            class="form-control mx-3"
-            id="guests"
-            required
-            name="selectedGuests"
-            [(ngModel)]="selectedGuests"
-          >
-            <option value="1">1 Guest</option>
-            <option value="2">2 Guests</option>
-            <option value="3">3 Guests</option>
-          </select>
-        </div>
-
-        <div class="form-group p-2">
-          <label class="p-2 teal fs-4" for="price">Price</label>
-          <p class="mx-4">{{ tour.price }}</p>
-        </div>
-
-        <button type="submit" class="btn-add mx-3">Submit</button>
+        <button type="submit" class="btn-add m-3">Submit</button>
       </form>
     </div>
   </div>

@@ -22,6 +22,12 @@ export class AdminTourComponent {
     cruiseName: '',
     cruiseCapacity: 0,
     cruiseDescription: '',
+    cruise: {
+      id: 0,
+      name: '',
+      description: '',
+      photo: '',
+    },
   };
 
   constructor(

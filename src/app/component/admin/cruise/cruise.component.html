@@ -1,6 +1,5 @@
 <div class="text-white justify-content-between d-flex py-3">
-  <h2 class="teal">All Cruise</h2>
-  <h2>TOTAL : {{ cruiseDetails.length }}</h2>
+  <h2 class="teal  fs-3">All Cruise</h2>
   <button
     type="button"
     class="btn-add"
@@ -25,7 +24,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let cruise of cruiseDetails">
-      <th scope="row">{{ cruise.id }}</th>
+      <th class="align-middle" scope="row">{{ cruise.id }}</th>
       <th scope="row">
         <img
           src="{{
@@ -36,18 +35,19 @@
           height="70px"
         />
       </th>
-      <td>{{ cruise.name }}</td>
-      <td class="col-6">{{ cruise.description }}</td>
-      <td>{{ cruise.capacity }}</td>
-      <td>
+      <td class="align-middle">{{ cruise.name }}</td>
+      <td class="col-6 align-middle">{{ cruise.description }}</td>
+      <td class="align-middle">{{ cruise.capacity }}</td>
+      <td class="align-middle">
         <i
-          (click)="onEdit(cruise.id!)"
-          class="fa-solid fa-pen-to-square fa-xl teal"
-        ></i>
-        <i
-          (click)="onDelete(cruise.id)"
-          class="fa-solid fa-trash fa-xl mx-5 teal"
-        ></i>
+        (click)="onEdit(cruise.id!)"
+        class="fa-solid fa-pen-to-square fa-xl teal"
+      ></i>
+      <i
+        (click)="onDelete(cruise.id)"
+        class="fa-solid fa-trash fa-xl mx-5 teal"
+        style="color: #ef4444"
+      ></i>
       </td>
     </tr>
   </tbody>

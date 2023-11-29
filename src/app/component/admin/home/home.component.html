@@ -1,127 +1,111 @@
-<div class="row d-flex">
-  <div class="col-3">
-    <div
-      routerLink="/admin/users"
-      routerLinkActive="active"
-      class="card hover col-2 m-2 p-0"
-      style="width: 250px"
-    >
-      <ng-lottie [options]="options"></ng-lottie>
-
-      <div class="card-body text-center bg-teal">
-        <h5 class="card-title text-white fs-5">
-          Total Users {{ totalUserCount }}
-        </h5>
-
-        <a class="card-a text-white"
-          >See all users <i class="fa fa-arrow-right"></i
-        ></a>
+<div class="row d-flex mt-3">
+  <div class="card mb-3 black-secondary card-outline" style="width: 360px; height: 150px">
+    <div class="row g-0">
+      <div class="col-md-5 p-2 pt-3">
+        <ng-lottie [options]="options"></ng-lottie>
+      </div>
+      <div class="col-md-7">
+        <div class="card-body">
+          <h5 class="card-title teal fs-5 pt-4">
+            Total User {{ totalUserCount }}
+          </h5>
+          <a routerLink="/admin/users" class="card-a text-white"
+            >See all users <i class="fa fa-arrow-right"></i
+          ></a>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="col-3">
-    <div
-      routerLink="/admin/payment"
-      routerLinkActive="active"
-      class="card hover col-2 m-2 p-0"
-      style="width: 250px"
-    >
-      <ng-lottie [options]="optionsPayment"></ng-lottie>
-
-      <div class="card-body text-center bg-teal">
-        <h5 class="card-title text-white fs-5">
-          Total Payment {{ paymentDetails.length }}
-        </h5>
-
-        <a class="card-a text-white"
-          >See all Payment <i class="fa fa-arrow-right"></i
-        ></a>
+  <div
+    class="card mb-3 black-secondary card-outline mx-3"
+    style="width: 360px; height: 150px"
+  >
+    <div class="row g-0">
+      <div class="col-md-5 p-2 pt-3">
+        <ng-lottie [options]="optionsPayment"></ng-lottie>
+      </div>
+      <div class="col-md-7">
+        <div class="card-body">
+          <h5 class="card-title teal fs-5 pt-4">
+            Total Payment {{paymentDetails.length }}
+          </h5>
+          <a routerLink="/admin/payment" class="card-a text-white"
+            >See all Payment <i class="fa fa-arrow-right"></i
+          ></a>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="col-3">
-    <div
-      routerLink="/admin/tour"
-      routerLinkActive="active"
-      class="card hover col-2 m-2 p-0"
-      style="width: 250px"
-    >
-      <ng-lottie [options]="optionsTour"></ng-lottie>
-
-      <div class="card-body text-center bg-teal">
-        <h5 class="card-title text-white fs-5">
-          Total Tour {{ tourDetails.length }}
-        </h5>
-
-        <a class="card-a text-white"
-          >See all Tour <i class="fa fa-arrow-right"></i
-        ></a>
+  <div class="card mb-3 black-secondary card-outline" style="width: 360px; height: 150px">
+    <div class="row g-0">
+      <div class="col-md-5 p-2 pt-3">
+        <ng-lottie [options]="optionsTour"></ng-lottie>
+      </div>
+      <div class="col-md-7">
+        <div class="card-body">
+          <h5 class="card-title teal fs-5 pt-4">
+            Total Tour {{ tourDetails.length }}
+          </h5>
+          <a routerLink="/admin/tour" class="card-a text-white"
+            >See all Tour <i class="fa fa-arrow-right"></i
+          ></a>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
 <div class="row d-flex">
-  <div class="col-3">
-    <div
-      routerLink="/admin/cruise"
-      routerLinkActive="active"
-      class="card hover col-2 m-2 p-0"
-      style="width: 250px"
-    >
-      <ng-lottie [options]="optionsCruise"></ng-lottie>
-
-      <div class="card-body text-center bg-teal">
-        <h5 class="card-title text-white fs-5">
-          Total Cruise {{ cruiseDetails.length }}
-        </h5>
-
-        <a class="card-a text-white"
-          >See all Cruise <i class="fa fa-arrow-right"></i
-        ></a>
+  <div class="card mb-3 black-secondary card-outline" style="width: 360px; height: 150px">
+    <div class="row g-0">
+      <div class="col-md-5 p-2 pt-3">
+        <ng-lottie [options]="optionsCruise"></ng-lottie>
+      </div>
+      <div class="col-md-7">
+        <div class="card-body">
+          <h5 class="card-title teal fs-5 pt-4">
+            Total Cruise {{ cruiseDetails.length }}
+          </h5>
+          <a routerLink="/admin/cruise" class="card-a text-white"
+            >See all Cruise <i class="fa fa-arrow-right"></i
+          ></a>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="col-3">
-    <div
-      routerLink="/admin/booking"
-      routerLinkActive="active"
-      class="card hover col-2 m-2 p-0"
-      style="width: 250px"
-    >
-      <ng-lottie [options]="optionsBooking"></ng-lottie>
-
-      <div class="card-body text-center bg-teal">
-        <h5 class="card-title text-white fs-5">
-          Total Booking {{ bookingDetails.length }}
-        </h5>
-
-        <a class="card-a text-white"
-          >See all Booking <i class="fa fa-arrow-right"></i
-        ></a>
+  <div
+    class="card mb-3 black-secondary card-outline mx-3"
+    style="width: 360px; height: 150px"
+  >
+    <div class="row g-0">
+      <div class="col-md-5 p-2 pt-3">
+        <ng-lottie [options]="optionsBooking"></ng-lottie>
+      </div>
+      <div class="col-md-7">
+        <div class="card-body">
+          <h5 class="card-title teal fs-5 pt-4">
+            Total Booking {{ bookingDetails.length }}
+          </h5>
+          <a routerLink="/admin/booking" class="card-a text-white"
+            >See all Booking <i class="fa fa-arrow-right"></i
+          ></a>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-3">
-    <div
-      routerLink="/admin/feedback"
-      routerLinkActive="active"
-      class="card hover col-2 m-2 p-0"
-      style="width: 250px"
-    >
-      <ng-lottie [options]="optionsFeedback"></ng-lottie>
-
-      <div class="card-body text-center bg-teal">
-        <h5 class="card-title text-white fs-5">
-          Total Feedback {{ feedbackDetails.length }}
-        </h5>
-
-        <a class="card-a text-white"
-          >See all Feedback<i class="fa fa-arrow-right"></i
-        ></a>
+  <div class="card mb-3 black-secondary card-outline" style="width: 360px; height: 150px">
+    <div class="row g-0">
+      <div class="col-md-5 p-2 pt-3">
+        <ng-lottie [options]="optionsFeedback"></ng-lottie>
+      </div>
+      <div class="col-md-7">
+        <div class="card-body">
+          <h5 class="card-title teal fs-5 pt-4">
+            Total Feedback {{ feedbackDetails.length }}
+          </h5>
+          <a routerLink="/admin/feedback" class="card-a text-white"
+            >See all Feedback<i class="fa fa-arrow-right"></i
+          ></a>
+        </div>
       </div>
     </div>
   </div>

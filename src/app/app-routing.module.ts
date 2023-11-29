@@ -22,6 +22,7 @@ import { FeedbackOperationComponent } from './component/user/feedback/feedback-o
 import { AdminPaymentComponent } from './component/admin/payment/payment.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { ServiceComponent } from './component/user/service/service.component';
+import { AllTourComponent } from './component/user/all-tour/all-tour.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -32,6 +33,7 @@ const routes: Routes = [
   { path: 'feedback', component: FeedbackComponent },
   { path: 'feedback/all', component: FeedbackOperationComponent },
   { path: 'tour', component: TourComponent },
+  { path: 'all/tour', component: AllTourComponent },
   { path: 'destination', component: DestinationComponent },
   { path: 'cruise', component: CruiseComponent },
   { path: 'booking', component: BookingComponent },
