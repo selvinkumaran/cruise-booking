@@ -10,9 +10,11 @@
 <div class="container">
   <div class="row">
     <div
+      (click)="getCruiseId(cruise.id)"
       *ngFor="let cruise of cruiseDetails"
-      class="card col-2 m-2 p-0 card-outline"
+      class="card col-2 m-2 p-0 border-0"
       style="width: 16rem"
+      role="button"
     >
       <img
         class="rounded"
@@ -28,9 +30,7 @@
         <p class="card-text text">
           {{ cruise.description }}
         </p>
-        <a (click)="getCruiseId(cruise.id)" class="card-a"
-          >Learn more <i class="fa fa-arrow-right"></i
-        ></a>
+        <a class="card-a">See Tours <i class="fa fa-arrow-right"></i></a>
       </div>
     </div>
   </div>

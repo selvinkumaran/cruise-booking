@@ -29,10 +29,10 @@
   padding: 8px;
   font-weight: bold;
 }
-
+/* 
 .border {
   border: solid 1px var(--secondary) !important;
-}
+} */
 
 .sideBarActive > .fa-solid {
   color: var(--secondary);

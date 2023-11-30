@@ -10,16 +10,19 @@
 <h1 class="text-center text-white fw-bold fs-1 p-3 font-weight">
   Our Best Destination
 </h1>
-<div class="cruise-top"></div>
+
+<div class="cruise-top mt-5"></div>
 <div class="container">
   <div class="row">
     <div
+      (click)="getCruiseId(cruise.id)"
       *ngFor="let cruise of cruiseDetails"
-      class="card col-2 m-2 p-0 card-outline"
+      class="card col-2 m-2 p-0 border-0"
       style="width: 16rem"
+      role="button"
     >
       <img
-        class="img-fluid rounded"
+        class="rounded"
         src="{{
           'http://localhost:8080/api/admin/cruises/downloadFile/' + cruise.id
         }}"
@@ -32,9 +35,7 @@
         <p class="card-text text">
           {{ cruise.description }}
         </p>
-        <a (click)="getCruiseId(cruise.id)" class="card-a"
-          >Learn more <i class="fa fa-arrow-right"></i
-        ></a>
+        <a class="card-a">See Tours <i class="fa fa-arrow-right"></i></a>
       </div>
     </div>
   </div>

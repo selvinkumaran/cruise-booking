@@ -48,7 +48,7 @@ export class AuthService {
     this.isLoggedInSubject.next(false);
     this.storageService.removeLoggedInUser();
     this.storageService.removeRoute();
-    this.router.navigate(["/login"], { replaceUrl: true });
+    this.router.navigate(["/"], { replaceUrl: true });
   }
 
   isAdmin(): boolean {

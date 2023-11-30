@@ -200,7 +200,6 @@ body {
 .card-outline {
   border: none;
   cursor: pointer;
-
 }
 .card-outline:hover {
   border: 2px solid teal;

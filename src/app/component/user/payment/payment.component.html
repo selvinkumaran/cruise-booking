@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container rounded black-secondary p-5">
   <form (ngSubmit)="onSubmit(paymentForm)" #paymentForm="ngForm">
     <div class="row">
       <div class="col-md-6">
@@ -213,11 +213,11 @@
         </div>
       </div>
     </div>
-    <div class="d-grid gap-2">
+    <div class="text-center">
       <button
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
-        class="btn-all"
+        class="btn-all p-2"
         [disabled]="paymentForm.invalid"
         (click)="book(paymentForm)"
         type="button"

@@ -1,184 +1,228 @@
-<div *ngIf="!isLoggedIn">
-  <router-outlet />
-</div>
-
-<div *ngIf="isLoggedIn" class="vh-100 d-flex flex-column">
-  <nav class="navbar navbar-expand-lg py-3 container-fluid">
-    <div class="container-fluid text-white">
-      <a
-        routerLink="/"
-        routerLinkActive="active"
-        class="navbar-brand text-white"
-        ><img
-          class="card-img-top"
-          src="../../../../assets/images/cruise-logo.png"
-          height="30px"
-          alt="logo"
-      /></a>
-      <h3 class="fs-4 pt-3">Cruise Hub</h3>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mx-5 mb-lg-0">
-          <li class="nav-item px-2">
-            <a
-              routerLink="/"
-              routerLinkActive="active"
-              class="nav-link text-white"
-              [routerLinkActiveOptions]="{ exact: true }"
-              aria-current="page"
-              >Home</a
-            >
-          </li>
-          <li class="nav-item px-2">
-            <a
-              routerLink="/cruise"
-              routerLinkActive="active"
-              class="nav-link text-white"
-              >Cruise</a
-            >
-          </li>
-          <li class="nav-item px-2">
-            <a
-              routerLink="/all/tour"
-              routerLinkActive="active"
-              class="nav-link text-white"
-              >All Tours</a
-            >
-          </li>
-          <li class="nav-item px-2">
-            <a
-              routerLink="/destination"
-              routerLinkActive="active"
-              class="nav-link text-white"
-              >Destination</a
-            >
-          </li>
-
-          <li class="nav-item px-2">
-            <a
-              routerLink="/service"
-              routerLinkActive="active"
-              class="nav-link text-white"
-              >Services</a
-            >
-          </li>
-        </ul>
-        <div routerLink="/booking" routerLinkActive="active" role="button">
-          <i class="fa-solid fa-circle-user fa-xl" style="color: #ffffff"></i>
-        </div>
-        <div
-          class="navbar-nav px-4 text-white"
-          (click)="logout()"
-          role="button"
+<div *ngIf="!isAdmin && isLoggedIn">
+  <div class="d-flex flex-column">
+    <nav class="navbar navbar-expand-lg py-3 container-fluid">
+      <div class="container-fluid text-white">
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          class="navbar-brand text-white"
+          ><img
+            class="card-img-top"
+            src="../../../../assets/images/cruise-logo.png"
+            height="30px"
+            alt="logo"
+        /></a>
+        <h3 class="fs-4 pt-3">Cruise Hub</h3>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          <i class="fa-solid fa-power-off fa-xl" style="color: #ffffff"></i>
-        </div>
-      </div>
-    </div>
-  </nav>
-
-  <div *ngIf="isAdmin" class="row flex-grow-1">
-    <div class="sidebar border border-right col-2 p-0">
-      <div class="black-secondary h-100" tabindex="-1">
-        <div class="d-flex flex-column overflow-y-auto">
-          <ul class="navbar-nav nav flex-column">
-            <li
-              routerLink="/admin"
-              class="nav-item d-flex px-4 justify-content-start sideBarItem"
-            >
-              <i
-                routerLinkActive="active"
-                class="fa-solid fa-house py-2 mx-3"
-              ></i>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mx-5 mb-lg-0">
+            <li class="nav-item px-2">
               <a
+                routerLink="/"
                 routerLinkActive="active"
+                class="nav-link text-white"
                 [routerLinkActiveOptions]="{ exact: true }"
+                aria-current="page"
+                >Home</a
               >
-                Dashboard
-              </a>
             </li>
-            <li
-              routerLink="/admin/users"
-              class="nav-item d-flex px-4 justify-content-start sideBarItem"
-            >
-              <i
+            <li class="nav-item px-2">
+              <a
+                routerLink="/cruise"
                 routerLinkActive="active"
-                class="fa-solid fa-user py-2 mx-3"
-              ></i>
-              <a routerLinkActive="active">Users</a>
+                class="nav-link text-white"
+                >Cruise</a
+              >
             </li>
-            <li
-              routerLink="/admin/cruise"
-              class="nav-item d-flex px-4 justify-content-start sideBarItem"
-            >
-              <i
+            <li class="nav-item px-2">
+              <a
+                routerLink="/all/tour"
                 routerLinkActive="active"
-                class="fa-solid fa-ship py-2 mx-3"
-              ></i>
-              <a routerLinkActive="active">Cruise</a>
+                class="nav-link text-white"
+                >All Tours</a
+              >
             </li>
-            <li
-              routerLink="/admin/tour"
-              class="nav-item d-flex px-4 justify-content-start sideBarItem"
-            >
-              <i
+            <li class="nav-item px-2">
+              <a
+                routerLink="/destination"
                 routerLinkActive="active"
-                class="fa-solid fa-book py-2 mx-3"
-              ></i>
-              <a routerLinkActive="active" class="nav-link d-flex">Tour </a>
+                class="nav-link text-white"
+                >Destination</a
+              >
             </li>
-            <li
-              routerLink="/admin/payment"
-              class="nav-item d-flex px-4 justify-content-start sideBarItem"
-            >
-              <i
+
+            <li class="nav-item px-2">
+              <a
+                routerLink="/service"
                 routerLinkActive="active"
-                class="fa-solid fa-credit-card py-2 mx-3"
-              ></i>
-              <a routerLinkActive="active" class="nav-link d-flex">Payment </a>
-            </li>
-            <li
-              routerLink="/admin/booking"
-              class="nav-item d-flex px-4 justify-content-start sideBarItem"
-            >
-              <i
-                routerLinkActive="active"
-                class="fa-solid fa-calendar-days py-2 mx-3"
-              ></i>
-              <a routerLinkActive="active" class="nav-link d-flex">Booking </a>
-            </li>
-            <li
-              routerLink="/admin/feedback"
-              class="nav-item d-flex px-4 justify-content-start sideBarItem"
-            >
-              <i
-                routerLinkActive="active"
-                class="fa-solid fa-comment py-2 mx-3"
-              ></i>
-              <a routerLinkActive="active" class="nav-link d-flex">Feedback </a>
+                class="nav-link text-white"
+                >Services</a
+              >
             </li>
           </ul>
+          <div routerLink="/booking" role="button">
+            <i
+              [routerLinkActiveOptions]="{ exact: true }"
+              routerLinkActive="active"
+              class="fa-solid fa-circle-user fa-xl"
+              style="color: #ffffff"
+            ></i>
+          </div>
+          <div
+            class="navbar-nav px-4 text-white"
+            (click)="logout()"
+            role="button"
+          >
+            <i class="fa-solid fa-power-off fa-xl" style="color: #ffffff"></i>
+          </div>
         </div>
       </div>
+    </nav>
+  </div>
+  <!-- <div>
+    <footer><app-footer></app-footer></footer>
+  </div> -->
+</div>
+<div *ngIf="!isAdmin && !isLoggedIn">
+  <div class="row" *ngIf="currentRouteIsHome()" class="d-flex flex-column">
+    <nav class="navbar navbar-expand-lg black-primary">
+      <div class="container-fluid">
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          class="navbar-brand text-white"
+          ><img
+            class="card-img-top"
+            src="../../../../assets/images/cruise-logo.png"
+            height="30px"
+            alt="logo"
+        /></a>
+        <h3 class="fs-4 pt-3 text-white">Cruise Hub</h3>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+          <div
+            class="navbar-nav fs-5 text-white px-4"
+            routerLink="/login"
+            role="button"
+          >
+            LOGIN <i class="fa-solid fa-right-from-bracket mx-2"></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<div *ngIf="isLoggedIn && isAdmin" class="row flex-grow-1">
+  <div class="sidebar border-0 col-2 p-0">
+    <div class="black-secondary h-100" tabindex="-1">
+      <div class="d-flex flex-column overflow-y-auto">
+        <ul class="navbar-nav nav flex-column">
+          <li
+            routerLink="/admin"
+            class="nav-item d-flex px-4 justify-content-start sideBarItem"
+          >
+            <i
+              routerLinkActive="active"
+              class="fa-solid fa-house py-2 mx-3"
+            ></i>
+            <a
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >
+              Dashboard
+            </a>
+          </li>
+          <li
+            routerLink="/admin/users"
+            class="nav-item d-flex px-4 justify-content-start sideBarItem"
+          >
+            <i routerLinkActive="active" class="fa-solid fa-user py-2 mx-3"></i>
+            <a routerLinkActive="active">Users</a>
+          </li>
+          <li
+            routerLink="/admin/cruise"
+            class="nav-item d-flex px-4 justify-content-start sideBarItem"
+          >
+            <i routerLinkActive="active" class="fa-solid fa-ship py-2 mx-3"></i>
+            <a routerLinkActive="active">Cruise</a>
+          </li>
+          <li
+            routerLink="/admin/tour"
+            class="nav-item d-flex px-4 justify-content-start sideBarItem"
+          >
+            <i routerLinkActive="active" class="fa-solid fa-book py-2 mx-3"></i>
+            <a routerLinkActive="active" class="nav-link d-flex">Tour </a>
+          </li>
+          <li
+            routerLink="/admin/payment"
+            class="nav-item d-flex px-4 justify-content-start sideBarItem"
+          >
+            <i
+              routerLinkActive="active"
+              class="fa-solid fa-credit-card py-2 mx-3"
+            ></i>
+            <a routerLinkActive="active" class="nav-link d-flex">Payment </a>
+          </li>
+          <li
+            routerLink="/admin/booking"
+            class="nav-item d-flex px-4 justify-content-start sideBarItem"
+          >
+            <i
+              routerLinkActive="active"
+              class="fa-solid fa-calendar-days py-2 mx-3"
+            ></i>
+            <a routerLinkActive="active" class="nav-link d-flex">Booking </a>
+          </li>
+          <li
+            routerLink="/admin/feedback"
+            class="nav-item d-flex px-4 justify-content-start sideBarItem"
+          >
+            <i
+              routerLinkActive="active"
+              class="fa-solid fa-comment py-2 mx-3"
+            ></i>
+            <a routerLinkActive="active" class="nav-link d-flex">Feedback </a>
+          </li>
+          <li
+            (click)="logout()"
+            class="nav-item d-flex px-4 justify-content-start sideBarItem"
+          >
+            <i class="fa-solid fa-right-from-bracket py-2 mx-3"></i>
+            <a routerLinkActive="active" class="nav-link d-flex">Logout </a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <main class="col-10 px-4">
-      <router-outlet></router-outlet>
-    </main>
   </div>
-  <div *ngIf="!isAdmin">
+  <main class="col-10 px-4">
     <router-outlet></router-outlet>
-  </div>
-  <app-footer></app-footer>
+  </main>
+</div>
+
+<div *ngIf="!isAdmin">
+  <router-outlet></router-outlet>
 </div>
 
 <div *ngIf="loaderService.isLoading | async" class="loader">

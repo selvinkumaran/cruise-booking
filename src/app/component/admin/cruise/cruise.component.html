@@ -1,54 +1,59 @@
-<div class="text-white justify-content-between d-flex py-3">
-  <h2 class="teal  fs-3">All Cruise</h2>
-  <button
-    type="button"
-    class="btn-add"
-    routerLink="/admin/cruise/operation"
-    routerLinkActive="active"
-  >
-    <i class="fa fa-plus"></i>
-    Cruise
-  </button>
-</div>
+<div class="min-vh-100">
+  <div class="text-white justify-content-between d-flex py-3">
+    <h2 class="teal fs-3">All Cruise</h2>
+    <button
+      type="button"
+      class="btn-add black-secondary"
+      routerLink="/admin/cruise/operation"
+      routerLinkActive="active"
+    >
+      <i class="fa fa-plus"></i>
+      Cruise
+    </button>
+  </div>
 
-<table class="table table-dark table-striped text-align-center">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">IMAGE</th>
-      <th scope="col">CRUISE NAME</th>
-      <th scope="col">DESCRIPTION</th>
-      <th scope="col">CAPACITY</th>
-      <th scope="col">ACTION</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let cruise of cruiseDetails">
-      <th class="align-middle" scope="row">{{ cruise.id }}</th>
-      <th scope="row">
-        <img
-          src="{{
-            'http://localhost:8080/api/admin/cruises/downloadFile/' + cruise.id
-          }}"
-          alt=""
-          width="80px"
-          height="70px"
-        />
-      </th>
-      <td class="align-middle">{{ cruise.name }}</td>
-      <td class="col-6 align-middle">{{ cruise.description }}</td>
-      <td class="align-middle">{{ cruise.capacity }}</td>
-      <td class="align-middle">
-        <i
-        (click)="onEdit(cruise.id!)"
-        class="fa-solid fa-pen-to-square fa-xl teal"
-      ></i>
-      <i
-        (click)="onDelete(cruise.id)"
-        class="fa-solid fa-trash fa-xl mx-5 teal"
-        style="color: #ef4444"
-      ></i>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table table-dark table-striped text-align-center">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">IMAGE</th>
+        <th scope="col">CRUISE NAME</th>
+        <th scope="col">DESCRIPTION</th>
+        <th scope="col">CAPACITY</th>
+        <th scope="col" class="text-center">ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cruise of cruiseDetails">
+        <th class="align-middle" scope="row">{{ cruise.id }}</th>
+        <th scope="row">
+          <img
+            src="{{
+              'http://localhost:8080/api/admin/cruises/downloadFile/' +
+                cruise.id
+            }}"
+            alt=""
+            width="80px"
+            height="70px"
+          />
+        </th>
+        <td class="align-middle">{{ cruise.name }}</td>
+        <td class="col-6 align-middle">{{ cruise.description }}</td>
+        <td class="align-middle">{{ cruise.capacity }}</td>
+        <td class="align-middle">
+          <i
+            role="button"
+            (click)="onEdit(cruise.id!)"
+            class="fa-solid fa-pen-to-square mx-4 teal"
+          ></i>
+          <i
+            role="button"
+            (click)="onDelete(cruise.id)"
+            class="fa-solid fa-trash teal"
+            style="color: #ef4444"
+          ></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

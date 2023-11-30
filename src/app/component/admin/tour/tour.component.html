@@ -1,44 +1,48 @@
-<div class="text-white justify-content-between d-flex py-3">
-  <h2 class="teal  fs-3">All Tour</h2>
-  <button
-    type="button"
-    class="btn-add"
-    routerLink="/admin/tour/operation"
-    routerLinkActive="active"
-  >
-    <i class="fa fa-plus"></i>
-    Tour
-  </button>
+<div class="min-vh-100">
+  <div class="text-white justify-content-between d-flex py-3">
+    <h2 class="teal fs-3">All Tour</h2>
+    <button
+      type="button"
+      class="btn-add"
+      routerLink="/admin/tour/operation"
+      routerLinkActive="active"
+    >
+      <i class="fa fa-plus"></i>
+      Tour
+    </button>
+  </div>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">DESTINATION</th>
+        <th scope="col">PRICE</th>
+        <th scope="col">CHECK IN</th>
+        <th scope="col">CHECK OUT</th>
+        <th scope="col" class="px-4">ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tour of tourDetails">
+        <th scope="row">{{ tour.id }}</th>
+        <td>{{ tour.destination }}</td>
+        <td>₹ {{ tour.price }}</td>
+        <td>{{ tour.checkInDate | date }}</td>
+        <td>{{ tour.checkOutDate | date }}</td>
+        <td>
+          <i
+            role="button"
+            (click)="onEdit(tour.id!)"
+            class="fa-solid fa-pen-to-square mx-4 teal"
+          ></i>
+          <i
+            role="button"
+            (click)="onDelete(tour.id)"
+            class="fa-solid fa-trash teal"
+            style="color: #ef4444"
+          ></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<table class="table table-dark table-striped">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">DESTINATION</th>
-      <th scope="col">PRICE</th>
-      <th scope="col">CHECK IN</th>
-      <th scope="col">CHECK OUT</th>
-      <th scope="col" class="px-4">ACTION</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let tour of tourDetails">
-      <th scope="row">{{ tour.id }}</th>
-      <td>{{ tour.destination }}</td>
-      <td>₹ {{ tour.price }}</td>
-      <td>{{ tour.checkInDate|date }}</td>
-      <td>{{ tour.checkOutDate|date }}</td>
-      <td>
-        <i
-          (click)="onEdit(tour.id!)"
-          class="fa-solid fa-pen-to-square fa-xl teal"
-        ></i>
-        <i
-          (click)="onDelete(tour.id)"
-          class="fa-solid fa-trash fa-xl mx-5 teal"
-          style="color: #ef4444"
-        ></i>
-      </td>
-    </tr>
-  </tbody>
-</table>

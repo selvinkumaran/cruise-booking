@@ -49,28 +49,31 @@
     </div>
   </div>
 
-  <div class="col-5 mx-3 text-white">
-    <div class="container mt-5">
+  <div
+    class="col-5 m-3 text-white black-secondary rounded"
+    style="height: 400px"
+  >
+    <div class="container p-3 mt-3">
       <form (ngSubmit)="onSubmit(f)" #f="ngForm">
         <div class="d-flex row justify-content-between">
           <div class="form-group col p-2">
-            <label class="p-2 teal fs-4" for="destination">Destination</label>
+            <label class="p-2 teal fs-5" for="destination">Destination</label>
             <p class="mx-4">{{ tour.destination }}</p>
           </div>
 
           <div class="form-group col p-2">
-            <label class="p-2 teal fs-4" for="capacity">Capacity</label>
+            <label class="p-2 teal fs-5" for="capacity">Capacity</label>
             <p class="mx-4">{{ tour.cruiseCapacity }}</p>
           </div>
         </div>
         <div class="d-flex row justify-content-between">
           <div class="form-group col p-2">
-            <label class="p-2 teal fs-4" for="checkinDate">Check-in Date</label>
+            <label class="p-2 teal fs-5" for="checkinDate">Check-in Date</label>
             <p class="mx-4">{{ tour.checkInDate }}</p>
           </div>
 
           <div class="form-group col p-2">
-            <label class="p-2 teal fs-4" for="checkoutDate"
+            <label class="p-2 teal fs-5" for="checkoutDate"
               >Checkout Date</label
             >
             <p class="mx-4">{{ tour.checkOutDate }}</p>
@@ -78,7 +81,7 @@
         </div>
         <div class="d-flex row">
           <div class="form-group col p-2">
-            <label class="p-2 teal fs-4" for="guests">Guests</label>
+            <label class="p-2 teal fs-5" for="guests">Guests</label>
             <select
               class="form-control mx-3"
               id="guests"
@@ -93,11 +96,13 @@
           </div>
 
           <div class="form-group col p-2">
-            <label class="p-2 teal fs-4" for="price">Price</label>
+            <label class="p-2 teal fs-5" for="price">Price</label>
             <p class="mx-4">{{ tour.price }}</p>
           </div>
         </div>
-        <button type="submit" class="btn-add m-3">Submit</button>
+        <div class="text-center">
+          <button type="submit" class="btn-add m-3">Submit</button>
+        </div>
       </form>
     </div>
   </div>
