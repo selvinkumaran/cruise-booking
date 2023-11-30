@@ -27,6 +27,7 @@ export class AdminTourComponent {
       name: '',
       description: '',
       photo: '',
+      capacity:0,
     },
   };
 

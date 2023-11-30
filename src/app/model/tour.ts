@@ -15,6 +15,7 @@ export interface Tour {
     name:string;
     description:string;
     photo:string;
+    capacity:number;
   }
 }
 

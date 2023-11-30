@@ -1,5 +1,5 @@
-<div class="container text-white justify-content-between d-flex py-3">
-  <h2>Leave a<span class="teal"> Review</span></h2>
+<div class="container text-white justify-content-between d-flex">
+  <h2 class="mx-2 fs-3">Leave a<span class="teal"> Review</span></h2>
   <button
     type="button"
     class="btn-add"
@@ -13,7 +13,7 @@
 <div class="container col-10 fs-5 fw-5 text-white">
   <form (ngSubmit)="onSubmit(feedbackForm)" #feedbackForm="ngForm">
     <div class="form-group">
-      <label class="p-2" for="comments">Comments:</label>
+      <label class="py-3" for="comments">Comments:</label>
       <textarea
         class="form-control"
         id="comments"
@@ -26,13 +26,19 @@
     </div>
 
     <div class="my-3">
-      <div class="form-text small" *ngIf="feedbackDetail.rating.valid; else error">
+      <div
+        class="form-text small"
+        *ngIf="feedbackDetail.rating.valid; else error"
+      >
         <div class="text-success">Thanks!</div>
       </div>
       <ng-template #error>
         <div class="text-danger">Please rate us</div>
       </ng-template>
-      <ngb-rating class="mt-3" [formControl]="feedbackDetail.rating"></ngb-rating>
+      <ngb-rating
+        class="mt-3"
+        [formControl]="feedbackDetail.rating"
+      ></ngb-rating>
     </div>
 
     <hr />
@@ -41,7 +47,13 @@
         <pre>Rating : <b>{{ feedbackDetail.rating.value }}</b></pre>
       </div>
       <div class="col">
-        <button type="button" class="btn btn-sm btn-outline-info" (click)="feedbackDetail.rating.setValue(null)">Clear</button>
+        <button
+          type="button"
+          class="btn btn-sm btn-outline-info"
+          (click)="feedbackDetail.rating.setValue(null)"
+        >
+          Clear
+        </button>
       </div>
     </div>
 

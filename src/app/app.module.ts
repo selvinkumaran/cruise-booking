@@ -38,7 +38,6 @@ import { NgbModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './component/footer/footer.component';
 import { ServiceComponent } from './component/user/service/service.component';
 import { AllTourComponent } from './component/user/all-tour/all-tour.component';
-import { NotFoundComponent } from './component/not-found/not-found.component';
 
 export function playerFactory() {
   return player;
@@ -69,7 +68,6 @@ export function playerFactory() {
     FooterComponent,
     ServiceComponent,
     AllTourComponent,
-    NotFoundComponent,
   ],
   imports: [
     CommonModule,

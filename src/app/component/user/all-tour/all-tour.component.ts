@@ -25,6 +25,7 @@ export class AllTourComponent {
       name: '',
       description: '',
       photo: '',
+      capacity:0,
     },
   };
 

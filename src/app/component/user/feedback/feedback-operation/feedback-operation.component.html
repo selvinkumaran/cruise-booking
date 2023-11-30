@@ -18,10 +18,12 @@
             <td class="px-4">{{ feedback.rating }}</td>
             <td>
               <i
+              role="button"
           (click)="onEdit(feedback.id!)"
           class="fa-solid fa-pen-to-square fa-xl teal"
         ></i>
         <i
+        role="button"
           (click)="onDelete(feedback.id)"
           class="fa-solid fa-trash fa-xl mx-5 teal"
           style="color: #ef4444"

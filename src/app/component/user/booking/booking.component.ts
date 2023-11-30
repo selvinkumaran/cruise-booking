@@ -21,8 +21,8 @@ export class BookingComponent implements OnInit {
     private paymentService: PaymentService
   ) {}
 
-  optionsBooking: AnimationOptions = {
-    path: '/assets/booking.json',
+  empty: AnimationOptions = {
+    path: '/assets/empty.json',
   };
   
   bookingDetails: Booking[] = [];

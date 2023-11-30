@@ -1,4 +1,5 @@
-<h1 class="teal text-center">{{ btn === "Add" ? "ADD" : "EDIT" }} TOUR</h1>
+<div class="min-vh-100">
+<h1 class="teal text-center mt-5">{{ btn === "Add" ? "ADD" : "EDIT" }} TOUR</h1>
 <div class="container col-8 fs-5 fw-5 text-white">
   <form #addForm="ngForm" (ngSubmit)="onSubmit(addForm)">
     <div class="form-group p-2">
@@ -69,4 +70,5 @@
     </div>
     <button type="submit" class="btn-add text-center mt-3">{{ btn }}</button>
   </form>
+</div>
 </div>

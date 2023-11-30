@@ -1,21 +1,19 @@
-<!-- <div
-  *ngIf="bookingDetails.length == 0"
-  class="min-vh-80 row"
-  style="width: 500px; height: 500px"
+<div
+  *ngIf="bookingDetails.length === 0"
+  class="min-vh-80 d-flex flex-column align-items-center justify-content-center"
 >
-  <div class="col-1"></div>
-  <div class="col-10">
-    <ng-lottie [options]="optionsBooking"></ng-lottie>
-  </div>
-  <div class="col-1"></div>
-<p>{{bookingDetails.length}}</p> -->
-<div class="row mx-5 text-center">
+  <ng-lottie [options]="empty" class="lottie-booking"></ng-lottie>
+  <p class="text-white text-lottie">No Bookings !!!</p>
+</div>
+
+<div class="row mx-5 text-center" *ngIf="bookingDetails.length > 0">
   <div class="col-2"></div>
   <div class="col-lg-8 w-100 col-xl-8">
     <div class="card border-0">
       <div class="card-header black-secondary p-3">
         <h5 class="text-white text-start fs-4 mb-0">
-          Thank You, <span class="teal">{{loggedInUser.name}}</span> ! Have a nice journey...
+          Thank You, <span class="teal">{{ loggedInUser.name }}</span> ! Have a
+          nice journey...
         </h5>
       </div>
       <div class="card-body p-2 book-order black-primary">
@@ -52,16 +50,16 @@
                 <p class="mb-0">{{ book.destination }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{ book.checkInDate|date }}</p>
+                <p class="mb-0 small">{{ book.checkInDate | date }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{ book.checkOutDate|date }}</p>
+                <p class="mb-0 small">{{ book.checkOutDate | date }}</p>
               </td>
               <td class="text-center align-middle">
                 <p class="mb-0 small">{{ book.cruiseName }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{ book.paymentDate|date }}</p>
+                <p class="mb-0 small">{{ book.paymentDate | date }}</p>
               </td>
               <td class="text-center align-middle">
                 <p class="mb-0 small">{{ book.amount }}</p>

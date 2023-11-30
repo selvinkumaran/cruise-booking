@@ -17,3 +17,19 @@
 .btn-feedback:hover {
   background-color: var(--secondary);
 }
+
+.text-lottie {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  letter-spacing: 6px;
+  margin-top: -30px;
+  margin-bottom: 20px;
+}
+
+.lottie-booking {
+  width: 400px !important;
+  height: 600px !important;
+  margin-top: -70px;
+}

@@ -90,7 +90,7 @@
     </nav>
   </div>
   <!-- <div>
-    <footer><app-footer></app-footer></footer>
+    <footer></footer>
   </div> -->
 </div>
 <div *ngIf="!isAdmin && !isLoggedIn">
@@ -223,6 +223,7 @@
 
 <div *ngIf="!isAdmin">
   <router-outlet></router-outlet>
+  <app-footer></app-footer>
 </div>
 
 <div *ngIf="loaderService.isLoading | async" class="loader">

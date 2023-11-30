@@ -36,6 +36,7 @@ export class TourComponent implements OnInit {
       name: '',
       description: '',
       photo: '',
+      capacity:0,
     },
   };
 
