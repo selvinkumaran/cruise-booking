@@ -111,4 +111,14 @@ Improved code navigation and refactoring capabilities.
 
 Screenshots:
 -----------
-![aurora-borealis-over-snowy-mountains-and-frozen-se-J6LTWV2](https://github.com/selvinkumaran/cruise-booking/assets/145538192/585b4d36-de4a-4fe7-8266-8ca22c8e027f)
+![Screenshot (12)](https://github.com/selvinkumaran/cruise-booking/assets/145538192/4be11853-bd35-48cb-ab3f-9415ef398243)
+![Screenshot (13)](https://github.com/selvinkumaran/cruise-booking/assets/145538192/afdde7b0-f65b-4bb9-9d3e-c02e3e0d4bd0)
+![Screenshot (49)](https://github.com/selvinkumaran/cruise-booking/assets/145538192/2cf50aea-7add-4224-bc96-6ba25577994a)
+![Screenshot (50)](https://github.com/selvinkumaran/cruise-booking/assets/145538192/eb7c93a4-0c6b-429c-a4d1-91a4dd78c7e3)
+![Screenshot (57)](https://github.com/selvinkumaran/cruise-booking/assets/145538192/290f0596-e4fb-4772-9c30-7a9dc3874d22)
+![Screenshot (58)](https://github.com/selvinkumaran/cruise-booking/assets/145538192/16f4d0f8-8a54-4a51-9024-71d1b7de49df)
+
+
+
+
+
