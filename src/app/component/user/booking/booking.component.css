@@ -1,9 +1,14 @@
+/* Common styles for border in book-order */
 .book-order {
   border: none;
 }
+
+/* Hover effect for book-order */
 .book-order:hover {
   border: solid 1px var(--secondary);
 }
+
+/* Styles for the Feedback button */
 .btn-feedback {
   background-color: var(--black-primary);
   border: solid 1px var(--secondary);
@@ -14,10 +19,13 @@
   text-align: center;
   margin: 20px;
 }
+
+/* Hover effect for the Feedback button */
 .btn-feedback:hover {
   background-color: var(--secondary);
 }
 
+/* Styles for text-lottie class */
 .text-lottie {
   display: flex;
   align-items: center;
@@ -28,6 +36,7 @@
   margin-bottom: 20px;
 }
 
+/* Styles for lottie-booking class */
 .lottie-booking {
   width: 400px !important;
   height: 600px !important;

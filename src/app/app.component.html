@@ -1,18 +1,24 @@
+<!-- User Navigation Bar -->
 <div *ngIf="!isAdmin && isLoggedIn">
   <div class="d-flex flex-column">
+    <!-- User Navbar -->
     <nav class="navbar navbar-expand-lg py-3 container-fluid">
+      <!-- Logo and Branding -->
       <div class="container-fluid text-white">
         <a
           routerLink="/"
           routerLinkActive="active"
           class="navbar-brand text-white"
-          ><img
+        >
+          <img
             class="card-img-top"
             src="../../../../assets/images/cruise-logo.png"
             height="30px"
             alt="logo"
-        /></a>
+          />
+        </a>
         <h3 class="fs-4 pt-3">Cruise Hub</h3>
+        <!-- Navbar Toggler for Mobile View -->
         <button
           class="navbar-toggler"
           type="button"
@@ -24,18 +30,21 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+        <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mx-5 mb-lg-0">
+            <!-- Navigation Links -->
+            <!-- Home Link -->
             <li class="nav-item px-2">
               <a
                 routerLink="/"
                 routerLinkActive="active"
                 class="nav-link text-white"
                 [routerLinkActiveOptions]="{ exact: true }"
-                aria-current="page"
                 >Home</a
               >
             </li>
+            <!-- Cruise Link -->
             <li class="nav-item px-2">
               <a
                 routerLink="/cruise"
@@ -44,6 +53,7 @@
                 >Cruise</a
               >
             </li>
+            <!-- All Tours Link -->
             <li class="nav-item px-2">
               <a
                 routerLink="/all/tour"
@@ -52,6 +62,7 @@
                 >All Tours</a
               >
             </li>
+            <!-- Destination Link -->
             <li class="nav-item px-2">
               <a
                 routerLink="/destination"
@@ -60,7 +71,7 @@
                 >Destination</a
               >
             </li>
-
+            <!-- Services Link -->
             <li class="nav-item px-2">
               <a
                 routerLink="/service"
@@ -70,6 +81,7 @@
               >
             </li>
           </ul>
+          <!-- User Icons -->
           <div routerLink="/booking" role="button">
             <i
               [routerLinkActiveOptions]="{ exact: true }"
@@ -89,25 +101,33 @@
       </div>
     </nav>
   </div>
+  <!-- Footer Component -->
   <!-- <div>
-    <footer></footer>
+    <app-footer></app-footer>
   </div> -->
 </div>
+
+<!-- Guest Navigation Bar -->
 <div *ngIf="!isAdmin && !isLoggedIn">
+  <!-- Home Navigation Bar -->
   <div class="row" *ngIf="currentRouteIsHome()" class="d-flex flex-column">
     <nav class="navbar navbar-expand-lg black-primary">
       <div class="container-fluid">
+        <!-- Logo and Branding -->
         <a
           routerLink="/"
           routerLinkActive="active"
           class="navbar-brand text-white"
-          ><img
+        >
+          <img
             class="card-img-top"
             src="../../../../assets/images/cruise-logo.png"
             height="30px"
             alt="logo"
-        /></a>
+          />
+        </a>
         <h3 class="fs-4 pt-3 text-white">Cruise Hub</h3>
+        <!-- Navbar Toggler for Mobile View -->
         <button
           class="navbar-toggler"
           type="button"
@@ -119,8 +139,10 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+        <!-- Navbar Links -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+          <!-- Login Link -->
           <div
             class="navbar-nav fs-5 text-white px-4"
             routerLink="/login"
@@ -134,11 +156,14 @@
   </div>
 </div>
 
+<!-- Admin Dashboard -->
 <div *ngIf="isLoggedIn && isAdmin" class="row flex-grow-1">
+  <!-- Admin Sidebar -->
   <div class="sidebar border-0 col-2 p-0">
     <div class="black-secondary h-100" tabindex="-1">
       <div class="d-flex flex-column overflow-y-auto">
         <ul class="navbar-nav nav flex-column">
+          <!-- Dashboard Link -->
           <li
             routerLink="/admin"
             class="nav-item d-flex px-4 justify-content-start sideBarItem"
@@ -150,10 +175,10 @@
             <a
               routerLinkActive="active"
               [routerLinkActiveOptions]="{ exact: true }"
+              >Dashboard</a
             >
-              Dashboard
-            </a>
           </li>
+          <!-- Users Link -->
           <li
             routerLink="/admin/users"
             class="nav-item d-flex px-4 justify-content-start sideBarItem"
@@ -161,6 +186,7 @@
             <i routerLinkActive="active" class="fa-solid fa-user py-2 mx-3"></i>
             <a routerLinkActive="active">Users</a>
           </li>
+          <!-- Cruise Link -->
           <li
             routerLink="/admin/cruise"
             class="nav-item d-flex px-4 justify-content-start sideBarItem"
@@ -168,6 +194,7 @@
             <i routerLinkActive="active" class="fa-solid fa-ship py-2 mx-3"></i>
             <a routerLinkActive="active">Cruise</a>
           </li>
+          <!-- Tour Link -->
           <li
             routerLink="/admin/tour"
             class="nav-item d-flex px-4 justify-content-start sideBarItem"
@@ -175,6 +202,7 @@
             <i routerLinkActive="active" class="fa-solid fa-book py-2 mx-3"></i>
             <a routerLinkActive="active" class="nav-link d-flex">Tour </a>
           </li>
+          <!-- Payment Link -->
           <li
             routerLink="/admin/payment"
             class="nav-item d-flex px-4 justify-content-start sideBarItem"
@@ -185,6 +213,7 @@
             ></i>
             <a routerLinkActive="active" class="nav-link d-flex">Payment </a>
           </li>
+          <!-- Booking Link -->
           <li
             routerLink="/admin/booking"
             class="nav-item d-flex px-4 justify-content-start sideBarItem"
@@ -195,6 +224,7 @@
             ></i>
             <a routerLinkActive="active" class="nav-link d-flex">Booking </a>
           </li>
+          <!-- Feedback Link -->
           <li
             routerLink="/admin/feedback"
             class="nav-item d-flex px-4 justify-content-start sideBarItem"
@@ -205,6 +235,7 @@
             ></i>
             <a routerLinkActive="active" class="nav-link d-flex">Feedback </a>
           </li>
+          <!-- Logout Link -->
           <li
             (click)="logout()"
             class="nav-item d-flex px-4 justify-content-start sideBarItem"
@@ -216,16 +247,20 @@
       </div>
     </div>
   </div>
+  <!-- Main Content Area -->
   <main class="col-10 px-4">
     <router-outlet></router-outlet>
   </main>
 </div>
 
+<!-- Non-admin Users -->
 <div *ngIf="!isAdmin">
+  <!-- Display User-Specific Components -->
   <router-outlet></router-outlet>
   <app-footer></app-footer>
 </div>
 
+<!-- Loading Spinner -->
 <div *ngIf="loaderService.isLoading | async" class="loader">
   <ng-lottie [options]="options"></ng-lottie>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Booking } from 'src/app/model/booking';
 import { BookingService } from 'src/app/service/booking.service';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-booking',
@@ -10,13 +11,12 @@ import { BookingService } from 'src/app/service/booking.service';
 export class AdminBookingComponent implements OnInit {
   error: string = '';
   bookingDetails: Booking[] = [];
-  status:string='1';
   bookingDetail: Booking = {
     id: 0,
     name: '',
     username: '',
     bookingStatus: '',
-    bookingDate:'',
+    bookingDate: '',
     cruiseName: '',
     destination: '',
     paymentDate: '',
@@ -24,22 +24,24 @@ export class AdminBookingComponent implements OnInit {
     checkInDate: '',
     checkOutDate: '',
   };
+
   constructor(private bookingService: BookingService) {}
 
   ngOnInit(): void {
-    this.bookingService.getbookingDetails().subscribe({
-      next: (response: any) => {
-        let bookingDetails: Booking[] = response.data;
-        // if (bookingDetails.userRequestList.length > 0) {
-        console.log(bookingDetails);
+    this.fetchBookingDetails();
+  }
 
-        this.bookingDetails = bookingDetails;
-        this.bookingDetail = bookingDetails[0];
-        // }
+  // Fetch booking details from the service
+  private fetchBookingDetails(): void {
+    this.bookingService.getBookingDetails().subscribe({
+      next: (response: any) => {
+        const fetchedBookingDetails: Booking[] = response.data;
+        if (fetchedBookingDetails.length > 0) {
+          this.bookingDetails = fetchedBookingDetails;
+        }
       },
       error: (err) => {
-        let message: string = err?.error?.error?.message;
-        this.error = message.includes(',') ? message.split(',')[0] : message;
+        this.error = handleApiError(err);
       },
     });
   }

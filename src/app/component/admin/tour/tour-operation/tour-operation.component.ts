@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tour } from 'src/app/model/tour';
 import { TourService } from 'src/app/service/tour.service';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-tour-operation',
@@ -22,8 +23,9 @@ export class TourOperationComponent implements OnInit {
     cruiseId: 0,
     price: 0,
     checkInDate: '',
-    checkOutDate:'',
+    checkOutDate: '',
   };
+
   constructor(
     private tourService: TourService,
     private route: ActivatedRoute,
@@ -31,44 +33,47 @@ export class TourOperationComponent implements OnInit {
     private router: Router
   ) {}
 
+  // Fetch Tour Details from the service
   fetchFeedbackDetails() {
     this.tourService.getTourDetails().subscribe(
       (response: any) => {
         this.tourDetails = response.data;
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
   }
 
   ngOnInit() {
+    // Initialize component and fetch tour details
     this.fetchFeedbackDetails();
     this.route.queryParams.subscribe((params) => {
       this.param = params['id'];
       if (this.param) {
+        // If ID exists, fetch tour details for editing
         this.tourService.getTourById(this.param).subscribe({
           next: (response: any) => {
+            // Set values for editing
             this.tourDetail.destination = response.data.destination;
-            this.tourDetail.cruiseId = this.param!;
+            this.tourDetail.cruiseId = response.data.cruise.id;
             this.tourDetail.price = response.data.price;
             this.tourDetail.checkInDate = response.data.checkInDate;
             this.tourDetail.checkOutDate = response.data.checkOutDate;
             this.btn = 'Edit';
           },
           error: (err) => {
-            let message: string = err?.error?.error?.message;
-            this.error = message.includes(',')
-              ? message.split(',')[0]
-              : message;
+            this.error = handleApiError(err);
           },
         });
       }
     });
   }
 
-  onSubmit(_addForm: Form): void {
+  // Handle form submission for adding/editing a tour
+  onSubmit(addForm: Form): void {
     if (this.param) {
+      // If ID exists, update tour
       let tourDetail: Tour = {
         id: this.param,
         destination: this.tourDetail.destination,
@@ -77,21 +82,9 @@ export class TourOperationComponent implements OnInit {
         cruiseId: this.tourDetail.cruiseId,
         price: this.tourDetail.price,
       };
-      this.tourService.putTour(tourDetail).subscribe({
-        next: () => {
-          this.showSnackBar('tour updated successfully!');
-          setTimeout(() => {
-            this.router.navigate(['/admin/tour']);
-          }, 2000);
-        },
-        error: (err) => {
-          console.log(err);
-          let message: string = err.error.error.message;
-          this.error = message.includes(',') ? message.split(',')[0] : message;
-        },
-        complete: () => console.log('There are no more actions happening.'),
-      });
+      this.handleTourRequest(tourDetail, 'tour updated successfully!');
     } else {
+      // If ID doesn't exist, add a new tour
       let tourDetail: Tour = {
         id: null || undefined,
         destination: this.tourDetail.destination,
@@ -100,25 +93,27 @@ export class TourOperationComponent implements OnInit {
         cruiseId: this.tourDetail.cruiseId,
         price: this.tourDetail.price,
       };
-      console.log(tourDetail, 'checkkk adddd');
-
-      this.tourService.postTour(tourDetail).subscribe({
-        next: () => {
-          this.showSnackBar('tour added successfully!');
-          setTimeout(() => {
-            this.router.navigate(['/admin/tour']);
-          }, 2000);
-        },
-        error: (err) => {
-          console.log(err);
-          let message: string = err.error.error.message;
-          this.error = message.includes(',') ? message.split(',')[0] : message;
-        },
-        complete: () => console.log('There are no more actions happening.'),
-      });
+      this.handleTourRequest(tourDetail, 'tour added successfully!');
     }
   }
 
+  // Perform the actual request to add/update a tour
+  private handleTourRequest(tourDetail: Tour, successMessage: string): void {
+    this.tourService.postTour(tourDetail).subscribe({
+      next: () => {
+        this.showSnackBar(successMessage);
+        setTimeout(() => {
+          this.router.navigate(['/admin/tour']);
+        }, 2000);
+      },
+      error: (err) => {
+        this.error = handleApiError(err);
+      },
+      complete: () => console.log('There are no more actions happening.'),
+    });
+  }
+
+  // Display a snackbar message
   private showSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 3000,

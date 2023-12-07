@@ -1,48 +1,42 @@
 <div class="text-white py-3">
+  <!-- Booking list heading -->
   <h2 class="teal fs-3">All Booking</h2>
 </div>
-<table class="table table-dark table-striped">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">BOOKING DATE</th>
-      <th scope="col">NAME</th>
-      <th scope="col">TOUR</th>
-      <th scope="col">CHECK-IN DATE</th>
-      <th scope="col">CHECK-OUT DATE</th>
-      <th scope="col">CRUISE NAME</th>
-      <th scope="col">AMOUNT</th>
-      <th scope="col">STATUS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let booking of bookingDetails">
-      <th class="align-middle" scope="row">{{ booking.id }}</th>
-      <td class="align-middle">{{ booking.bookingDate | date }}</td>
-      <td class="align-middle">{{ booking.name }}</td>
-      <td class="align-middle">{{ booking.destination }}</td>
-      <td class="align-middle">{{ booking.checkInDate | date }}</td>
-      <td class="align-middle">{{ booking.checkOutDate | date }}</td>
-      <td class="align-middle">{{ booking.cruiseName }}</td>
-      <td class="align-middle">₹ {{ booking.amount }}</td>
-      <td class="align-middle">
-        <!-- <div class="form-group">
-          <select
-            class="btn-add"
-            id="guests"
-            required
-            name="status"
-            [(ngModel)]="status"
-          >
-            <option value="1">Confirmed</option>
-            <option value="2">Cancelled</option>
-          </select>
-        </div> -->
-        <i
-        class="fa-solid fa-circle-check px-3"
-        style="color: #1fff96"
-      ></i>
-      </td>
-    </tr>
-  </tbody>
-</table>
+
+<!-- Booking table -->
+<div class="table-responsive">
+    <table class="table table-dark table-striped">
+    <thead>
+      <!-- Table header with column names -->
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">BOOKING DATE</th>
+        <th scope="col">NAME</th>
+        <th scope="col">TOUR</th>
+        <th scope="col">CHECK-IN DATE</th>
+        <th scope="col">CHECK-OUT DATE</th>
+        <th scope="col">CRUISE NAME</th>
+        <th scope="col">AMOUNT</th>
+        <th scope="col">STATUS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Loop through each booking to display in the table -->
+      <tr *ngFor="let booking of bookingDetails">
+        <!-- Booking details for each row -->
+        <th class="align-middle" scope="row">{{ booking.id }}</th>
+        <td class="align-middle">{{ booking.bookingDate | date }}</td>
+        <td class="align-middle">{{ booking.name }}</td>
+        <td class="align-middle">{{ booking.destination }}</td>
+        <td class="align-middle">{{ booking.checkInDate | date }}</td>
+        <td class="align-middle">{{ booking.checkOutDate | date }}</td>
+        <td class="align-middle">{{ booking.cruiseName }}</td>
+        <td class="align-middle">₹ {{ booking.amount }}</td>
+        <td class="align-middle">
+          <!-- Booking status icon -->
+          <i class="fa-solid fa-circle-check px-3" style="color: #1fff96"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

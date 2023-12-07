@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cruise } from 'src/app/model/cruise';
 import { CruiseService } from 'src/app/service/cruise.service';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-destination',
   templateUrl: './destination.component.html',
   styleUrls: ['./destination.component.css'],
 })
-export class DestinationComponent {
+export class DestinationComponent implements OnInit {
   error: string = '';
   cruiseDetails: Cruise[] = [];
   cruiseDetail: Cruise = {
@@ -18,26 +19,29 @@ export class DestinationComponent {
     capacity: 0,
     photo: '',
   };
+
   constructor(private cruiseService: CruiseService, private router: Router) {}
 
   ngOnInit(): void {
+    this.fetchCruiseDetails();
+  }
+
+  // Fetch cruise details
+  private fetchCruiseDetails(): void {
     this.cruiseService.getCruiseDetails().subscribe({
       next: (response: any) => {
         let cruiseDetails: Cruise[] = response.data;
-        // if (cruiseDetails.userRequestList.length > 0) {
-        console.log(cruiseDetails);
-
-        this.cruiseDetails = cruiseDetails;
-        this.cruiseDetail = cruiseDetails[0];
-        // }
+        if (cruiseDetails.length > 0) {
+          this.cruiseDetails = cruiseDetails;
+        }
       },
       error: (err) => {
-        let message: string = err?.error?.error?.message;
-        this.error = message.includes(',') ? message.split(',')[0] : message;
+        this.error = handleApiError(err);
       },
     });
   }
 
+  // Navigate to the tour page with the selected cruise ID
   getCruiseId(id: number | undefined): void {
     this.router.navigate(['/tour'], {
       queryParams: { id: id },

@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Cruise } from 'src/app/model/cruise';
 import { CruiseService } from 'src/app/service/cruise.service';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-cruise',
@@ -18,8 +19,9 @@ export class AdminCruiseComponent implements OnInit {
     name: '',
     description: '',
     capacity: 0,
-    photo:'',
+    photo: '',
   };
+
   constructor(
     private cruiseService: CruiseService,
     private router: Router,
@@ -27,20 +29,22 @@ export class AdminCruiseComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.fetchFeedbackDetails();
+    this.fetchCruiseDetails();
   }
 
-  fetchFeedbackDetails() {
+  // Fetch cruise details from the service
+  fetchCruiseDetails() {
     this.cruiseService.getCruiseDetails().subscribe(
       (response: any) => {
         this.cruiseDetails = response.data;
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
   }
 
+  // Delete a cruise by ID
   onDelete(id: number | undefined) {
     if (id !== undefined) {
       this.cruiseService.deleteCruise(id).subscribe({
@@ -49,22 +53,20 @@ export class AdminCruiseComponent implements OnInit {
           this.showSnackBar('Cruise deleted successfully!');
         },
         error: (err) => {
-          let message: string = err?.error?.error?.message;
-          this.error =
-            message != null && message.includes(',')
-              ? message.split(',')[0]
-              : message;
+          this.error = handleApiError(err);
         },
       });
     }
   }
 
+  // Navigate to the edit page for a specific cruise
   onEdit(id: number) {
     this.router.navigate(['/admin/cruise/operation'], {
       queryParams: { id: id },
     });
   }
 
+  // Display a snackbar with the given message
   private showSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 2000,
@@ -72,6 +74,4 @@ export class AdminCruiseComponent implements OnInit {
       verticalPosition: 'top',
     });
   }
- 
-
 }

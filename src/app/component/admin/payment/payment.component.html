@@ -1,32 +1,37 @@
 <div class="min-vh-100">
+  <!-- Header Section -->
   <div class="text-white py-3">
     <h2 class="teal fs-3">All Payment</h2>
   </div>
-  <table class="table table-dark table-striped">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">CARD HOLDER NAME</th>
-        <th scope="col">PAYMENT DATE</th>
-        <th scope="col">CARD NUMBER</th>
-        <th scope="col">AMOUNT</th>
-        <th scope="col">STATUS</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let payment of paymentDetails">
-        <td>{{ payment.id }}</td>
-        <td>{{ payment.cardHolderName }}</td>
-        <td>{{ payment.paymentDate | date }}</td>
-        <td>{{ payment.cardNumber }}</td>
-        <td>₹ {{ payment.amount }}</td>
-        <td>
-          <i
-            class="fa-solid fa-circle-check px-3"
-            style="color: #1fff96"
-          ></i>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
+  <!-- Payment Table Section -->
+  <div class="table-responsive">
+    <table class="table table-dark table-striped">
+      <thead>
+        <!-- Table Header Row -->
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">CARD HOLDER NAME</th>
+          <th scope="col">PAYMENT DATE</th>
+          <th scope="col">CARD NUMBER</th>
+          <th scope="col">AMOUNT</th>
+          <th scope="col">STATUS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Table Body Rows (Generated using *ngFor) -->
+        <tr *ngFor="let payment of paymentDetails">
+          <td>{{ payment.id }}</td>
+          <td>{{ payment.cardHolderName }}</td>
+          <td>{{ payment.paymentDate | date }}</td>
+          <td>{{ payment.cardNumber }}</td>
+          <td>₹ {{ payment.amount }}</td>
+          <!-- Payment Status Column with Checkmark Icon -->
+          <td>
+            <i class="fa-solid fa-circle-check px-3" style="color: #1fff96"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

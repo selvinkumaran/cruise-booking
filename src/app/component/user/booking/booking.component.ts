@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnimationOptions } from 'ngx-lottie';
-import { AppUser } from 'src/app/model/appUser';
 import { Booking } from 'src/app/model/booking';
 import { Payment } from 'src/app/model/payment';
 import { BookingService } from 'src/app/service/booking.service';
 import { PaymentService } from 'src/app/service/payment.service';
 import { StorageService } from 'src/app/service/storage.service';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-booking',
@@ -14,21 +14,14 @@ import { StorageService } from 'src/app/service/storage.service';
   styleUrls: ['./booking.component.css'],
 })
 export class BookingComponent implements OnInit {
-  constructor(
-    private bookingService: BookingService,
-    private route: ActivatedRoute,
-    private storageService: StorageService,
-    private paymentService: PaymentService
-  ) {}
-
   empty: AnimationOptions = {
     path: '/assets/empty.json',
   };
-  
+
   bookingDetails: Booking[] = [];
   paymentDetails: Payment[] = [];
   error: string = '';
-  username:String='';
+  username: String = '';
 
   bookingDetail: Booking = {
     id: 0,
@@ -43,34 +36,46 @@ export class BookingComponent implements OnInit {
     checkInDate: '',
     checkOutDate: '',
     tourId: 0,
-    paymentId: 0, 
+    paymentId: 0,
     userId: 0,
   };
 
   param: number | null = null;
 
   loggedInUser = this.storageService.getLoggedInUser();
-  
+
+  constructor(
+    private bookingService: BookingService,
+    private route: ActivatedRoute,
+    private storageService: StorageService,
+    private paymentService: PaymentService
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.bookingDetail.tourId = params['tourId'];
     });
 
+    this.fetchLatestPayment();
+  }
+
+  // Fetch the latest payment and update booking details
+  private fetchLatestPayment(): void {
     this.paymentService.getLatestPayment().subscribe(
       (response: any) => {
         this.paymentDetails = response.data;
         this.bookingDetail.paymentId = response.data.id;
         this.saveDetailsToBooking();
-        this.fetchFeedbackDetails();
+        this.fetchBookingDetails();
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
   }
 
-  saveDetailsToBooking() {
+  // Save details to the Booking table
+  private saveDetailsToBooking(): void {
     let bookingDetail: Booking = {
       userId: this.loggedInUser.id,
       tourId: this.bookingDetail.tourId!,
@@ -80,9 +85,7 @@ export class BookingComponent implements OnInit {
     this.bookingService.saveDetailsToBookingTable(bookingDetail).subscribe({
       next: (_response: any) => {},
       error: (err) => {
-        console.log(err);
-        let message: string = err.error.error.message;
-        this.error = message.includes(',') ? message.split(',')[0] : message;
+        this.error = handleApiError(err);
       },
       complete: () => {
         console.log('There are no more actions happening.');
@@ -90,13 +93,14 @@ export class BookingComponent implements OnInit {
     });
   }
 
-  fetchFeedbackDetails() {
-    this.bookingService.getbookingDetailsById(this.loggedInUser.id).subscribe(
+  // Fetch booking details
+  private fetchBookingDetails(): void {
+    this.bookingService.getBookingDetailsById(this.loggedInUser.id).subscribe(
       (response: any) => {
         this.bookingDetails = response.data;
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
   }

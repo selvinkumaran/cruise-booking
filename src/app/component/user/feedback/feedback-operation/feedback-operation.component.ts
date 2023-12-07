@@ -1,10 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Feedback } from 'src/app/model/feedback';
 import { FeedbackService } from 'src/app/service/feedback.service';
 import { StorageService } from 'src/app/service/storage.service';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-feedback-operation',
@@ -12,7 +12,7 @@ import { StorageService } from 'src/app/service/storage.service';
   styleUrls: ['./feedback-operation.component.css'],
 })
 export class FeedbackOperationComponent {
-  feedbackDetails: any[] = [];
+  feedbackDetails: Feedback[] = [];
   userId: number = 0;
   error: string = '';
   feedbackDetail: Feedback = {
@@ -35,51 +35,51 @@ export class FeedbackOperationComponent {
   ) {}
 
   ngOnInit() {
-    let loggedInUser = this.storageService.getLoggedInUser();
-    let userId = loggedInUser.id;
-    this.userId = userId;
+    this.loadLoggedInUserId();
     this.getFeedback();
   }
 
-  getFeedback(): void {
+  // Load user ID from the storage service
+  private loadLoggedInUserId(): void {
+    let loggedInUser = this.storageService.getLoggedInUser();
+    this.userId = loggedInUser.id;
+  }
+
+  // Fetch feedback details for the logged-in user
+  private getFeedback(): void {
     this.feedbackService.getFeedbackDetailsById(this.userId).subscribe({
       next: (response: any) => {
-        let feedbackDetails: Feedback[] = response.data;
-        console.log(feedbackDetails);
-        this.feedbackDetails = feedbackDetails;
+        this.feedbackDetails = response.data;
       },
       error: (err) => {
-        let message: string = err?.error?.error?.message;
-        this.error = message.includes(',') ? message.split(',')[0] : message;
+        this.error = handleApiError(err);
       },
     });
   }
 
-  onDelete(id: number | undefined) {
+  // Handle feedback deletion
+  onDelete(id: number | undefined): void {
     if (id !== undefined) {
-      this.feedbackService.deleteFeedback(id).subscribe({
+      this.feedbackService.deleteFeedbackByUserId(this.userId, id).subscribe({
         next: (response: any) => {
           this.feedbackDetails = response.data;
-          console.log('deleted...');
           this.showSnackBar('Feedback deleted successfully!');
         },
         error: (err) => {
-          let message: string = err?.error?.error?.message;
-          this.error =
-            message != null && message.includes(',')
-              ? message.split(',')[0]
-              : message;
+          this.error = handleApiError(err);
         },
       });
     }
   }
 
-  onEdit(id: number) {
+  // Navigate to the feedback edit page
+  onEdit(id: number): void {
     this.router.navigate(['/feedback'], {
       queryParams: { id: this.userId, feedbackId: id },
     });
   }
 
+  // Display Snack Bar
   private showSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 2000,

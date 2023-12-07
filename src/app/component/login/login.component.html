@@ -1,16 +1,22 @@
+<!-- Login Section -->
 <section class="vh-100 text-white">
   <div class="container py-5 h-100">
     <div class="row d-flex align-items-center justify-content-center h-100">
+      <!-- Lottie Animation Column -->
       <div class="col-6">
         <ng-lottie [options]="options"></ng-lottie>
       </div>
+      <!-- Login Form Column -->
       <div
         class="col-md-6 black-secondary p-5 rounded"
         style="border: 1px solid teal"
       >
+        <!-- Login Header -->
         <h2 class="teal mx-2 fs-3">LOGIN</h2>
+        <!-- Login Form -->
         <div class="container">
           <form #loginForm="ngForm">
+            <!-- Email Input -->
             <div class="input-group py-3">
               <span class="input-group-text" id="addon-wrapping"
                 ><i class="fa fa-envelope"></i
@@ -31,10 +37,12 @@
                   modelEmail.invalid && modelEmail.dirty ? 'is-invalid' : ''
                 "
               />
+              <!-- Email Input Validation -->
               <div *ngIf="modelEmail.invalid" class="invalid-feedback">
                 Please enter a valid email
               </div>
             </div>
+            <!-- Password Input -->
             <div class="input-group py-3">
               <span class="input-group-text" id="addon-wrapping"
                 ><i class="fa fa-lock"></i
@@ -58,8 +66,9 @@
                     : ''
                 "
               />
+              <!-- Password Input Validation -->
               <div
-                *ngIf="modelPassword.errors?.['required']&& modelPassword.dirty"
+                *ngIf="modelPassword.errors?.['required'] && modelPassword.dirty"
                 class="invalid-feedback"
               >
                 Please enter a valid password.
@@ -68,21 +77,23 @@
                 *ngIf="modelPassword.errors?.['minlength']"
                 class="invalid-feedback"
               >
-                Password should atleast
+                Password should be at least
                 {{modelPassword?.errors?.['minlength']?.['requiredLength']}}
                 characters.
               </div>
             </div>
-
+            <!-- Registration Link -->
             <div class="d-flex align-items-center mb-4">
               <span>Not registered?</span>
               <a routerLink="/register" class="teal text-decoration-none px-2"
                 >Register here</a
               >
             </div>
+            <!-- Display Login Error -->
             <div *ngIf="error.length > 0" class="text-danger">
               {{ error }}
             </div>
+            <!-- Login Button -->
             <div class="d-grid gap-2">
               <button
                 class="btn-all"

@@ -1,6 +1,8 @@
 <div class="min-vh-100">
+  <!-- Header Section with Title and Add Button -->
   <div class="text-white justify-content-between d-flex py-3">
     <h2 class="teal fs-3">All Tour</h2>
+    <!-- Add Button -->
     <button
       type="button"
       class="btn-add"
@@ -11,6 +13,9 @@
       Tour
     </button>
   </div>
+
+  <!-- Tour Table -->
+  <div class="table-responsive">
   <table class="table table-dark table-striped">
     <thead>
       <tr>
@@ -23,18 +28,22 @@
       </tr>
     </thead>
     <tbody>
+      <!-- Tour Table Rows -->
       <tr *ngFor="let tour of tourDetails">
         <th scope="row">{{ tour.id }}</th>
         <td>{{ tour.destination }}</td>
         <td>₹ {{ tour.price }}</td>
         <td>{{ tour.checkInDate | date }}</td>
         <td>{{ tour.checkOutDate | date }}</td>
+        <!-- Action Buttons -->
         <td>
+          <!-- Edit Button -->
           <i
             role="button"
             (click)="onEdit(tour.id!)"
             class="fa-solid fa-pen-to-square mx-4 teal"
           ></i>
+          <!-- Delete Button -->
           <i
             role="button"
             (click)="onDelete(tour.id)"
@@ -45,4 +54,5 @@
       </tr>
     </tbody>
   </table>
+  </div>
 </div>

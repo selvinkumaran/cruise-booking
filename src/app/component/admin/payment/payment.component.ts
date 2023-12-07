@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Payment } from 'src/app/model/payment';
 import { PaymentService } from 'src/app/service/payment.service';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-payment',
@@ -8,9 +9,10 @@ import { PaymentService } from 'src/app/service/payment.service';
   styleUrls: ['./payment.component.css'],
 })
 export class AdminPaymentComponent implements OnInit {
-  constructor(private paymentService: PaymentService) {}
-
+  error: string = '';
   paymentDetails: Payment[] = [];
+
+  // Initialize a payment detail object with default values
   paymentDetail: Payment = {
     id: 0,
     cardHolderName: '',
@@ -22,20 +24,21 @@ export class AdminPaymentComponent implements OnInit {
     paymentDate: '',
   };
 
+  constructor(private paymentService: PaymentService) {}
+
   ngOnInit() {
+    // Fetch payment details
     this.fetchPaymentDetails();
   }
 
+  // Fetch payment details from the server
   fetchPaymentDetails() {
     this.paymentService.getPaymentDetails().subscribe(
       (response: any) => {
-        console.log('Payment details response:', response);
         this.paymentDetails = response.data;
-        console.log(this.paymentDetails);
-        
       },
       (error) => {
-        console.error('Error fetching payment details:', error);
+        this.error = handleApiError(error);
       }
     );
   }

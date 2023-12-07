@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { AnimationOptions } from 'ngx-lottie';
-import { Form, NgForm } from '@angular/forms';
 import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/service/auth.service';
 import { AppResponse } from 'src/app/model/appResponse';
 import { Router } from '@angular/router';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-register',
@@ -25,23 +25,28 @@ export class RegisterComponent {
   };
 
   register(): void {
-    let user: User = {
+    // Extract user details for registration
+    const userToRegister: User = {
       name: this.user.name,
       password: this.user.password,
       username: this.user.username,
     };
 
-    this.authService.register(user).subscribe({
-      next: (_response: AppResponse) => {},
+    this.authService.register(userToRegister).subscribe({
+      next: (_response: AppResponse) => {
+      },
       error: (err) => {
-        console.log(err);
-        let message: string = err.error.error.message;
-        this.error = message.includes(',') ? message.split(',')[0] : message;
+        this.error = handleApiError(err);
       },
       complete: () => {
-        console.log('There are no more action happen.');
-        this.router.navigate(['/login']);
+        console.log('Registration completed.');
+        this.navigateToLogin();
       },
     });
+  }
+
+  // Navigate to the login page
+  private navigateToLogin(): void {
+    this.router.navigate(['/login']);
   }
 }

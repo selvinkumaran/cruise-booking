@@ -4,7 +4,10 @@
   </div>
   <div class="row">
     <div class="col">
+      <!-- User Table -->
+      <div class="table-responsive">
       <table class="table table-dark table-striped">
+        <!-- Table Headings -->
         <thead>
           <tr>
             <th scope="col">ID</th>
@@ -12,7 +15,9 @@
             <th scope="col">USERNAME</th>
           </tr>
         </thead>
+        <!-- Table Body -->
         <tbody>
+          <!-- Loop through user details -->
           <tr *ngFor="let user of userDetails">
             <th scope="row">{{ user.id }}</th>
             <td>{{ user.name }}</td>
@@ -20,6 +25,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </div>
 </div>

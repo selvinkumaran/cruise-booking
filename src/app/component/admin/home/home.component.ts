@@ -11,6 +11,7 @@ import { FeedbackService } from 'src/app/service/feedback.service';
 import { Feedback } from 'src/app/model/feedback';
 import { Booking } from 'src/app/model/booking';
 import { Payment } from 'src/app/model/payment';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +27,7 @@ export class AdminHomeComponent implements OnInit {
   bookingDetails: Booking[] = [];
   feedbackDetails: Feedback[] = [];
 
+  // Animation options for Lottie
   options: AnimationOptions = {
     path: '/assets/all-user.json',
   };
@@ -57,61 +59,69 @@ export class AdminHomeComponent implements OnInit {
     private feedbackService: FeedbackService
   ) {}
 
-  totalCruise = this.cruiseService.getCruiseDetails.length;
-  totalTour = this.tourService.getTourDetails.length;
-
   ngOnInit() {
-    this.fetchFeedbackDetails();
+    this.fetchAllDetails();
   }
 
-  fetchFeedbackDetails() {
+  // Fetch details from different services
+  fetchAllDetails() {
+    // Fetch total user count
     this.userService.getTotalUserCount().subscribe({
       next: (count: number) => {
         this.totalUserCount = count;
       },
       error: (err) => {
-        let message: string = err?.error?.error?.message;
-        this.error = message.includes(',') ? message.split(',')[0] : message;
+        this.error = handleApiError(err);
       },
     });
+
+    // Fetch cruise details
     this.cruiseService.getCruiseDetails().subscribe(
       (response: any) => {
         this.cruiseDetails = response.data;
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
+
+    // Fetch tour details
     this.tourService.getTourDetails().subscribe(
       (response: any) => {
         this.tourDetails = response.data;
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
+
+    // Fetch payment details
     this.paymentService.getPaymentDetails().subscribe(
       (response: any) => {
         this.paymentDetails = response.data;
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
-    this.bookingService.getbookingDetails().subscribe(
+
+    // Fetch booking details
+    this.bookingService.getBookingDetails().subscribe(
       (response: any) => {
         this.bookingDetails = response.data;
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
+
+    // Fetch feedback details
     this.feedbackService.getFeedbackDetails().subscribe(
       (response: any) => {
         this.feedbackDetails = response.data;
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
   }

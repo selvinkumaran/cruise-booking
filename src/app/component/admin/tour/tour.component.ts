@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Tour } from 'src/app/model/tour';
 import { TourService } from 'src/app/service/tour.service';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-tour',
   templateUrl: './tour.component.html',
   styleUrls: ['./tour.component.css'],
 })
-export class AdminTourComponent {
+export class AdminTourComponent implements OnInit {
   error: string = '';
   tourDetails: Tour[] = [];
   tourDetail: Tour = {
@@ -27,7 +28,7 @@ export class AdminTourComponent {
       name: '',
       description: '',
       photo: '',
-      capacity:0,
+      capacity: 0,
     },
   };
 
@@ -38,44 +39,44 @@ export class AdminTourComponent {
   ) {}
 
   ngOnInit() {
-    this.fetchFeedbackDetails();
+    this.fetchTourDetails();
   }
 
-  fetchFeedbackDetails() {
+  // Fetch tour details from the server
+  fetchTourDetails() {
     this.tourService.getTourDetails().subscribe(
       (response: any) => {
         this.tourDetails = response.data;
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
   }
 
+  // Delete tour by ID
   onDelete(id: number | undefined) {
     if (id !== undefined) {
       this.tourService.deleteTour(id).subscribe({
         next: (response: any) => {
           this.tourDetails = response.data;
-          this.showSnackBar('tour deleted successfully!');
+          this.showSnackBar('Tour deleted successfully!');
         },
         error: (err) => {
-          let message: string = err?.error?.error?.message;
-          this.error =
-            message != null && message.includes(',')
-              ? message.split(',')[0]
-              : message;
+          this.error = handleApiError(err);
         },
       });
     }
   }
 
+  // Edit tour by ID
   onEdit(id: number) {
     this.router.navigate(['/admin/tour/operation'], {
       queryParams: { id: id },
     });
   }
 
+  // Display snack bar with a message
   private showSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 2000,

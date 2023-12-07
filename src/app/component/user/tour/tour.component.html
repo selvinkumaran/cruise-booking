@@ -1,18 +1,20 @@
+<!-- Header Section with Image and Tour Text -->
 <div class="img-top">
   <img
     src="/assets/images/aurora-borealis-over-snowy-mountains-and-frozen-se-J6LTWV2.jpg"
     alt="Your Image Alt Text"
   />
   <div class="img-text">Tour</div>
-  <p class="text-size">
-    <a class="text-white text-decoration-none" routerLink="/">Home</a> > Tour
-  </p>
 </div>
+
+<!-- Tour Details Section with ngFor Loop -->
 <div *ngFor="let tour of tourDetails" class="row d-flex m-5">
   <div class="col-6">
+    <!-- Cruise Details -->
     <h2 class="teal fs-1">{{ tour.cruiseName }}</h2>
     <p class="text-white lh-lg">{{ tour.cruiseDescription }}</p>
 
+    <!-- Cruise Image and Description -->
     <div class="card col-2 p-0 border-0" style="width: 100%">
       <img
         src="{{
@@ -27,6 +29,7 @@
         <h5 class="text-white text-start fs-4 fw-bold">
           Breathtaking Beauty at Every Turn
         </h5>
+        <!-- Cruise Image Description -->
         <p class="text-start text lh-lg">
           Witness the awe-inspiring beauty of nature captured in this stunning
           image. Immerse yourself in a world of vibrant colors, intricate
@@ -37,6 +40,7 @@
       </div>
     </div>
 
+    <!-- Included and Excluded Services -->
     <div class="text-white row">
       <div class="col">
         <p class="teal">Include</p>
@@ -58,29 +62,38 @@
       </div>
     </div>
   </div>
+
+  <!-- Booking Form Section -->
   <div
-    class="col-5 m-3 text-white black-secondary rounded"
+    class="col-5 m-3 text-white black-secondary top"
     style="height: 400px"
   >
     <div class="container p-3 mt-3">
       <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <!-- Destination and Capacity -->
         <div class="d-flex row justify-content-between">
+          <!-- Destination -->
           <div class="form-group col p-2">
             <label class="p-2 teal fs-5" for="destination">Destination</label>
             <p class="mx-2">{{ tour.destination }}</p>
           </div>
 
+          <!-- Capacity -->
           <div class="form-group col p-2">
             <label class="p-2 mx-4 teal fs-5" for="capacity">Capacity</label>
             <p class="mx-5">{{ tour.cruiseCapacity }}</p>
           </div>
         </div>
+
+        <!-- Check-In and Check-Out Dates -->
         <div class="d-flex row justify-content-between">
+          <!-- Check-In Date -->
           <div class="form-group col p-2">
             <label class="p-2 teal fs-5" for="checkinDate">Check-In Date</label>
             <p class="mx-2">{{ tour.checkInDate }}</p>
           </div>
 
+          <!-- Check-Out Date -->
           <div class="form-group col p-2">
             <label class="p-2 mx-4 teal fs-5" for="checkoutDate"
               >Check-Out Date</label
@@ -88,7 +101,10 @@
             <p class="mx-5">{{ tour.checkOutDate }}</p>
           </div>
         </div>
+
+        <!-- Guests and Price -->
         <div class="d-flex row">
+          <!-- Guests -->
           <div class="form-group col p-2">
             <label class="p-2 teal fs-5" for="guests">Guests</label>
             <select
@@ -98,17 +114,21 @@
               name="selectedGuests"
               [(ngModel)]="selectedGuests"
             >
+              <!-- Options for Number of Guests -->
               <option value="1">1 Guest</option>
               <option value="2">2 Guests</option>
               <option value="3">3 Guests</option>
             </select>
           </div>
 
+          <!-- Price -->
           <div class="form-group col p-2">
             <label class="p-2 mx-4 teal fs-5" for="price">Price</label>
             <p class="mx-5">{{ tour.price }}</p>
           </div>
         </div>
+
+        <!-- Submit Button -->
         <div class="text-center">
           <button type="submit" class="btn-add m-3">Submit</button>
         </div>

@@ -1,3 +1,4 @@
+<!-- Header section with tour image and text -->
 <div class="img-top">
   <img
     src="assets/images/aurora-borealis-over-snowy-mountains-and-frozen-se-J6LTWV2.jpg"
@@ -6,11 +7,14 @@
   <div class="img-text">T O U R</div>
 </div>
 
+<!-- Container for displaying tour details -->
 <div class="container mt-4">
+  <!-- Tour details card for each tour in the list -->
   <div
     class="row m-3 rounded text-white black-secondary"
     *ngFor="let tour of tourDetails"
   >
+    <!-- Column for displaying cruise image -->
     <div class="col p-0">
       <img
         class="rounded"
@@ -23,38 +27,55 @@
         height="450px"
       />
     </div>
+
+    <!-- Column for displaying tour information -->
     <div class="col">
+      <!-- Cruise name section -->
       <div>
         <p class="teal fs-2 m-3 pt-3">{{ tour.cruise?.name }}</p>
       </div>
+
+      <!-- Tour details table -->
       <div class="card-body fs-6 col text-white">
         <table class="table text-white">
+          <!-- Destination row -->
           <tr>
-            <th style="padding: 20px;">Destination:</th>
+            <th style="padding: 20px">Destination:</th>
             <td>{{ tour.destination }}</td>
           </tr>
+
+          <!-- Cruise Capacity row -->
           <tr>
-            <th style="padding: 20px;">Cruise Capacity:</th>
-            <td>{{tour.cruise?.capacity}}</td>
+            <th style="padding: 20px">Cruise Capacity:</th>
+            <td>{{ tour.cruise?.capacity }}</td>
           </tr>
+
+          <!-- Price row -->
           <tr>
-            <th style="padding: 20px;">Price:</th>
+            <th style="padding: 20px">Price:</th>
             <td>{{ tour.price }}</td>
           </tr>
+
+          <!-- Check-In Date row -->
           <tr>
-            <th style="padding: 20px;">Check-In Date:</th>
+            <th style="padding: 20px">Check-In Date:</th>
             <td>{{ tour.checkInDate | date }}</td>
           </tr>
+
+          <!-- Check-Out Date row -->
           <tr>
-            <th style="padding: 20px;">Check-Out Date:</th>
+            <th style="padding: 20px">Check-Out Date:</th>
             <td>{{ tour.checkOutDate | date }}</td>
           </tr>
         </table>
+
+        <!-- Button for submitting the tour -->
         <div class="text-center">
-          <button type="submit" class="btn-add">Submit</button>
+          <button routerLink="/cruise" type="submit" class="btn-add">
+            Submit
+          </button>
         </div>
       </div>
-      
     </div>
   </div>
 </div>

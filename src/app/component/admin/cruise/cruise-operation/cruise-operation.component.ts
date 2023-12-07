@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
-import { Form, NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { Cruise } from 'src/app/model/cruise';
 import { CruiseService } from 'src/app/service/cruise.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-cruise-operation',
   templateUrl: './cruise-operation.component.html',
   styleUrls: ['./cruise-operation.component.css'],
 })
-export class CruiseOperationComponent {
+export class CruiseOperationComponent implements OnInit {
   cruiseDetails: Cruise[] = [];
   param: number | null = null;
   btn: string = 'Add';
-  error = '';
+  error: string = '';
   file = '';
   cruiseDetail: Cruise = {
     id: 0,
@@ -23,6 +24,7 @@ export class CruiseOperationComponent {
     capacity: 0,
     photo: '',
   };
+
   constructor(
     private cruiseService: CruiseService,
     private route: ActivatedRoute,
@@ -30,94 +32,117 @@ export class CruiseOperationComponent {
     private router: Router
   ) {}
 
-  fetchFeedbackDetails() {
+  // Fetch cruise details
+  fetchCruiseDetails() {
     this.cruiseService.getCruiseDetails().subscribe(
       (response: any) => {
         this.cruiseDetails = response.data;
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
   }
 
   ngOnInit() {
-    this.fetchFeedbackDetails();
+    this.fetchCruiseDetails();
+
+    // Subscribe to route query parameters
     this.route.queryParams.subscribe((params) => {
       this.param = params['id'];
       if (this.param) {
-        this.cruiseService.getCruiseById(this.param).subscribe({
-          next: (response: any) => {
-            console.log(response);
-
-            this.cruiseDetail.name = response.data.name;
-            this.cruiseDetail.description = response.data.description;
-            this.cruiseDetail.capacity = response.data.capacity;
-            this.btn = 'Edit';
-          },
-          error: (err) => {
-            let message: string = err?.error?.error?.message;
-            this.error = message.includes(',')
-              ? message.split(',')[0]
-              : message;
-          },
-        });
+        this.loadCruiseDetails();
       }
     });
   }
 
+  // Load cruise details for editing
+  loadCruiseDetails() {
+    this.cruiseService.getCruiseById(this.param!).subscribe({
+      next: (response: any) => {
+        this.populateCruiseDetails(response.data);
+        this.btn = 'Edit';
+      },
+      error: (err) => {
+        this.error = handleApiError(err);
+      },
+    });
+  }
+
+  // Populate cruise details from response
+  populateCruiseDetails(data: any) {
+    this.cruiseDetail.name = data.name;
+    this.cruiseDetail.description = data.description;
+    this.cruiseDetail.capacity = data.capacity;
+  }
+
+  // Handle form submission
   onSubmit(addForm: NgForm): void {
     if (this.param) {
-      let formValue: Cruise = addForm.value;
-      const formData = new FormData();
-      formData.append('id', this.param!.toString());
-      formData.append('photo', this.file);
-      formData.append('capacity', formValue.capacity.toString());
-      formData.append('name', formValue.name);
-      formData.append('description', formValue.description);
-
-      this.cruiseService.putcruise(formData).subscribe({
-        next: () => {
-          this.showSnackBar('Cruise updated successfully!');
-          setTimeout(() => {
-            this.router.navigate(['/admin/cruise']);
-          }, 2000);
-        },
-        error: (err) => {
-          console.log(err);
-          let message: string = err.error.error.message;
-          this.error = message.includes(',') ? message.split(',')[0] : message;
-        },
-        complete: () => console.log('There are no more actions happening.'),
-      });
+      this.updateCruise(addForm);
     } else {
-      let formValue: Cruise = addForm.value;
-      console.log(addForm.value,"new check");
-      
-      const formData = new FormData();
-      formData.append('photo', this.file);
-      formData.append('capacity', formValue.capacity.toString());
-      formData.append('name', formValue.name);
-      formData.append('description', formValue.description);
-      console.log(formData,"check");
-      
-      this.cruiseService.postcruise(formData).subscribe({
-        next: () => {
-          this.showSnackBar('Cruise added successfully!');
-          setTimeout(() => {
-            this.router.navigate(['/admin/cruise']);
-          }, 2000);
-        },
-        error: (err) => {
-          console.log(err);
-          let message: string = err.error.error.message;
-          this.error = message.includes(',') ? message.split(',')[0] : message;
-        },
-        complete: () => console.log('There are no more actions happening.'),
-      });
+      this.addCruise(addForm);
     }
   }
 
+  // Update cruise
+  updateCruise(addForm: NgForm): void {
+    let formValue: Cruise = addForm.value;
+    const formData = this.createFormData(formValue);
+
+    this.cruiseService.putCruise(formData).subscribe({
+      next: () => this.handleSuccess('Cruise updated successfully!'),
+      error: (err) => this.handleError(err),
+    });
+  }
+
+  // Add new cruise
+  addCruise(addForm: NgForm): void {
+    let formValue: Cruise = addForm.value;
+    const formData = this.createFormData(formValue);
+
+    this.cruiseService.postCruise(formData).subscribe({
+      next: () => this.handleSuccess('Cruise added successfully!'),
+      error: (err) => this.handleError(err),
+    });
+  }
+
+  // Create FormData for the API request
+  createFormData(formValue: Cruise): FormData {
+    const formData = new FormData();
+    if (this.param) {
+      formData.append('id', this.param!.toString());
+    }
+    formData.append('photo', this.file);
+    formData.append('capacity', formValue.capacity.toString());
+    formData.append('name', formValue.name);
+    formData.append('description', formValue.description);
+
+    return formData;
+  }
+
+  // Handle file change
+  onFileChange(event: any) {
+    const fileInput = event.target;
+    if (fileInput && fileInput.files.length > 0) {
+      this.file = fileInput.files[0];
+    }
+  }
+
+  // Display success message using MatSnackBar
+  private handleSuccess(message: string): void {
+    this.showSnackBar(message);
+    setTimeout(() => {
+      this.router.navigate(['/admin/cruise']);
+    }, 2000);
+  }
+
+  // Display error message using MatSnackBar
+  private handleError(err: any): void {
+    this.error = handleApiError(err);
+  }
+
+  // Display snackbar with a message
   private showSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 2000,
@@ -125,12 +150,5 @@ export class CruiseOperationComponent {
       verticalPosition: 'top',
       panelClass: ['custom-snackbar'],
     });
-  }
-
-  onFileChange(event: any) {
-    const fileInput = event.target;
-    if (fileInput && fileInput.files.length > 0) {
-      this.file = fileInput.files[0];
-    }
   }
 }

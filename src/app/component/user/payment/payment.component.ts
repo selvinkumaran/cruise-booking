@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { Payment } from 'src/app/model/payment';
 import { PaymentService } from 'src/app/service/payment.service';
 import { StorageService } from 'src/app/service/storage.service';
-import { AnimationOptions, LottieComponent } from 'ngx-lottie';
+import { AnimationOptions } from 'ngx-lottie';
 import { ActivatedRoute } from '@angular/router';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-payment',
@@ -22,6 +23,7 @@ export class PaymentComponent {
     private router: Router
   ) {}
 
+  // Lottie Animation Options
   options: AnimationOptions = {
     path: '/assets/success.json',
     rendererSettings: {
@@ -29,6 +31,7 @@ export class PaymentComponent {
     },
   };
 
+  // Payment-related variables
   paymentDetails: Payment[] = [];
   error: string = '';
   param: number | null = null;
@@ -46,12 +49,16 @@ export class PaymentComponent {
     amount: 0,
   };
 
+  // Button Text for UI
   btnText: string = 'BOOK NOW';
 
-  onSubmit(_paymentForm: NgForm) {}
+  onSubmit(_paymentForm: NgForm) {
+  }
 
+  // Retrieve logged-in user from storage service
   loggedInUser = this.storageService.getLoggedInUser();
 
+  // Book function triggered on payment form submission
   book(_paymentForm: NgForm) {
     this.route.queryParams.subscribe((params) => {
       this.param = params['totalPayment'];
@@ -68,22 +75,29 @@ export class PaymentComponent {
         amount: this.param!,
       };
 
+      // Post payment to the server
       this.paymentService.postPayment(payment).subscribe({
-        next: (_response: any) => {},
+        next: (_response: any) => {
+          // Handle successful response if needed
+        },
         error: (err) => {
-          console.log(err);
-          let message: string = err.error.error.message;
-          this.error = message.includes(',') ? message.split(',')[0] : message;
+          // Handle error response
+          this.error = handleApiError(err);
         },
         complete: () => {
-          console.log('There are no more action happen.');
+          // Handle completion logic if needed
+          console.log('There are no more actions happening.');
         },
       });
     });
   }
 
+  // Navigate to booking page after successful payment
   navigateToBooking() {
+    // Show Lottie animation
     this.showLottie = true;
+
+    // Navigate to booking page after a delay
     setTimeout(() => {
       this.router.navigate(['/booking'], {
         queryParams: {

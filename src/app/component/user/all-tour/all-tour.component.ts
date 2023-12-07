@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Tour } from 'src/app/model/tour';
 import { TourService } from 'src/app/service/tour.service';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-all-tour',
   templateUrl: './all-tour.component.html',
   styleUrls: ['./all-tour.component.css'],
 })
-export class AllTourComponent {
-  constructor(private tourService: TourService) {}
+export class AllTourComponent implements OnInit {
+  error: string = '';
   tourDetails: Tour[] = [];
   tourDetail: Tour = {
     id: 0,
@@ -25,22 +26,25 @@ export class AllTourComponent {
       name: '',
       description: '',
       photo: '',
-      capacity:0,
+      capacity: 0,
     },
   };
 
+  constructor(private tourService: TourService) {}
+
   ngOnInit() {
-    this.fetchFeedbackDetails();
+    this.fetchTourDetails();
   }
 
-  fetchFeedbackDetails() {
+  // Fetch tour details from the service
+  fetchTourDetails() {
     this.tourService.getTourDetails().subscribe(
       (response: any) => {
         this.tourDetails = response.data;
         console.log(this.tourDetails);
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
   }

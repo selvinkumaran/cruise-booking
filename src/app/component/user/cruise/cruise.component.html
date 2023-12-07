@@ -1,14 +1,19 @@
+<!-- Image Top Section -->
 <div class="img-top">
   <img
-    src="assets/images/aurora-borealis-over-snowy-mountains-and-frozen-se-J6LTWV2.jpg"
+    src="assets\images\jonatan-pie-3l3RwQdHRHg-unsplash-1536x1152.jpg"
     alt="Your Image Alt Text"
   />
   <div class="img-text">C R U I S E</div>
 </div>
 
-<div class="cruise-top mt-5"></div>
+<!-- Margin Section -->
+<div class="m-5"></div>
+
+<!-- Cruise Cards Section -->
 <div class="container">
   <div class="row">
+    <!-- Iterate through cruiseDetails to display cruise cards -->
     <div
       (click)="getCruiseId(cruise.id)"
       *ngFor="let cruise of cruiseDetails"
@@ -16,22 +21,26 @@
       style="width: 16rem"
       role="button"
     >
+      <!-- Cruise Card Image -->
       <img
         class="rounded"
-        src="{{
-          'http://localhost:8080/api/admin/cruises/downloadFile/' + cruise.id
-        }}"
+        src="{{ 'http://localhost:8080/api/admin/cruises/downloadFile/' + cruise.id }}"
         alt=""
         width="256px"
         height="200px"
       />
+      <!-- Cruise Card Body -->
       <div class="card-body text-center black-secondary">
+        <!-- Cruise Card Title -->
         <h5 class="card-title fs-4 text-white">{{ cruise.name }}</h5>
-        <p class="card-text text">
-          {{ cruise.description }}
-        </p>
+        <!-- Cruise Card Description -->
+        <p class="card-text text">{{ cruise.description }}</p>
+        <!-- Cruise Card Action -->
         <a class="card-a">See Tours <i class="fa fa-arrow-right"></i></a>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Additional Margin Section -->
+<div class="m-5"></div>

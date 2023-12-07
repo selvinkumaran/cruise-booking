@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Feedback } from 'src/app/model/feedback';
 import { FeedbackService } from 'src/app/service/feedback.service';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-feedback',
@@ -32,17 +33,19 @@ export class AdminFeedbackComponent implements OnInit {
     this.fetchFeedbackDetails();
   }
 
+  // Fetch feedback details from the service
   fetchFeedbackDetails() {
     this.feedbackService.getFeedbackDetails().subscribe(
       (response: any) => {
         this.feedbackDetails = response.data;
       },
       (error) => {
-        console.error('Error fetching feedback details', error);
+        this.error = handleApiError(error);
       }
     );
   }
 
+  // Delete feedback by ID
   onDelete(id: number | undefined) {
     if (id !== undefined) {
       this.feedbackService.deleteFeedback(id).subscribe({
@@ -51,15 +54,13 @@ export class AdminFeedbackComponent implements OnInit {
           this.showSnackBar('Feedback deleted successfully!');
         },
         error: (err) => {
-          let message: string = err?.error?.error?.message;
-          this.error =
-            message != null && message.includes(',')
-              ? message.split(',')[0]
-              : message;
+          this.error = handleApiError(err);
         },
       });
     }
   }
+
+  // Display a snackbar with a given message
   private showSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 2000,

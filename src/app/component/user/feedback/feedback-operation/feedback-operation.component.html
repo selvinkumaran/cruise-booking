@@ -1,7 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col">
+      <!-- Feedback Table Header -->
       <h2 class="text-white m-3">Feedback</h2>
+      
+      <!-- Feedback Table -->
+      <div class="table-responsive">
       <table class="table table-dark table-striped">
         <thead>
           <tr>
@@ -12,26 +16,31 @@
           </tr>
         </thead>
         <tbody>
+          <!-- Iterate through feedbackDetails to display feedback -->
           <tr *ngFor="let feedback of feedbackDetails">
             <th scope="row">{{ feedback.id }}</th>
             <td>{{ feedback.comments }}</td>
             <td class="px-4">{{ feedback.rating }}</td>
             <td>
+              <!-- Edit Icon -->
               <i
-              role="button"
-          (click)="onEdit(feedback.id!)"
-          class="fa-solid fa-pen-to-square fa-xl teal"
-        ></i>
-        <i
-        role="button"
-          (click)="onDelete(feedback.id)"
-          class="fa-solid fa-trash fa-xl mx-5 teal"
-          style="color: #ef4444"
-        ></i>
+                role="button"
+                (click)="onEdit(feedback.id!)"
+                class="fa-solid fa-pen-to-square fa-xl teal"
+              ></i>
+              
+              <!-- Delete Icon -->
+              <i
+                role="button"
+                (click)="onDelete(feedback.id)"
+                class="fa-solid fa-trash fa-xl mx-5 teal"
+                style="color: #ef4444"
+              ></i>
             </td>
           </tr>
         </tbody>
       </table>
+    </div>
     </div>
   </div>
 </div>

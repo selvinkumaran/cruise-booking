@@ -1,25 +1,30 @@
-<div
-  *ngIf="bookingDetails.length === 0"
-  class="min-vh-80 d-flex flex-column align-items-center justify-content-center"
->
+<!-- No Bookings Section -->
+<div *ngIf="bookingDetails.length === 0" class="min-vh-80 d-flex flex-column align-items-center justify-content-center">
   <ng-lottie [options]="empty" class="lottie-booking"></ng-lottie>
   <p class="text-white text-lottie">No Bookings !!!</p>
 </div>
 
+<!-- Margin Section -->
+<div class="m-5"></div>
+
+<!-- Bookings Details Section -->
 <div class="row mx-5 text-center" *ngIf="bookingDetails.length > 0">
   <div class="col-2"></div>
   <div class="col-lg-8 w-100 col-xl-8">
+    <!-- Card Header -->
     <div class="card border-0">
       <div class="card-header black-secondary p-3">
         <h5 class="text-white text-start fs-4 mb-0">
-          Thank You, <span class="teal">{{ loggedInUser.name }}</span> ! Have a
-          nice journey...
+          Thank You, <span class="teal">{{ loggedInUser.name }}</span> ! Have a nice journey...
         </h5>
       </div>
-      <div class="card-body p-2 book-order black-primary">
+      <!-- Card Body -->
+      <div class="card-body p-2 book-order black-primary table-responsive">
+        <!-- Bookings Table -->
         <table class="table table-dark table-bordered">
           <thead>
             <tr>
+              <!-- Table Headers -->
               <th scope="col">Image</th>
               <th scope="col">Name</th>
               <th scope="col">Destination</th>
@@ -33,15 +38,12 @@
             </tr>
           </thead>
           <tbody>
+            <!-- Iterate through bookingDetails to display bookings -->
             <tr *ngFor="let book of bookingDetails">
+              <!-- Table Data -->
               <td class="align-middle">
-                <img
-                  src="../../../../assets/images/ishan-seefromthesky-KgCbvOWYuU0-unsplash-1536x1152.jpg"
-                  class="img-fluid"
-                  alt="ship"
-                  width="100px"
-                  height="100px"
-                />
+                <img src="../../../../assets/images/ishan-seefromthesky-KgCbvOWYuU0-unsplash-1536x1152.jpg"
+                  class="img-fluid" alt="ship" width="100px" height="100px" />
               </td>
               <td class="text-center align-middle">
                 <p class="mb-0">{{ book.name }}</p>
@@ -67,16 +69,10 @@
               <td class="text-center align-middle">
                 <p class="mb-0 small">{{ book.bookingStatus }}</p>
               </td>
-
+              <!-- Feedback Button -->
               <td class="text-center align-middle">
-                <button
-                  type="button"
-                  routerLink="/feedback"
-                  routerLinkActive="active"
-                  class="btn btn-feedback"
-                >
-                  Feedback
-                </button>
+                <button type="button" routerLink="/feedback" routerLinkActive="active"
+                  class="btn btn-feedback">Feedback</button>
               </td>
             </tr>
           </tbody>
@@ -86,3 +82,6 @@
   </div>
   <div class="col-2"></div>
 </div>
+
+<!-- Additional Margin Section -->
+<div class="m-5"></div>

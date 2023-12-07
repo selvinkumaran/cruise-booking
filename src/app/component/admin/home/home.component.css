@@ -1,12 +1,17 @@
-.hover{
-    border: none;
+/* CSS for handling hover effect */
+.hover {
+  border: none;
 }
-.hover:hover{
-    border: 1px solid var(--secondary);
-    cursor: pointer;
-    color: black;
+
+/* Hover effect styles */
+.hover:hover {
+  border: 1px solid var(--secondary);
+  cursor: pointer;
+  color: black;
 }
-.feedback-lottie{
-    width: 200px !important;
-    height: 500px !important;
+
+/* Feedback lottie animation */
+.feedback-lottie {
+  width: 200px !important;
+  height: 500px !important;
 }

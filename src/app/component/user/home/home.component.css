@@ -1,3 +1,4 @@
+/* Top Text Style */
 .text-top {
   color: var(--black-secondary);
   font-weight: bolder;
@@ -9,30 +10,50 @@
   border-radius: 20px;
 }
 
+/* Large Font Size 1 Style */
 .fs-1 {
   font-weight: 700;
   font-size: 60px !important;
 }
 
-.img-font {
-  position: absolute;
-  top: 25%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 60px;
-  font-weight: bold;
-  text-align: center;
-  z-index: 1;
-}
+/* Image Font Style */
+.img-font,
 .img-font-two {
   position: absolute;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   color: white;
   font-size: 60px;
   font-weight: bold;
   text-align: center;
   z-index: 1;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.img-font {
+  top: 25%;
+}
+
+.img-font-two {
+  top: 35%;
+}
+
+/* Content Section Style */
+.content {
+  position: relative;
+}
+
+/* Overlay Text Style */
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 80%; /* Adjust as needed */
+}
+
+/* Reset Margins for Overlay Text */
+.overlay-text h1,
+.overlay-text p {
+  margin: 0;
 }

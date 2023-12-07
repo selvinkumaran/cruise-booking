@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Feedback } from 'src/app/model/feedback';
 import { FeedbackService } from 'src/app/service/feedback.service';
 import { StorageService } from 'src/app/service/storage.service';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-feedback',
@@ -15,6 +16,8 @@ export class FeedbackComponent implements OnInit {
   feedbackDetails: any[] = [];
   error: string = '';
   param: number | null = null;
+
+  // Feedback Detail Object
   feedbackDetail: Feedback = {
     id: 0,
     comments: '',
@@ -27,6 +30,7 @@ export class FeedbackComponent implements OnInit {
       name: '',
     },
   };
+
   constructor(
     private storageService: StorageService,
     private feedbackService: FeedbackService,
@@ -38,6 +42,7 @@ export class FeedbackComponent implements OnInit {
   loggedInUser = this.storageService.getLoggedInUser();
 
   ngOnInit() {
+    // Retrieve feedback details based on route parameters
     this.route.queryParams.subscribe((params) => {
       this.param = params['id'];
       if (this.param) {
@@ -54,65 +59,60 @@ export class FeedbackComponent implements OnInit {
             }
           },
           error: (err) => {
-            let message: string = err?.error?.error?.message;
-            this.error = message.includes(',')
-              ? message.split(',')[0]
-              : message;
+            this.error = handleApiError(err);
           },
         });
       }
     });
   }
 
+  // Form Submission
   onSubmit(_addForm: Form): void {
     if (this.param) {
+      // Update existing feedback
       let feedbackDetail: Feedback = {
         id: this.param,
         userId: this.loggedInUser.id,
         comments: this.feedbackDetail.comments,
         rating: this.feedbackDetail.rating?.value,
       };
-      this.feedbackService.putfeedback(feedbackDetail).subscribe({
+      this.feedbackService.putFeedback(feedbackDetail).subscribe({
         next: () => {
-          this.showSnackBar('feedback updated successfully!');
+          this.showSnackBar('Feedback updated successfully!');
           this.resetForm(); // Reset the form after submission
         },
         error: (err) => {
-          console.log(err);
-          let message: string = err.error.error.message;
-          this.error = message.includes(',') ? message.split(',')[0] : message;
+          this.error = handleApiError(err);
         },
-        complete: () => console.log('There are no more actions happening.'),
       });
     } else {
+      // Add new feedback
       let feedbackDetail: Feedback = {
         id: 0,
         userId: this.loggedInUser.id,
         comments: this.feedbackDetail.comments,
         rating: this.feedbackDetail.rating.value,
       };
-      this.feedbackService.postfeedback(feedbackDetail).subscribe({
+      this.feedbackService.postFeedback(feedbackDetail).subscribe({
         next: () => {
-          this.showSnackBar('feedback added successfully!');
+          this.showSnackBar('Feedback added successfully!');
           this.resetForm(); // Reset the form after submission
         },
         error: (err) => {
-          console.log(err);
-          let message: string = err.error.error.message;
-          this.error = message.includes(',') ? message.split(',')[0] : message;
+          this.error = handleApiError(err);
         },
-        complete: () => console.log('There are no more actions happening.'),
       });
     }
   }
 
+  // Reset Form
   private resetForm(): void {
-    // Reset your form controls here
     this.feedbackDetail.comments = '';
     this.feedbackDetail.rating?.reset();
     this.cdr.detectChanges(); // Detect changes to update the view
   }
 
+  // Display Snack Bar
   private showSnackBar(message: string): void {
     this.snackBar.open(message, 'Close', {
       duration: 2000,

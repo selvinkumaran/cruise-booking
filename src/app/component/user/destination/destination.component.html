@@ -1,19 +1,20 @@
+<!-- Image Top Section -->
 <div class="img-top">
-  <img
-    src="assets/images/joel-tasche-7ddX6EU2l7A-unsplash.jpg"
-    alt="cruise"
-  />
+  <img src="assets/images/joel-tasche-7ddX6EU2l7A-unsplash.jpg" alt="cruise" />
   <div class="img-text">D E S T I N A T I O N</div>
 </div>
 
+<!-- Title Section -->
 <h3 class="text-center fw-bold fs-5 teal mt-5 pt-5">OUR DESTINATION</h3>
 <h1 class="text-center text-white fw-bold fs-1 p-3 font-weight">
   Our Best Destination
 </h1>
 
+<!-- Cruise Cards Section -->
 <div class="cruise-top mt-5"></div>
 <div class="container">
   <div class="row">
+    <!-- Iterate through cruiseDetails to display cruise cards -->
     <div
       (click)="getCruiseId(cruise.id)"
       *ngFor="let cruise of cruiseDetails"
@@ -23,20 +24,19 @@
     >
       <img
         class="rounded"
-        src="{{
-          'http://localhost:8080/api/admin/cruises/downloadFile/' + cruise.id
-        }}"
+        src="{{ 'http://localhost:8080/api/admin/cruises/downloadFile/' + cruise.id }}"
         alt=""
         width="256px"
         height="200px"
       />
       <div class="card-body text-center black-secondary">
         <h5 class="card-title fs-4 text-white">{{ cruise.name }}</h5>
-        <p class="card-text text">
-          {{ cruise.description }}
-        </p>
+        <p class="card-text text">{{ cruise.description }}</p>
         <a class="card-a">See Tours <i class="fa fa-arrow-right"></i></a>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Margin Section -->
+<div class="m-5"></div>

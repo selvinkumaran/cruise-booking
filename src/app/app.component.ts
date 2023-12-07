@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  // Loading animation options
   options: AnimationOptions = {
     path: '/assets/loading.json',
     rendererSettings: {
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
     },
   };
 
+  // Flags to track user authentication state
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
 
@@ -27,18 +29,23 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Subscribe to isAdmin observable in AuthService
     this.authService.isAdmin$.subscribe((isAdmin) => {
       this.isAdmin = isAdmin;
     });
 
+    // Subscribe to isLoggedIn observable in AuthService
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
   }
 
+  // Logout user
   logout(): void {
     this.authService.logout();
   }
+
+  // Check if the current route is the home page
   currentRouteIsHome(): boolean {
     return this.router.url === '/';
   }

@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tour } from 'src/app/model/tour';
 import { TourService } from 'src/app/service/tour.service';
+import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
   selector: 'app-tour',
@@ -36,26 +37,32 @@ export class TourComponent implements OnInit {
       name: '',
       description: '',
       photo: '',
-      capacity:0,
+      capacity: 0,
     },
   };
 
   ngOnInit(): void {
+    // Retrieve tour details based on cruise ID from query parameters
     this.route.queryParams.subscribe((params) => {
       this.param = params['id'];
-      this.tourService.getTourDetailsById(this.param!).subscribe({
-        next: (response: any) => {
-          this.tourDetails = response.data;
-          console.log(this.tourDetails);
-        },
-        error: (err) => {
-          let message: string = err?.error?.error?.message;
-          this.error = message.includes(',') ? message.split(',')[0] : message;
-        },
-      });
+      this.fetchTourDetails();
     });
   }
 
+  // Fetch tour details based on cruise ID
+  private fetchTourDetails(): void {
+    this.tourService.getTourDetailsByCruiseId(this.param!).subscribe({
+      next: (response: any) => {
+        this.tourDetails = response.data;
+      },
+      error: (err) => {
+        // Handle errors from the server
+        this.error = handleApiError(err);
+      },
+    });
+  }
+
+  // Calculate total payment based on selected guests and tour price
   calculateTotalPayment(): number {
     if (this.tourDetails.length > 0) {
       const selectedTour = this.tourDetails[0];
@@ -65,10 +72,17 @@ export class TourComponent implements OnInit {
     }
   }
 
+  // Handle form submission
   onSubmit(form: NgForm): void {
     if (form.valid) {
+      // Calculate total payment and navigate to the payment page
       const totalPayment = this.calculateTotalPayment();
-      this.router.navigate(['/payment'], { queryParams: { totalPayment: totalPayment,tourId:this.tourDetails[0].id   } });
+      this.router.navigate(['/payment'], {
+        queryParams: {
+          totalPayment: totalPayment,
+          tourId: this.tourDetails[0].id,
+        },
+      });
     }
   }
 }

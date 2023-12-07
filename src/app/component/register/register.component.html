@@ -1,14 +1,25 @@
+<!-- Registration Section -->
 <section class="vh-100 text-white">
   <div class="container h-100">
     <div class="row d-flex align-items-center justify-content-center h-100">
+      <!-- Left Column with Lottie Animation -->
       <div class="col-6">
         <ng-lottie [options]="options"></ng-lottie>
       </div>
-      <div class="col-md-6 black-secondary p-4 rounded" style="border: 1px solid teal;">
+
+      <!-- Right Column with Registration Form -->
+      <div
+        class="col-md-6 black-secondary p-4 rounded"
+        style="border: 1px solid teal"
+      >
+        <!-- Registration Form Header -->
         <h2 class="fs-3 mx-2 teal">REGISTER</h2>
 
+        <!-- Registration Form Container -->
         <div class="container">
+          <!-- Registration Form -->
           <form #registerForm="ngForm">
+            <!-- Input field for Name -->
             <div class="input-group py-4">
               <span class="input-group-text" id="addon-wrapping"
                 ><i class="fa fa-user"></i
@@ -33,6 +44,8 @@
                 Please enter a valid name
               </div>
             </div>
+
+            <!-- Input field for Email -->
             <div class="input-group py-4">
               <span class="input-group-text" id="addon-wrapping"
                 ><i class="fa fa-envelope"></i
@@ -57,6 +70,8 @@
                 Please enter a valid email
               </div>
             </div>
+
+            <!-- Input field for Password -->
             <div class="input-group py-4">
               <span class="input-group-text" id="addon-wrapping"
                 ><i class="fa fa-lock"></i
@@ -94,6 +109,8 @@
                 characters.
               </div>
             </div>
+
+            <!-- Input field for ConfirmPassword -->
             <div class="input-group py-4">
               <span class="input-group-text" id="addon-wrapping"
                 ><i class="fa fa-lock"></i
@@ -106,7 +123,6 @@
                 minlength="8"
                 #modelRePassword="ngModel"
                 [(ngModel)]="confirmPassword"
-
                 [ngClass]="
                   modelRePassword.invalid && modelRePassword.dirty
                     ? 'is-invalid'
@@ -142,18 +158,21 @@
                 Passwords do not match.
               </div>
             </div>
+
+            <!-- Link to Login Page for already registered users -->
             <div class="d-flex align-items-center mb-4">
               <span>Already registered ?</span>
               <a routerLink="/login" class="teal text-decoration-none px-2"
                 >Login here</a
               >
             </div>
+
+            <!-- Registration Button -->
             <div class="d-grid gap-2">
               <button
                 class="btn-all"
                 type="submit"
                 (click)="register()"
-
                 [disabled]="
                   registerForm.invalid ||
                   modelPassword.invalid ||

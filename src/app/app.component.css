@@ -1,3 +1,4 @@
+/* Global Navbar Styles */
 .navbar-nav a {
   color: white;
   text-decoration: none;
@@ -6,15 +7,18 @@
   transition: color 0.3s ease-in-out;
 }
 
+/* Navbar Hover Effect */
 .navbar-nav a:hover {
   color: var(--secondary) !important;
 }
 
+/* Active Navbar Item Styling */
 .navbar-nav .active {
   font-weight: bold;
   color: var(--secondary) !important;
 }
 
+/* Sidebar Item Styling */
 .sideBarItem,
 .sideBarItem > a {
   color: var(--accent);
@@ -23,21 +27,20 @@
   transition: color 0.5s ease-in-out;
 }
 
+/* Sidebar Item Hover Effect */
 .sideBarItem > a:hover {
   color: var(--secondary);
   background-color: var(--black-primary) !important;
   padding: 8px;
   font-weight: bold;
 }
-/* 
-.border {
-  border: solid 1px var(--secondary) !important;
-} */
 
+/* Active Sidebar Icon Styling */
 .sideBarActive > .fa-solid {
   color: var(--secondary);
 }
 
+/* Sidebar Item Hover Effect */
 .sideBarItem:hover {
   color: var(--secondary);
   background-color: var(--black-primary);
@@ -45,3 +48,4 @@
   border: solid 1px var(--secondary);
   cursor: pointer;
 }
+

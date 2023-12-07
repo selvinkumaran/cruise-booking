@@ -1,6 +1,8 @@
 <div class="container rounded black-secondary p-5">
+  <!-- Payment Form -->
   <form (ngSubmit)="onSubmit(paymentForm)" #paymentForm="ngForm">
     <div class="row">
+      <!-- Billing Address Section -->
       <div class="col-md-6">
         <h1 class="text-info text-center p-3 display-5">Billing Address</h1>
         <div class="container text-white">
@@ -91,6 +93,7 @@
         </div>
       </div>
 
+      <!-- Payment Details Section -->
       <div class="col-md-6">
         <h1 class="text-info text-center p-3 display-5">Payment Details</h1>
 
@@ -284,9 +287,6 @@
         </table>
       </div>
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
-          Cancel
-        </button> -->
         <button
           type="button"
           class="btn-add"
@@ -300,6 +300,7 @@
   </div>
 </div>
 
+<!-- Lottie Animation Loader -->
 <div *ngIf="showLottie" class="loader">
   <ng-lottie [options]="options"></ng-lottie>
 </div>

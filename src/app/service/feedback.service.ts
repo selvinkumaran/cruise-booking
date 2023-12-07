@@ -11,35 +11,46 @@ import { Feedback } from '../model/feedback';
 export class FeedbackService {
   constructor(private http: HttpClient) {}
 
+  // Retrieve all feedback details
   getFeedbackDetails(): Observable<AppResponse> {
     return this.http.get<AppResponse>(
       `${urlEndpoint.baseUrl}/admin/feedback/all`
     );
   }
 
+  // Retrieve feedback details by user ID
   getFeedbackDetailsById(userId: number): Observable<AppResponse> {
     return this.http.get<AppResponse>(
       `${urlEndpoint.baseUrl}/feedback/${userId}`
     );
   }
 
-    postfeedback(feedback: Feedback): Observable<AppResponse> {
+  // Post new feedback
+  postFeedback(feedback: Feedback): Observable<AppResponse> {
     return this.http.post<AppResponse>(
       `${urlEndpoint.baseUrl}/feedback`,
       feedback
     );
   }
 
-  putfeedback(feedback: Feedback): Observable<AppResponse> {
+  // Update existing feedback
+  putFeedback(feedback: Feedback): Observable<AppResponse> {
     return this.http.put<AppResponse>(
       `${urlEndpoint.baseUrl}/feedback`,
       feedback
     );
   }
 
+  // Delete feedback by ID
   deleteFeedback(id: number): Observable<AppResponse> {
     return this.http.delete<AppResponse>(
       `${urlEndpoint.baseUrl}/feedback/${id}`
+    );
+  }
+  // Delete feedback by ID with UserId
+  deleteFeedbackByUserId(userId:number,id: number): Observable<AppResponse> {
+    return this.http.delete<AppResponse>(
+      `${urlEndpoint.baseUrl}/feedback/${userId}/${id}`
     );
   }
 }

@@ -12,6 +12,7 @@
     </button>
   </div>
 
+  <div class="table-responsive">
   <table class="table table-dark table-striped text-align-center">
     <thead>
       <tr>
@@ -24,9 +25,11 @@
       </tr>
     </thead>
     <tbody>
+      <!-- Iterate over cruiseDetails and display each cruise -->
       <tr *ngFor="let cruise of cruiseDetails">
-        <th class="align-middle" scope="row">{{ cruise.id }}</th>
-        <th scope="row">
+        <td class="align-middle" scope="row">{{ cruise.id }}</td>
+        <!-- Display cruise image with a link -->
+        <td scope="row">
           <img
             src="{{
               'http://localhost:8080/api/admin/cruises/downloadFile/' +
@@ -36,16 +39,18 @@
             width="80px"
             height="70px"
           />
-        </th>
+        </td>
         <td class="align-middle">{{ cruise.name }}</td>
         <td class="col-6 align-middle">{{ cruise.description }}</td>
         <td class="align-middle">{{ cruise.capacity }}</td>
         <td class="align-middle">
+          <!-- Edit button with click event to call onEdit() -->
           <i
             role="button"
             (click)="onEdit(cruise.id!)"
             class="fa-solid fa-pen-to-square mx-4 teal"
           ></i>
+          <!-- Delete button with click event to call onDelete() -->
           <i
             role="button"
             (click)="onDelete(cruise.id)"
@@ -56,4 +61,5 @@
       </tr>
     </tbody>
   </table>
+  </div>
 </div>

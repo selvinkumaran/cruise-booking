@@ -24,30 +24,14 @@ import { FooterComponent } from './component/footer/footer.component';
 import { ServiceComponent } from './component/user/service/service.component';
 import { AllTourComponent } from './component/user/all-tour/all-tour.component';
 
+// Define application routes
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'footer', component: FooterComponent },
   { path: '', component: HomeComponent },
+  // Admin Routes
   { path: 'admin', component: AdminHomeComponent, canActivate: [authGuard] },
-  { path: 'feedback', component: FeedbackComponent, canActivate: [authGuard] },
-  {
-    path: 'feedback/all',
-    component: FeedbackOperationComponent,
-    canActivate: [authGuard],
-  },
-  { path: 'tour', component: TourComponent, canActivate: [authGuard] },
-  { path: 'all/tour', component: AllTourComponent, canActivate: [authGuard] },
-  {
-    path: 'destination',
-    component: DestinationComponent,
-    canActivate: [authGuard],
-  },
-  { path: 'cruise', component: CruiseComponent, canActivate: [authGuard] },
-  { path: 'booking', component: BookingComponent, canActivate: [authGuard] },
-  { path: 'payment', component: PaymentComponent, canActivate: [authGuard] },
-  { path: 'service', component: ServiceComponent, canActivate: [authGuard] },
-
   {
     path: 'admin/users',
     component: AdminUsersComponent,
@@ -88,7 +72,24 @@ const routes: Routes = [
     component: AdminFeedbackComponent,
     canActivate: [authGuard],
   },
-
+  // User Routes
+  { path: 'feedback', component: FeedbackComponent, canActivate: [authGuard] },
+  {
+    path: 'feedback/all',
+    component: FeedbackOperationComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'tour', component: TourComponent, canActivate: [authGuard] },
+  { path: 'all/tour', component: AllTourComponent, canActivate: [authGuard] },
+  {
+    path: 'destination',
+    component: DestinationComponent,
+    canActivate: [authGuard],
+  },
+  { path: 'cruise', component: CruiseComponent, canActivate: [authGuard] },
+  { path: 'booking', component: BookingComponent, canActivate: [authGuard] },
+  { path: 'payment', component: PaymentComponent, canActivate: [authGuard] },
+  { path: 'service', component: ServiceComponent, canActivate: [authGuard] },
 ];
 
 @NgModule({
