@@ -82,6 +82,7 @@
                 ngModel
                 required
                 minlength="8"
+                pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                 #modelPassword="ngModel"
                 [(ngModel)]="user.password"
                 [ngClass]="
@@ -98,13 +99,20 @@
                 *ngIf="modelPassword.errors?.['required']&& modelPassword.dirty"
                 class="invalid-feedback"
               >
-                please enter a valid password.
+                Please enter a valid password.
+              </div>
+              <div
+                *ngIf="modelPassword.errors?.['pattern'] && modelPassword.dirty"
+                class="invalid-feedback"
+              >
+                The password must contain atleast 1 special character, 1
+                uppercase, and 1 lowercase.
               </div>
               <div
                 *ngIf="modelPassword.errors?.['minlength']"
                 class="invalid-feedback"
               >
-                password should atleast
+                Password should contain atleast
                 {{modelPassword?.errors?.['minlength']?.['requiredLength']}}
                 characters.
               </div>
@@ -121,6 +129,7 @@
                 ngModel
                 required
                 minlength="8"
+                pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                 #modelRePassword="ngModel"
                 [(ngModel)]="confirmPassword"
                 [ngClass]="
@@ -137,13 +146,20 @@
                 *ngIf="modelRePassword.errors?.['required']&& modelRePassword.dirty"
                 class="invalid-feedback"
               >
-                please enter a valid password.
+                Please enter a valid password.
+              </div>
+              <div
+                *ngIf="modelRePassword.errors?.['pattern'] && modelPassword.dirty"
+                class="invalid-feedback"
+              >
+                The password must contain atleast 1 special character, 1
+                uppercase, and 1 lowercase.
               </div>
               <div
                 *ngIf="modelRePassword.errors?.['minlength']"
                 class="invalid-feedback"
               >
-                password should atleast
+                Password should contain atleast
                 {{modelRePassword?.errors?.['minlength']?.['requiredLength']}}
                 characters.
               </div>
@@ -151,7 +167,9 @@
                 *ngIf="
                   modelRePassword.invalid &&
                   !modelPassword.invalid &&
-                  modelRePassword.dirty
+                  modelRePassword.dirty &&
+                  modelPassword.value !== modelRePassword.value
+
                 "
                 class="invalid-feedback"
               >

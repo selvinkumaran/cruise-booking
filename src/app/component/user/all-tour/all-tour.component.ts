@@ -41,7 +41,6 @@ export class AllTourComponent implements OnInit {
     this.tourService.getTourDetails().subscribe(
       (response: any) => {
         this.tourDetails = response.data;
-        console.log(this.tourDetails);
       },
       (error) => {
         this.error = handleApiError(error);
