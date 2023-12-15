@@ -118,7 +118,37 @@ Screenshots:
 ![Screenshot (57)](https://github.com/selvinkumaran/cruise-booking/assets/145538192/290f0596-e4fb-4772-9c30-7a9dc3874d22)
 ![Screenshot (58)](https://github.com/selvinkumaran/cruise-booking/assets/145538192/16f4d0f8-8a54-4a51-9024-71d1b7de49df)
 
+Challenges:
+-----------
+Communicating with one component to component and overcoming the challenge by query params.
 
+Errors:
+------
+client errors :
+---------------
+400 Bad request
+401 Unauthories
+404 Not Found
 
+Server errors:
+-------------
+Internal Server Error
 
+Repositories Link:
+------------------
+Frontend:
+--------
+https://github.com/selvinkumaran/cruise-booking
+
+Backend:
+-------
+https://github.com/selvinkumaran/Cruise-Booking-Api
+
+MySQL Schema:
+------------
+![Screenshot (60)](https://github.com/selvinkumaran/cruise-booking/assets/145538192/934513fe-22f1-49ad-b7aa-c9b2796cf329)
+
+Demo Video URL:
+--------------
+https://drive.google.com/file/d/1tEZeKDw7tjWlPAMsn6LoC-UBj3uBhK1P/view?usp=drive_link
 
