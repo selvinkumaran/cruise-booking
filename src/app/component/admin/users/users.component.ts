@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Booking } from 'src/app/model/booking';
 import { User } from 'src/app/model/user';
+import { BookingService } from 'src/app/service/booking.service';
+import { StorageService } from 'src/app/service/storage.service';
 import { UserService } from 'src/app/service/user.service';
 import { handleApiError } from 'src/app/utils/apiError';
 
@@ -13,6 +16,8 @@ export class AdminUsersComponent implements OnInit {
   totalUserCount: number = 0;
 
   userDetails: User[] = [];
+  bookingDetails: Booking[] = [];
+
   userDetail: User = {
     id: 0,
     username: '',
@@ -20,7 +25,10 @@ export class AdminUsersComponent implements OnInit {
     roles: '',
   };
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private bookingService: BookingService,
+  ) {}
 
   ngOnInit(): void {
     // Fetch User Details
@@ -28,6 +36,8 @@ export class AdminUsersComponent implements OnInit {
 
     // Fetch Total User Count
     this.fetchTotalUserCount();
+
+    this.viewUserBookings(1);
   }
 
   // Function to fetch user details
@@ -36,7 +46,6 @@ export class AdminUsersComponent implements OnInit {
       next: (response: any) => {
         let userDetails: User[] = response.data;
         if (userDetails.length > 0) {
-          console.log(userDetails);
           this.userDetails = userDetails;
           this.userDetail = userDetails[0];
         }
@@ -57,5 +66,30 @@ export class AdminUsersComponent implements OnInit {
         this.error = handleApiError(err);
       },
     });
+  }
+
+  // Fetch booking details
+  private fetchBookingDetails(userId: number): void {
+    this.bookingService.getBookingDetailsById(userId).subscribe(
+      (response: any) => {
+        this.bookingDetails = response.data;
+      },
+      (error) => {
+        this.error = handleApiError(error);
+      }
+    );
+  }
+
+  setSelectedUser(userDetail: User): void {
+    this.userDetail = userDetail;
+  }
+
+  // Inside AdminUsersComponent class
+  viewUserBookings(userId: number): void {
+    // Set the selected user based on the userId
+    this.userDetail = this.userDetails.find((user) => user.id === userId)!;
+
+    // Fetch booking details for the selected user
+    this.fetchBookingDetails(userId);
   }
 }

@@ -42,4 +42,12 @@ export class AdminPaymentComponent implements OnInit {
       }
     );
   }
+
+  // Method to mask card number
+  maskCardNumber(cardNumber: string): string {
+    // Assuming cardNumber is a string, you can adjust accordingly if it's a number
+    const maskedNumber =
+      'x'.repeat(cardNumber.length - 4) + cardNumber.slice(-4);
+    return maskedNumber;
+  }
 }

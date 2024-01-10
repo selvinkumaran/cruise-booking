@@ -20,6 +20,7 @@ import { handleApiError } from 'src/app/utils/apiError';
 })
 export class AdminHomeComponent implements OnInit {
   totalUserCount: number = 0;
+  totalAmount: number = 0;
   error: string = '';
   cruiseDetails: Cruise[] = [];
   tourDetails: Tour[] = [];
@@ -48,6 +49,9 @@ export class AdminHomeComponent implements OnInit {
   };
   optionsBooking: AnimationOptions = {
     path: '/assets/booking.json',
+  };
+  optionsRevenue: AnimationOptions = {
+    path: '/assets/revenue.json',
   };
 
   constructor(
@@ -99,6 +103,9 @@ export class AdminHomeComponent implements OnInit {
     this.paymentService.getPaymentDetails().subscribe(
       (response: any) => {
         this.paymentDetails = response.data;
+        for (let amount of this.paymentDetails) {
+          this.totalAmount += amount.amount;
+        }
       },
       (error) => {
         this.error = handleApiError(error);
@@ -125,4 +132,5 @@ export class AdminHomeComponent implements OnInit {
       }
     );
   }
+
 }

@@ -1,5 +1,8 @@
 <!-- No Bookings Section -->
-<div *ngIf="bookingDetails.length === 0" class="min-vh-80 d-flex flex-column align-items-center justify-content-center">
+<div
+  *ngIf="bookingDetails.length === 0"
+  class="min-vh-80 d-flex flex-column align-items-center justify-content-center"
+>
   <ng-lottie [options]="empty" class="lottie-booking"></ng-lottie>
   <p class="text-white text-lottie">No Bookings !!!</p>
 </div>
@@ -15,7 +18,11 @@
     <div class="card border-0">
       <div class="card-header black-secondary p-3">
         <h5 class="text-white text-start fs-4 mb-0">
-          Thank You, <span class="teal">{{ loggedInUser.name }}</span> ! Have a nice journey...
+          Thank You,
+          <span class="teal">{{
+            loggedInUser.name.toString() | titlecase
+          }}</span>
+          ! Have a nice journey...
         </h5>
       </div>
       <!-- Card Body -->
@@ -26,7 +33,6 @@
             <tr>
               <!-- Table Headers -->
               <th scope="col">Image</th>
-              <th scope="col">Name</th>
               <th scope="col">Destination</th>
               <th scope="col">Check In Date</th>
               <th scope="col">Check Out Date</th>
@@ -34,6 +40,7 @@
               <th scope="col">Payment Date</th>
               <th scope="col">Amount</th>
               <th scope="col">Status</th>
+              <th scope="col">Download</th>
               <th scope="col">Feedback</th>
             </tr>
           </thead>
@@ -42,12 +49,17 @@
             <tr *ngFor="let book of bookingDetails">
               <!-- Table Data -->
               <td class="align-middle">
-                <img src="../../../../assets/images/ishan-seefromthesky-KgCbvOWYuU0-unsplash-1536x1152.jpg"
-                  class="img-fluid" alt="ship" width="100px" height="100px" />
+                <img
+                  src="{{
+                    'http://localhost:8080/api/admin/cruises/downloadFile/' +
+                      book.id
+                  }}"
+                  alt=""
+                  width="80px"
+                  height="80px"
+                />
               </td>
-              <td class="text-center align-middle">
-                <p class="mb-0">{{ book.name }}</p>
-              </td>
+
               <td class="text-center align-middle">
                 <p class="mb-0">{{ book.destination }}</p>
               </td>
@@ -64,15 +76,34 @@
                 <p class="mb-0 small">{{ book.paymentDate | date }}</p>
               </td>
               <td class="text-center align-middle">
-                <p class="mb-0 small">{{ book.amount }}</p>
+                <p class="mb-0 small">₹ {{ book.amount }}</p>
               </td>
               <td class="text-center align-middle">
                 <p class="mb-0 small">{{ book.bookingStatus }}</p>
               </td>
+              
+              <!-- Download Button -->
+              <td class="text-center align-middle">
+                <i role="button"
+                class="fa-solid fa-xl fa-download"
+                (click)="downloadBookingDetails(book)"
+                ></i>
+              </td>
               <!-- Feedback Button -->
               <td class="text-center align-middle">
-                <button type="button" routerLink="/feedback" routerLinkActive="active"
-                  class="btn btn-feedback">Feedback</button>
+                <button
+                  type="button"
+                  data-bs-container="body"
+                  data-bs-toggle="popover"
+                  data-bs-placement="right"
+                  data-bs-content="Right popover selvin"
+                  routerLink="/feedback"
+                  routerLinkActive="active"
+                  class="btn btn-feedback"
+                  [disabled]="getCurrentDate() <= book.checkOutDate!"
+                >
+                  Feedback
+                </button>
               </td>
             </tr>
           </tbody>

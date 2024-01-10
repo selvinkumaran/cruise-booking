@@ -21,6 +21,7 @@
       <tr>
         <th scope="col">ID</th>
         <th scope="col">DESTINATION</th>
+        <th scope="col">CRUISE ID</th>
         <th scope="col">PRICE</th>
         <th scope="col">CHECK IN</th>
         <th scope="col">CHECK OUT</th>
@@ -32,6 +33,7 @@
       <tr *ngFor="let tour of tourDetails">
         <th scope="row">{{ tour.id }}</th>
         <td>{{ tour.destination }}</td>
+        <td>{{ tour.cruise?.id }}</td>
         <td>₹ {{ tour.price }}</td>
         <td>{{ tour.checkInDate | date }}</td>
         <td>{{ tour.checkOutDate | date }}</td>

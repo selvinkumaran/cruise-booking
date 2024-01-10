@@ -71,7 +71,9 @@
 
         <!-- Button for submitting the tour -->
         <div class="text-center">
-          <button routerLink="/cruise" type="submit" class="btn-add">
+          <button (click)="getTourId(tour.id!)"
+          routerLink="/particular-tour"
+          type="submit" class="btn-add">
             Submit
           </button>
         </div>

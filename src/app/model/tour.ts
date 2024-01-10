@@ -1,11 +1,11 @@
 export interface Tour {
   id?: number;
-  cruiseId: number;
+  cruiseId: number|null;
   cruiseName?: string;
   cruiseCapacity?: number;
   cruiseDescription?: string;
   cruisePhoto?: null;
-  price: number;
+  price: number|null;
   checkInDate: string;
   checkOutDate: string;
   destination?: string;

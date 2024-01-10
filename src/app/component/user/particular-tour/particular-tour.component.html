@@ -1,0 +1,136 @@
+<!-- Header Section with Image and Tour Text -->
+<div class="img-top">
+  <img
+    src="/assets/images/aurora-borealis-over-snowy-mountains-and-frozen-se-J6LTWV2.jpg"
+    alt="Your Image Alt Text"
+  />
+  <div class="img-text">Tour</div>
+</div>
+
+<!-- Tour Details Section with ngFor Loop -->
+<div class="row d-flex m-5">
+  <div class="col-6">
+    <!-- Cruise Details -->
+    <h2 class="teal fs-1">{{ tourDetail.cruiseName }}</h2>
+    <p class="text-white lh-lg">{{ tourDetail.cruiseDescription }}</p>
+
+    <!-- Cruise Image and Description -->
+    <div class="card col-2 p-0 border-0" style="width: 100%">
+      <img
+        src="{{
+          'http://localhost:8080/api/admin/cruises/downloadFile/' +
+            tourDetail.cruise?.id
+        }}"
+        alt=""
+        width="605px"
+        height="400px"
+      />
+      <div class="py-4 text-center black-primary">
+        <h5 class="text-white text-start fs-4 fw-bold">
+          Breathtaking Beauty at Every Turn
+        </h5>
+        <!-- Cruise Image Description -->
+        <p class="text-start text lh-lg">
+          Witness the awe-inspiring beauty of nature captured in this stunning
+          image. Immerse yourself in a world of vibrant colors, intricate
+          details, and the serenity that only Mother Nature can provide. Each
+          snapshot tells a unique story, inviting you to explore, dream, and
+          appreciate the extraordinary wonders that surround us.
+        </p>
+      </div>
+    </div>
+
+    <!-- Included and Excluded Services -->
+    <div class="text-white row">
+      <div class="col">
+        <p class="teal">Include</p>
+        <ul class="list-unstyled">
+          <li>✔ Tour Guide</li>
+          <li>✔ Accommodation</li>
+          <li>✔ Pickup Ride</li>
+          <li>✔ Breakfast</li>
+          <li>✔ Dinner</li>
+        </ul>
+      </div>
+      <div class="col">
+        <p class="teal">Exclude</p>
+        <ul class="list-unstyled">
+          <li>❌ Photographer</li>
+          <li>❌ Private Expenses</li>
+          <li>❌ Room Service</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Form Section -->
+  <div class="col-5 m-3 text-white black-secondary top" style="height: 400px">
+    <div class="container p-3 mt-3">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <!-- Destination and Capacity -->
+        <div class="d-flex row justify-content-between">
+          <!-- Destination -->
+          <div class="form-group col p-2">
+            <label class="p-2 teal fs-5" for="destination">Destination</label>
+            <p class="mx-2">{{ tourDetail.destination }}</p>
+          </div>
+
+          <!-- Capacity -->
+          <div class="form-group col p-2">
+            <label class="p-2 mx-4 teal fs-5" for="capacity">Capacity</label>
+            <p class="mx-5">{{ tourDetail.cruise?.capacity }}</p>
+          </div>
+        </div>
+
+        <!-- Check-In and Check-Out Dates -->
+        <div class="d-flex row justify-content-between">
+          <!-- Check-In Date -->
+          <div class="form-group col p-2">
+            <label class="p-2 teal fs-5" for="checkinDate">Check-In Date</label>
+            <p class="mx-2">{{ tourDetail.checkInDate }}</p>
+          </div>
+
+          <!-- Check-Out Date -->
+          <div class="form-group col p-2">
+            <label class="p-2 mx-4 teal fs-5" for="checkoutDate"
+              >Check-Out Date</label
+            >
+            <p class="mx-5">{{ tourDetail.checkOutDate }}</p>
+          </div>
+        </div>
+
+        <!-- Guests and Price -->
+        <div class="d-flex row">
+          <!-- Guests -->
+          <div class="form-group col p-2">
+            <label class="p-2 teal fs-5" for="guests">Guests</label>
+            <select
+              class="form-control mx-3"
+              id="guests"
+              required
+              name="selectedGuests"
+            >
+              <!-- Options for Number of Guests -->
+              <option value="1">1 Guest</option>
+              <option value="2">2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="3">4 Guests</option>
+              <option value="3">5 Guests</option>
+            </select>
+          </div>
+
+          <!-- Price -->
+          <div class="form-group col p-2">
+            <label class="p-2 mx-4 teal fs-5" for="price">Price</label>
+            <p class="mx-5">{{ tourDetail.price }}</p>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center">
+          <button type="submit" class="btn-add m-3">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -36,6 +36,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { NgbModule, NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { FooterComponent } from './component/footer/footer.component';
 import { ServiceComponent } from './component/user/service/service.component';
+import { ParticularTourComponent } from './component/user/particular-tour/particular-tour.component';
 
 export function playerFactory() {
   return player;
@@ -69,6 +70,7 @@ export function playerFactory() {
     FeedbackOperationComponent,
     AdminBookingComponent,
     AdminPaymentComponent,
+    ParticularTourComponent,
   ],
   imports: [
     CommonModule,
@@ -98,5 +100,5 @@ export function playerFactory() {
     },
   ],
   bootstrap: [AppComponent],
-})
+})  
 export class AppModule {}

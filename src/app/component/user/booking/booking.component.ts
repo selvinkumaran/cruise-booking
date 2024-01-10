@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnimationOptions } from 'ngx-lottie';
 import { Booking } from 'src/app/model/booking';
@@ -48,14 +48,15 @@ export class BookingComponent implements OnInit {
     private bookingService: BookingService,
     private route: ActivatedRoute,
     private storageService: StorageService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private el: ElementRef
   ) {}
 
   ngOnInit() {
+
     this.route.queryParams.subscribe((params) => {
       this.bookingDetail.tourId = params['tourId'];
     });
-
     this.fetchLatestPayment();
   }
 
@@ -98,10 +99,47 @@ export class BookingComponent implements OnInit {
     this.bookingService.getBookingDetailsById(this.loggedInUser.id).subscribe(
       (response: any) => {
         this.bookingDetails = response.data;
+        console.log(this.bookingDetails,"check");
+        
       },
       (error) => {
         this.error = handleApiError(error);
       }
     );
+  }
+  // Function to trigger the download for a specific booking
+  downloadBookingDetails(booking: Booking): void {
+    // Create a string with the content you want to download
+    const contentToDownload = `
+    Destination: ${booking.destination}
+    Check In Date: ${booking.checkInDate}
+    Check Out Date: ${booking.checkOutDate}
+    Cruise Name: ${booking.cruiseName}
+    Payment Date: ${booking.paymentDate}
+    Amount: ${booking.amount}
+    Status: ${booking.bookingStatus}
+  `;
+
+    // Create a Blob with the content and set the MIME type
+    const blob = new Blob([contentToDownload], { type: 'text/plain' });
+
+    // Create a link element and set its attributes for downloading
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = `Booking_Details_${booking.id}.txt`;
+
+    // Append the link to the document and trigger the click event
+    document.body.appendChild(link);
+    link.click();
+
+    // Clean up by removing the link from the document
+    document.body.removeChild(link);
+  }
+
+  getCurrentDate(): string {
+    const today = new Date();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    return `${today.getFullYear()}-${month}-${day}`;
   }
 }

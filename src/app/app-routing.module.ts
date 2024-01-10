@@ -23,6 +23,7 @@ import { AdminPaymentComponent } from './component/admin/payment/payment.compone
 import { FooterComponent } from './component/footer/footer.component';
 import { ServiceComponent } from './component/user/service/service.component';
 import { AllTourComponent } from './component/user/all-tour/all-tour.component';
+import { ParticularTourComponent } from './component/user/particular-tour/particular-tour.component';
 
 // Define application routes
 const routes: Routes = [
@@ -86,6 +87,7 @@ const routes: Routes = [
     component: DestinationComponent,
     canActivate: [authGuard],
   },
+  { path: 'particular-tour', component: ParticularTourComponent, canActivate: [authGuard] },
   { path: 'cruise', component: CruiseComponent, canActivate: [authGuard] },
   { path: 'booking', component: BookingComponent, canActivate: [authGuard] },
   { path: 'payment', component: PaymentComponent, canActivate: [authGuard] },

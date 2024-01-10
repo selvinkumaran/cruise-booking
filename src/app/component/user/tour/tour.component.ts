@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AnimationOptions } from 'ngx-lottie';
 import { Tour } from 'src/app/model/tour';
 import { TourService } from 'src/app/service/tour.service';
 import { handleApiError } from 'src/app/utils/apiError';
@@ -20,6 +21,11 @@ export class TourComponent implements OnInit {
   error: string = '';
   param: number | null = null;
   selectedGuests: number = 1;
+
+  // Lottie animation options
+  sad: AnimationOptions = {
+    path: '/assets/sad.json',
+  };
 
   tourDetails: Tour[] = [];
   tourDetail: Tour = {
@@ -66,7 +72,7 @@ export class TourComponent implements OnInit {
   calculateTotalPayment(): number {
     if (this.tourDetails.length > 0) {
       const selectedTour = this.tourDetails[0];
-      return this.selectedGuests * selectedTour.price;
+      return this.selectedGuests * selectedTour.price!;
     } else {
       return 0;
     }
@@ -84,5 +90,13 @@ export class TourComponent implements OnInit {
         },
       });
     }
+  }
+
+  checkInDateExpired(checkInDate: string): boolean {
+    const currentDate = new Date();
+    const checkInDateObj = new Date(checkInDate);
+
+    // Compare the current date with the check-in date
+    return currentDate > checkInDateObj;
   }
 }

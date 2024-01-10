@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Tour } from 'src/app/model/tour';
 import { TourService } from 'src/app/service/tour.service';
 import { handleApiError } from 'src/app/utils/apiError';
@@ -30,7 +31,7 @@ export class AllTourComponent implements OnInit {
     },
   };
 
-  constructor(private tourService: TourService) {}
+  constructor(private tourService: TourService, private router: Router) {}
 
   ngOnInit() {
     this.fetchTourDetails();
@@ -46,5 +47,12 @@ export class AllTourComponent implements OnInit {
         this.error = handleApiError(error);
       }
     );
+  }
+
+  // Send Tour Id through params
+  getTourId(id: number) {
+    this.router.navigate(['/particular-tour'], {
+      queryParams: { id: id },
+    });
   }
 }

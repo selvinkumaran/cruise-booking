@@ -81,6 +81,24 @@
               >
             </li>
           </ul>
+          <!--search bar-->
+          <div
+            class="px-4 search-container input-group py"
+            [ngClass]="{ 'show-search': isSearchVisible }"
+            style="width: 250px;"
+          >
+            <span class="input-group-text" id="addon-wrapping">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+            <input
+              class="p-1 form-control"
+              type="search"
+              [(ngModel)]="searchTerm"
+              (input)="filterTours()"
+              placeholder="Search Your Tours...."
+            />
+          </div>
+
           <!-- User Icons -->
           <div routerLink="/booking" role="button">
             <i
@@ -101,10 +119,42 @@
       </div>
     </nav>
   </div>
-  <!-- Footer Component -->
-  <!-- <div>
-    <app-footer></app-footer>
-  </div> -->
+  <div *ngIf="!isSearchVisible">
+    <div class="container">
+      <div class="row">
+        <!-- Iterate through TourDetails to display Tour cards -->
+        <div
+          *ngFor="let tour of filteredTours"
+          class="card col-2 m-2 p-0 border-0"
+          style="width: 16rem"
+          role="button"
+          routerLink="/particular-tour"
+          (click)="getTourId(tour.id!)"
+        >
+          <!-- Tour Card Image -->
+          <img
+            class="rounded"
+            src="{{
+              'http://localhost:8080/api/admin/cruises/downloadFile/' +
+                tour.cruise?.id
+            }}"
+            alt=""
+            width="256px"
+            height="200px"
+          />
+          <!-- Tour Card Body -->
+          <div class="card-body text-center black-secondary">
+            <!-- Tour Card Title -->
+            <h5 class="card-title fs-6 text-white">{{ tour.destination }}</h5>
+            <!-- Tour Card Description -->
+            <p class="card-text text">{{ tour.cruise?.description }}</p>
+            <!-- Tour Card Action -->
+            <a class="card-a">See Tour <i class="fa fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Guest Navigation Bar -->

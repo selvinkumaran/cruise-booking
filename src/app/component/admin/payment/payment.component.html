@@ -24,7 +24,8 @@
           <td>{{ payment.id }}</td>
           <td>{{ payment.cardHolderName }}</td>
           <td>{{ payment.paymentDate | date }}</td>
-          <td>{{ payment.cardNumber }}</td>
+          <!-- Display only the last 4 digits of the card number -->
+          <td>{{ maskCardNumber(payment.cardNumber) }}</td>
           <td>₹ {{ payment.amount }}</td>
           <!-- Payment Status Column with Checkmark Icon -->
           <td>

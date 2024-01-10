@@ -1,0 +1,8 @@
+.card-outline-table {
+    border: none;
+    cursor: pointer;
+  }
+  .card-outline-table:hover {
+    border: 0px solid teal;
+  }
+  

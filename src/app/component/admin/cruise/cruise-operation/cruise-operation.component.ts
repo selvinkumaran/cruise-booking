@@ -21,7 +21,7 @@ export class CruiseOperationComponent implements OnInit {
     id: 0,
     name: '',
     description: '',
-    capacity: 0,
+    capacity: null,
     photo: '',
   };
 
@@ -100,6 +100,7 @@ export class CruiseOperationComponent implements OnInit {
   addCruise(addForm: NgForm): void {
     let formValue: Cruise = addForm.value;
     const formData = this.createFormData(formValue);
+    console.log(formData, 'selvi Check');
 
     this.cruiseService.postCruise(formData).subscribe({
       next: () => this.handleSuccess('Cruise added successfully!'),
@@ -114,7 +115,7 @@ export class CruiseOperationComponent implements OnInit {
       formData.append('id', this.param!.toString());
     }
     formData.append('photo', this.file);
-    formData.append('capacity', formValue.capacity.toString());
+    formData.append('capacity', formValue.capacity!.toString());
     formData.append('name', formValue.name);
     formData.append('description', formValue.description);
 

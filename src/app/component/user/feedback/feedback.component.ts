@@ -89,7 +89,7 @@ export class FeedbackComponent implements OnInit {
       // Add new feedback
       let feedbackDetail: Feedback = {
         id: 0,
-        userId: this.loggedInUser.id,
+        userId: this.loggedInUser.id, 
         comments: this.feedbackDetail.comments,
         rating: this.feedbackDetail.rating.value,
       };

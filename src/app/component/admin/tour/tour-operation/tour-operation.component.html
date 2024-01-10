@@ -30,7 +30,7 @@
           type="number"
           class="form-control"
           id="cruiseName"
-          placeholder="Enter Cruise Name"
+          placeholder="Enter Cruise Id"
           required
         />
       </div>
@@ -44,8 +44,9 @@
           type="date"
           class="form-control"
           id="checkinDate"
+          [min]="getCurrentDate()"
           required
-          [ngModelOptions]="{ standalone: true }"
+          #checkIn="ngModel"
         />
       </div>
       <!-- Input field for Checkout Date -->
@@ -58,8 +59,9 @@
           type="date"
           class="form-control"
           id="checkoutDate"
+          [min]="getSelectedCheckInDate()"
           required
-          [ngModelOptions]="{ standalone: true }"
+          [disabled]="!tourDetail.checkInDate"
         />
       </div>
       <!-- Input field for Price -->
@@ -77,7 +79,13 @@
         />
       </div>
       <!-- Submit button -->
-      <button type="submit" class="btn-add text-center mt-3">{{ btn }}</button>
+      <button
+        [disabled]="addForm.invalid"
+        type="submit"
+        class="btn-add btn-all text-center mt-3"
+      >
+        {{ btn }}
+      </button>
     </form>
   </div>
 </div>

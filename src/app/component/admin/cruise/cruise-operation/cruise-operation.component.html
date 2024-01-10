@@ -63,6 +63,7 @@
           [(ngModel)]="cruiseDetail.photo"
           (change)="onFileChange($event)"
           required="{{ cruiseDetail.id === 0 }}"
+          accept=".jpeg, .png, .jpg"
         />
 
         <!-- Error message for file selection -->
@@ -75,7 +76,13 @@
       </div>
 
       <!-- Submit button -->
-      <button type="submit" class="btn-add text-center mt-3">{{ btn }}</button>
+      <button
+        [disabled]="addForm.invalid"
+        type="submit"
+        class="btn-add btn-all text-center mt-3"
+      >
+        {{ btn }}
+      </button>
     </form>
   </div>
 </div>

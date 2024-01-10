@@ -20,8 +20,8 @@ export class TourOperationComponent implements OnInit {
   tourDetail: Tour = {
     id: 0,
     destination: '',
-    cruiseId: 0,
-    price: 0,
+    cruiseId: null,
+    price: null,
     checkInDate: '',
     checkOutDate: '',
   };
@@ -121,5 +121,19 @@ export class TourOperationComponent implements OnInit {
       verticalPosition: 'top',
       panelClass: ['custom-snackbar'],
     });
+  }
+
+  getCurrentDate(): string {
+    const today = new Date();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    return `${today.getFullYear()}-${month}-${day}`;
+  }
+
+  getSelectedCheckInDate(): string {
+    const selectedDate = new Date(this.tourDetail.checkInDate);
+    const month = (selectedDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = selectedDate.getDate().toString().padStart(2, '0');
+    return `${selectedDate.getFullYear()}-${month}-${day}`;
   }
 }
