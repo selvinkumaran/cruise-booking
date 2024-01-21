@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './service/auth.service';
 import { AnimationOptions } from 'ngx-lottie';
 import { LoaderService } from './service/loader.service';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Tour } from './model/tour';
 import { TourService } from './service/tour.service';
 import { handleApiError } from './utils/apiError';
@@ -75,6 +75,11 @@ export class AppComponent implements OnInit {
     return this.router.url === '/';
   }
 
+  // Check if the current route is the home page
+  currentRouteIsLoginOrRegister(): boolean {
+    return this.router.url === '/login' || this.router.url === '/register';
+  }
+
   //Filter Tours
   filterTours(): void {
     if (!this.isSearchVisible) {
@@ -90,15 +95,15 @@ export class AppComponent implements OnInit {
       setTimeout(() => document.querySelector('.search-container input'));
     }
   }
-
+  //Reset Search
   filterReset(): void {
     this.isSearchVisible = false;
     this.searchTerm = '';
     this.filteredTours = [];
   }
 
-   // Send Tour Id through params
-   getTourId(id: number) {
+  // Send Tour Id through params
+  getTourId(id: number) {
     this.router.navigate(['/particular-tour'], {
       queryParams: { id: id },
     });

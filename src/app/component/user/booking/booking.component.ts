@@ -2,8 +2,10 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnimationOptions } from 'ngx-lottie';
 import { Booking } from 'src/app/model/booking';
+import { Email } from 'src/app/model/email';
 import { Payment } from 'src/app/model/payment';
 import { BookingService } from 'src/app/service/booking.service';
+import { EmailService } from 'src/app/service/email.service';
 import { PaymentService } from 'src/app/service/payment.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { handleApiError } from 'src/app/utils/apiError';
@@ -39,21 +41,25 @@ export class BookingComponent implements OnInit {
     paymentId: 0,
     userId: 0,
   };
+  loggedInUserEmail = this.storageService.getLoggedInUser();
 
   param: number | null = null;
 
   loggedInUser = this.storageService.getLoggedInUser();
+
+  // Retrieve the emailSent flag from sessionStorage or default to false
+  emailSent: boolean = sessionStorage.getItem('emailSent') === 'true';
 
   constructor(
     private bookingService: BookingService,
     private route: ActivatedRoute,
     private storageService: StorageService,
     private paymentService: PaymentService,
-    private el: ElementRef
+    private el: ElementRef,
+    private emailService: EmailService
   ) {}
 
   ngOnInit() {
-
     this.route.queryParams.subscribe((params) => {
       this.bookingDetail.tourId = params['tourId'];
     });
@@ -99,14 +105,61 @@ export class BookingComponent implements OnInit {
     this.bookingService.getBookingDetailsById(this.loggedInUser.id).subscribe(
       (response: any) => {
         this.bookingDetails = response.data;
-        console.log(this.bookingDetails,"check");
-        
+        console.log(this.bookingDetails, 'check');
+        // Check if the email has been sent before sending it again
+        if (!this.emailSent) {
+          this.sendEmail();
+          // Set the flag to true after sending the email
+          this.emailSent = true;
+          // Store the emailSent flag in sessionStorage
+          sessionStorage.setItem('emailSent', 'true');
+        }
       },
       (error) => {
         this.error = handleApiError(error);
       }
     );
   }
+
+  //send email to user
+
+  sendEmail(): void {
+    // Check if there are bookings
+    if (this.bookingDetails.length > 0) {
+      // Get the last booking from the array
+      const lastBooking = this.bookingDetails[this.bookingDetails.length - 1];
+
+      // Construct the email object
+      let email: Email = {
+        email: this.loggedInUserEmail.username,
+        bookingDetails: {
+          bookingStatus: lastBooking.bookingStatus,
+          bookingDate: lastBooking.bookingDate,
+          cruiseName: lastBooking.cruiseName,
+          destination: lastBooking.destination,
+          paymentDate: lastBooking.paymentDate,
+          amount: lastBooking.amount,
+          checkInDate: lastBooking.checkInDate,
+          checkOutDate: lastBooking.checkOutDate,
+        },
+      };
+
+      // Send the email
+      this.emailService.sendEmail(email).subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (error: Error) => {
+          console.log('Message:', error.message);
+          console.log('Name:', error.name);
+        },
+        complete: () => {},
+      });
+    } else {
+      console.log('No bookings to send email for.'); // Handle the case where there are no bookings
+    }
+  }
+
   // Function to trigger the download for a specific booking
   downloadBookingDetails(booking: Booking): void {
     // Create a string with the content you want to download

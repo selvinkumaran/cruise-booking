@@ -22,7 +22,9 @@ export class LoginComponent {
   error: String = '';
 
   // Inject AuthService for handling login functionality
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+  ) {}
 
   // Method to handle user login
   login(): void {

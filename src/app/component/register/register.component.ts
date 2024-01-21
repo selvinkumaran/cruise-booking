@@ -3,7 +3,7 @@ import { AnimationOptions } from 'ngx-lottie';
 import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/service/auth.service';
 import { AppResponse } from 'src/app/model/appResponse';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { handleApiError } from 'src/app/utils/apiError';
 
 @Component({
@@ -11,11 +11,15 @@ import { handleApiError } from 'src/app/utils/apiError';
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   options: AnimationOptions = {
     path: '/assets/register.json',
   };
+  
   confirmPassword: string = '';
   error: string = '';
   user: User = {
@@ -33,8 +37,7 @@ export class RegisterComponent {
     };
 
     this.authService.register(userToRegister).subscribe({
-      next: (_response: AppResponse) => {
-      },
+      next: (_response: AppResponse) => {},
       error: (err) => {
         this.error = handleApiError(err);
       },

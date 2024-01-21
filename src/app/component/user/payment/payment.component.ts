@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Payment } from 'src/app/model/payment';
@@ -52,8 +52,7 @@ export class PaymentComponent {
   // Button Text for UI
   btnText: string = 'BOOK NOW';
 
-  onSubmit(_paymentForm: NgForm) {
-  }
+  onSubmit(_paymentForm: NgForm) {}
 
   // Retrieve logged-in user from storage service
   loggedInUser = this.storageService.getLoggedInUser();
@@ -102,7 +101,6 @@ export class PaymentComponent {
       this.router.navigate(['/booking'], {
         queryParams: {
           tourId: this.route.snapshot.queryParams['tourId'],
-          paymentLatestId: this.paymentLatestId,
         },
       });
     }, 3000);

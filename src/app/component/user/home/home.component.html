@@ -178,12 +178,61 @@
   </div>
   <!-- Book Now Button -->
   <button
-    routerLink="/cruise"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    data-bs-whatever="@fat"
     routerLinkActive="active"
     class="btn-all m-4 p-3"
   >
     Book Now
   </button>
+</div>
+<div
+  class="modal fade mt-5"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Welcome to Cruise Hub</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p class="py-2 fs-6">
+          Click
+          <button
+            routerLink="/login"
+            type="button"
+            class="btn-xs rounded btn-success text-white p-1"
+            data-bs-dismiss="modal"
+          >
+            Login
+          </button>
+          to proceed
+        </p>
+        <p class="py-2 fs-6">
+          Don't have an account
+          <button
+            routerLink="/register"
+            type="button"
+            class="btn-xs rounded btn-success text-white p-1"
+            data-bs-dismiss="modal"
+          >
+            Register
+          </button>
+          here
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Our Team Section -->

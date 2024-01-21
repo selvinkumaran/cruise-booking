@@ -85,7 +85,7 @@
           <div
             class="px-4 search-container input-group py"
             [ngClass]="{ 'show-search': isSearchVisible }"
-            style="width: 250px;"
+            style="width: 250px"
           >
             <span class="input-group-text" id="addon-wrapping">
               <i class="fa-solid fa-magnifying-glass"></i>
@@ -307,7 +307,7 @@
 <div *ngIf="!isAdmin">
   <!-- Display User-Specific Components -->
   <router-outlet></router-outlet>
-  <app-footer></app-footer>
+  <app-footer *ngIf="!currentRouteIsLoginOrRegister()"></app-footer>
 </div>
 
 <!-- Loading Spinner -->
